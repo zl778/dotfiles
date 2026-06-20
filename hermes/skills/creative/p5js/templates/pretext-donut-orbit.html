@@ -1,0 +1,501 @@
+1|<!doctype html>
+2|<html lang="en">
+3|<head>
+4|<meta charset="utf-8" />
+5|<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+6|<title>NOUS · pretext</title>
+7|<link rel="preconnect" href="https://fonts.googleapis.com">
+8|<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+9|<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=block" rel="stylesheet">
+10|<style>
+11|  :root { color-scheme: dark; }
+12|
+13|  :root {
+14|    --background:       color-mix(in srgb, #041C1C 100%, transparent);
+15|    --background-base:  #041C1C;
+16|    --background-alpha: 1;
+17|    --background-blend: difference;
+18|    --midground:        color-mix(in srgb, #ffe6cb 100%, transparent);
+19|    --midground-base:   #ffe6cb;
+20|    --midground-alpha:  1;
+21|    --foreground:       color-mix(in srgb, #ffffff 0%, transparent);
+22|    --foreground-base:  #ffffff;
+23|    --foreground-alpha: 0;
+24|    --foreground-blend: difference;
+25|  }
+26|
+27|  html, body {
+28|    margin: 0;
+29|    width: 100%;
+30|    min-height: 100vh;
+31|    overflow: hidden;
+32|    background: #000;
+33|  }
+34|
+35|  /* literally center the composition in 100vh */
+36|  body {
+37|    display: flex;
+38|    align-items: center;
+39|    justify-content: center;
+40|  }
+41|
+42|  #stage {
+43|    position: relative;
+44|    z-index: 2;
+45|    width: min(1240px, 100vw);
+46|    height: min(720px, 100vh);
+47|    cursor: grab;
+48|    overflow: visible;
+49|  }
+50|  #stage:active { cursor: grabbing; }
+51|
+52|  #c,
+53|  #orbCanvas {
+54|    display: block;
+55|    position: absolute;
+56|    left: calc((100vw - min(1240px, 100vw)) / -2);
+57|    top: calc((100vh - min(720px, 100vh)) / -2);
+58|    width: 100vw;
+59|    height: 100vh;
+60|    pointer-events: none;
+61|  }
+62|  #c { z-index: 3; }
+63|  #orbCanvas {
+64|    z-index: 4;
+65|    opacity: 1;
+66|  }
+67|  #noiseCanvas {
+68|    display: block;
+69|    position: absolute;
+70|    inset: 0;
+71|    width: 100%;
+72|    height: 100%;
+73|    pointer-events: none;
+74|  }
+75|  #textLayer {
+76|    position: absolute;
+77|    inset: 0;
+78|    z-index: 2;
+79|    color: var(--midground-base);
+80|    font: 400 10px/15px "Geist Mono", "JetBrains Mono", "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+81|    pointer-events: auto;
+82|    user-select: text;
+83|    -webkit-user-select: text;
+84|  }
+85|  #textLayer *::selection {
+86|    background: var(--selection-bg, var(--midground));
+87|    color: var(--background-base);
+88|  }
+89|  .flow-line {
+90|    position: absolute;
+91|    height: 20px;
+92|    white-space: pre;
+93|    overflow: visible;
+94|    color: var(--midground-base);
+95|  }
+96|  #annotationLayer {
+97|    position: absolute;
+98|    inset: 0;
+99|    z-index: 4;
+100|    pointer-events: none;
+101|    overflow: visible;
+102|  }
+103|  .annot {
+104|    position: absolute;
+105|    pointer-events: none;
+106|    will-change: opacity, transform;
+107|  }
+108|  .tok-keyword { color: color-mix(in srgb, var(--midground-base) 54%, #ff174d); }
+109|  .tok-string  { color: color-mix(in srgb, var(--midground-base) 52%, #ff6b3d); }
+110|  .tok-comment { color: color-mix(in srgb, var(--midground-base) 42%, #7f1d1d); }
+111|  .tok-number  { color: color-mix(in srgb, var(--midground-base) 50%, #ff2a6d); }
+112|  .tok-const   { color: color-mix(in srgb, var(--midground-base) 48%, #ff003c); }
+113|
+114|  .layer { position: fixed; inset: 0; pointer-events: none; }
+115|  .bg-lens   { z-index: 1; background-color: var(--background); mix-blend-mode: var(--background-blend); }
+116|  .vignette  { z-index: 99; background: radial-gradient(ellipse at 0% 0%, rgba(255,189,56,0) 60%, rgba(255,189,56,0.35) 100%); mix-blend-mode: lighten; opacity: 0.22; }
+117|  .fg-lens   { z-index: 100; background-color: var(--foreground); mix-blend-mode: var(--foreground-blend); }
+118|  .noise {
+119|    z-index: 101;
+120|    mix-blend-mode: difference;
+121|  }
+122|  #noiseCanvas {
+123|    width: 100%;
+124|    height: 100%;
+125|    display: block;
+126|  }
+127|  .terminal-cursor {
+128|    position: absolute;
+129|    width: 0.6em;
+130|    height: 1em;
+131|    background: #fff;
+132|    z-index: 6;
+133|    pointer-events: none;
+134|    mix-blend-mode: difference;
+135|    animation: term-blink 1s steps(1, end) infinite;
+136|  }
+137|  @keyframes term-blink {
+138|    0%, 60% { opacity: 1; }
+139|    60.01%, 100% { opacity: 0; }
+140|  }
+141|  .cursor-anchor {
+142|    display: inline-block;
+143|    width: 0;
+144|    height: 1em;
+145|    vertical-align: text-top;
+146|    pointer-events: none;
+147|  }
+148|
+149|  @font-face {
+150|    font-family: "Mondwest";
+151|    src: url("https://esm.sh/@nous-research/ui@0.4.0/dist/fonts/Mondwest-Regular.woff2") format("woff2");
+152|    font-weight: 400; font-style: normal; font-display: block;
+153|  }
+154|  @font-face {
+155|    font-family: "Geist Mono";
+156|    src: url("https://cdn.jsdelivr.net/npm/@fontsource/geist-mono@5.2.5/files/geist-mono-latin-400-normal.woff2") format("woff2");
+157|    font-weight: 400; font-style: normal; font-display: block;
+158|  }
+159|  @font-face {
+160|    font-family: "JetBrains Mono";
+161|    src: url("https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.2.5/files/jetbrains-mono-latin-400-normal.woff2") format("woff2");
+162|    font-weight: 400; font-style: normal; font-display: block;
+163|  }
+164|
+165|  .font-primer { position: fixed; left: -9999px; top: -9999px; font: 400 26px "Mondwest", serif; }
+166|</style>
+167|</head>
+168|<body>
+169|<div id="stage"><div id="textLayer" aria-label="self-learning source stream"></div><div id="terminalCursor" class="terminal-cursor" hidden></div><canvas id="c"></canvas><canvas id="orbCanvas"></canvas></div>
+170|<div class="layer bg-lens"></div>
+171|<div class="layer vignette"></div>
+172|<div class="layer fg-lens"></div>
+173|<div class="layer noise"><canvas id="noiseCanvas"></canvas></div>
+174|<div class="font-primer" aria-hidden="true">Aa Mondwest priming glyphs 0123456789</div>
+175|
+176|<script type="module">
+177|import {
+178|  prepareWithSegments,
+179|  layoutNextLineRange,
+180|  materializeLineRange,
+181|} from "https://esm.sh/@chenglou/pretext@0.0.6";
+182|import gsap from "https://esm.sh/gsap@3.12.5";
+183|import GUI from "https://esm.sh/lil-gui@0.19.2";
+184|
+185|const SELF_LEARNING_SOURCE = String.raw`
+186|type ToolId=u16; type FeatureId=u32; type W=f32;
+187|struct Obs{tool:ToolId,reward:f32,lat:u32,feat:&'static[FeatureId],tok:u16}
+188|struct Belief{prior:W,conf:W,last:u64,uses:u32}
+189|
+190|#[inline] fn sig(x:f32)->f32{1.0/(1.0+(-x).exp())}
+191|#[inline] fn decay(now:u64,last:u64)->f32{1.0-((now-last)as f32/900.0).min(1.0)*0.22}
+192|#[inline] fn clamp8(x:f32)->f32{x.clamp(-8.0,8.0)}
+193|
+194|fn score(theta:&[W],b:&[Belief],o:&Obs)->f32{
+195|    let sparse=o.feat.iter().fold(0.0,|a,id|a+theta[*id as usize]);
+196|    let belief=b[o.tool as usize].prior*b[o.tool as usize].conf.max(0.15);
+197|    sparse+belief-(o.lat as f32*0.00072)-(o.tok as f32*0.00009)
+198|}
+199|
+200|fn update(theta:&mut[W],b:&mut[Belief],o:&Obs,now:u64,eta:f32){
+201|    let p=sig(score(theta,b,o));
+202|    let e=(o.reward-p).clamp(-1.0,1.0);
+203|    let step=eta*e/(o.feat.len().max(1)as f32).sqrt();
+204|
+205|    for id in o.feat{
+206|        let w=&mut theta[*id as usize];
+207|        *w=clamp8(*w+step-0.0003*w.signum());
+208|    }
+209|
+210|    let slot=&mut b[o.tool as usize];
+211|    let d=decay(now,slot.last);
+212|    let r=(o.reward-o.lat as f32*0.00035).clamp(-1.0,1.0);
+213|    slot.prior=slot.prior*d+r*0.14+e*0.06;
+214|    slot.conf=(slot.conf*0.93+r.abs()*0.07).min(1.0);
+215|    slot.uses=slot.uses.saturating_add(1);
+216|    slot.last=now;
+217|}
+218|
+219|fn consolidate(trace:&[Obs],theta:&mut[W],b:&mut[Belief],now:u64){
+220|    let eta=0.042/(1.0+(trace.len()as f32*0.003));
+221|    let mut credit=1.0;
+222|    for o in trace.iter().rev(){
+223|        update(theta,b,o,now,eta*credit);
+224|        credit*=0.985;
+225|    }
+226|}
+227|
+228|fn choose<'a>(theta:&[W],b:&[Belief],xs:&'a[Obs],temp:f32)->&'a Obs{
+229|    xs.iter().max_by(|a,bx|{
+230|        let sa=score(theta,b,a)/temp.max(0.05);
+231|        let sb=score(theta,b,bx)/temp.max(0.05);
+232|        sa.partial_cmp(&sb).unwrap()
+233|    }).unwrap()
+234|}
+235|`;
+236|const CODE_CHUNK = SELF_LEARNING_SOURCE
+237|  .trim()
+238|  .replace(/\t/g, "  ")
+239|  .replace(/\n{3,}/g, "\n\n");
+240|const STREAM_REPEAT_COUNT = 6;
+241|const streamCorpus = Array.from({ length: STREAM_REPEAT_COUNT }, () => CODE_CHUNK).join("\n\n");
+242|
+243|const stage = document.getElementById("stage");
+244|const textLayer = document.getElementById("textLayer");
+245|const canvas = document.getElementById("c");
+246|const orbCanvas = document.getElementById("orbCanvas");
+247|const ctx = canvas.getContext("2d", { alpha: true });
+248|const orbCtx = orbCanvas.getContext("2d", { alpha: true });
+249|let W = 0, H = 0, DPR = 1;
+250|let canvasLeft = 0, canvasTop = 0, canvasW = 0, canvasH = 0;
+251|
+252|let BODY_FONT = '400 10px "Geist Mono", "JetBrains Mono", "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace';
+253|let BODY_LINE_H = 15;
+254|let ASCII_FONT = '8px monospace';
+255|let CELL_W = 4.8;
+256|let CELL_H = 8;
+257|const CHARS = ' ·:;+=░▒▓█';
+258|const EMPTY = 0;
+259|const CHARS_LAST = CHARS.length - 1;
+260|
+261|const LOGO = ['N', 'O', 'U', 'S'].map((letter, i) => ({
+262|  letter,
+263|  rows: [
+264|    i === 0
+265|      ? '██░░░██,██░░░██,███░░██,█░██░██,█░░████,█░░░███,██░░░██,██░░░██,██░░░██'
+266|      : i === 1
+267|        ? '░█████░,██░░░██,██░░░██,██░░░██,██░░░██,██░░░██,██░░░██,██░░░██,░█████░'
+268|        : i === 2
+269|          ? '██░░░██,██░░░██,██░░░██,██░░░██,██░░░██,██░░░██,██░░░██,██░░░██,░█████░'
+270|          : '░█████░,██░░░██,██░░░░░,░████░░,░░░░██░,░░░░░██,██░░░██,██░░░██,░█████░'
+271|  ][0].split(',')
+272|}));
+273|
+274|function hash(x, y) {
+275|  const n = Math.sin(x * 127.1 + y * 311.7) * 43758.5453;
+276|  return n - Math.floor(n);
+277|}
+278|function charAt(t) {
+279|  return CHARS[Math.min(CHARS.length - 1, Math.max(0, Math.floor(t * CHARS.length)))];
+280|}
+281|function gridDist(v, step) {
+282|  return Math.abs(v / step - Math.round(v / step)) * step;
+283|}
+284|function rot(a, b, angle) {
+285|  const c = Math.cos(angle), s = Math.sin(angle);
+286|  return [a * c - b * s, a * s + b * c];
+287|}
+288|function hexToRGB(h) {
+289|  const v = parseInt(h.slice(1), 16);
+290|  return [(v >> 16) & 255, (v >> 8) & 255, v & 255];
+291|}
+292|
+293|let fontsReady = false;
+294|let bodyPrepared = null;
+295|function rebuildLayouts() {
+296|  bodyPrepared = prepareWithSegments(streamCorpus, BODY_FONT, { whiteSpace: "pre-wrap" });
+297|}
+298|
+299|const LENS_0 = { bgBlend: "difference", bgColor: "#041C1C", bgOpacity: 1, mgColor: "#ffe6cb", mgOpacity: 1, fgBlend: "difference", fgColor: "#FFFFFF", fgOpacity: 0 };
+300|const LENS_5I = { bgBlend: "multiply", bgColor: "#ffffff", bgOpacity: 1, mgColor: "#fffff5", mgOpacity: 1, fgBlend: "difference", fgColor: "#041a1f", fgOpacity: 1 };
+301|const LENS = { current: null, mgBase: null, depthColors: null };
+302|function colorMix(color, alpha) { return `color-mix(in srgb, ${color} ${Math.round(alpha * 100)}%, transparent)`; }
+303|function precomputeDepthColors(mgColor) {
+304|  const [r, g, b] = hexToRGB(mgColor);
+305|  return Array.from({ length: 64 }, (_, i) => {
+306|    const depth = i / 63;
+307|    const m = 0.4 + depth * 0.6;
+308|    return `rgba(${(r * m) | 0},${(g * m) | 0},${(b * m) | 0},${depth})`;
+309|  });
+310|}
+311|function applyLens(preset) {
+312|  LENS.current = preset;
+313|  LENS.mgBase = preset.mgColor;
+314|  LENS.depthColors = precomputeDepthColors(preset.mgColor);
+315|  const s = document.documentElement.style;
+316|  for (const [name, color, alpha] of [["foreground", preset.fgColor, preset.fgOpacity], ["midground", preset.mgColor, preset.mgOpacity], ["background", preset.bgColor, preset.bgOpacity]]) {
+317|    s.setProperty(`--${name}`, colorMix(color, alpha));
+318|    s.setProperty(`--${name}-base`, color);
+319|    s.setProperty(`--${name}-alpha`, `${alpha}`);
+320|  }
+321|  s.setProperty("--background-blend", preset.bgBlend);
+322|  s.setProperty("--foreground-blend", preset.fgBlend);
+323|}
+324|applyLens(LENS_0);
+325|addEventListener("keydown", e => { if (e.key === "x" || e.key === "X") applyLens(LENS.current === LENS_0 ? LENS_5I : LENS_0); });
+326|const SELECTION_COLORS = [
+327|  "oklch(85% 0.12 330)",
+328|  "oklch(85% 0.12 300)",
+329|  "oklch(85% 0.12 270)",
+330|  "oklch(85% 0.12 230)",
+331|  "oklch(85% 0.12 180)",
+332|  "oklch(85% 0.12 150)",
+333|  "oklch(85% 0.12 120)",
+334|  "oklch(85% 0.12 90)",
+335|  "oklch(85% 0.12 60)",
+336|  "oklch(85% 0.12 30)",
+337|  "oklch(88% 0.10 80)",
+338|];
+339|let selectionIdx = 0;
+340|function cycleSelectionColor() {
+341|  requestAnimationFrame(() => {
+342|    document.documentElement.style.setProperty("--selection-bg", SELECTION_COLORS[(selectionIdx = (selectionIdx + 1) % SELECTION_COLORS.length)]);
+343|  });
+344|}
+345|document.addEventListener("selectstart", cycleSelectionColor);
+346|addEventListener("keydown", e => {
+347|  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "a") {
+348|    cycleSelectionColor();
+349|    e.preventDefault();
+350|    const selection = getSelection();
+351|    const range = document.createRange();
+352|    range.selectNodeContents(textLayer);
+353|    selection.removeAllRanges();
+354|    selection.addRange(range);
+355|  }
+356|});
+357|
+358|let asciiMask, asciiChar, asciiGlyph, orbMask, orbChar, orbGlyph, obstacleRows, intervals;
+359|let cols = 0, rows = 0;
+360|let canvasCols = 0, canvasRows = 0;
+361|let lastFrameTime = 0;
+362|const drawnLines = { x: [], y: [], w: [], text: [], count: 0 };
+363|let lineNodes = [];
+364|let terminalAnchorEl = null;
+365|let terminalLineEl = null;
+366|let orbShapeControl = null;
+367|let autoCubeCall = null;
+368|let lastTextSignature = "";
+369|const ORB = {
+370|  panX: 0, panY: 0,
+371|  orbitX: -1.42, orbitY: 0,
+372|  radius: 0.135,
+373|  zoom: 3,
+374|  cubeScale: 1.8,
+375|  autoSpin: 0.18,
+376|  lat: 19,
+377|  lon: 30,
+378|  wire: 0.2,
+379|  shape: "sphere",
+380|  shapeMix: 0,
+381|  drag: null,
+382|  positioned: false,
+383|  staged: false,
+384|};
+385|const SCENE = {
+386|  orbBuildDuration: 1.45,
+387|};
+388|
+389|let nousStartTime = null;
+390|const AUTO_CUBE_AFTER_NOUS_RESOLVE = 0.0;
+391|function setOrbShape(shape, { reveal = false, syncControl = true } = {}) {
+392|  ORB.shape = shape;
+393|  if (syncControl) {
+394|    ctrls.orbShape = shape;
+395|    orbShapeControl?.updateDisplay();
+396|  }
+397|  if (reveal) {
+398|    gsap.killTweensOf(orbCanvas);
+399|    orbCanvas.style.opacity = "1";
+400|  }
+401|  gsap.killTweensOf(ORB, "shapeMix");
+402|  gsap.to(ORB, {
+403|    shapeMix: shape === "cube" ? 1 : 0,
+404|    duration: Math.max(0.01, ctrls.shapeMorphDuration ?? 0.65),
+405|    ease: "power2.inOut",
+406|    onUpdate: () => { lastTextSignature = ""; },
+407|  });
+408|  lastTextSignature = "";
+409|}
+410|function sceneTimeNow() {
+411|  return (typeof performance !== "undefined" ? performance.now() : Date.now()) * 0.001 - sceneEpoch;
+412|}
+413|function armNous(atTime = sceneTimeNow()) {
+414|  if (nousStartTime !== null) return;
+415|  const startAt = Math.max(0, atTime);
+416|  nousStartTime = startAt;
+417|  const delay = Math.max(0, startAt - sceneTimeNow()) + Math.max(0, ctrls.orbContainNous ?? 1.0);
+418|  gsap.killTweensOf(orbCanvas);
+419|  gsap.to(orbCanvas, {
+420|    opacity: 0,
+421|    duration: Math.max(0.05, ctrls.orbFadeDuration ?? 0.7),
+422|    delay,
+423|    ease: "power2.out",
+424|  });
+425|  autoCubeCall?.kill();
+426|  const nousResolveAt = startAt + (LOGO.length - 1) * 0.4 + 1.0;
+427|  const cubeAt = nousResolveAt + AUTO_CUBE_AFTER_NOUS_RESOLVE;
+428|  autoCubeCall = gsap.delayedCall(Math.max(0, cubeAt - sceneTimeNow()), () => {
+429|    setOrbShape("cube", { reveal: true, syncControl: false });
+430|  });
+431|}
+432|function orbBuildStartTime() {
+433|  return Math.max(0, ctrls.orbLead ?? 0);
+434|}
+435|function codeTypingStartTime() {
+436|  return Math.max(0, orbBuildStartTime() + SCENE.orbBuildDuration * 0.62 - 0.3);
+437|}
+438|
+439|function logoCenterPan() {
+440|  const aspect = cols / rows / 2;
+441|  const h = 0.38;
+442|  const w = h * 2.6 * 0.55;
+443|  const halfStageX = (w / 2 / aspect) * W;
+444|  const centerX = W * 0.5;
+445|  const centerY = H * 0.5;
+446|  return {
+447|    panX: centerX / W - 0.5,
+448|    panY: centerY / H - 0.5,
+449|    left: centerX - halfStageX,
+450|    right: centerX + halfStageX,
+451|  };
+452|}
+453|
+454|function startSceneTimeline() {
+455|  if (ORB.staged || !cols || !rows || !W || !H) return;
+456|  ORB.staged = true;
+457|  const now = sceneTimeNow();
+458|  const startAt = Math.max(0, orbBuildStartTime() + SCENE.orbBuildDuration * 0.72 - now);
+459|  gsap.timeline({ delay: startAt })
+460|    .to(ORB, {
+461|      orbitX: 0.55,
+462|      orbitY: `+=${Math.PI * 1.85}`,
+463|      duration: 2.4,
+464|      ease: "power3.inOut",
+465|      onUpdate: () => { lastTextSignature = ""; },
+466|    }, "<")
+467|    .to(ORB, {
+468|      radius: 0.125,
+469|      duration: 2.4,
+470|      ease: "power3.inOut",
+471|      onUpdate: () => { lastTextSignature = ""; },
+472|    }, "<")
+473|    .to(ORB, {
+474|      wire: ctrls.orbWireLow,
+475|      duration: ctrls.wireDropDuration,
+476|      ease: "power2.inOut",
+477|      onUpdate: () => { lastTextSignature = ""; },
+478|      onComplete: () => {
+479|        armNous(sceneTimeNow() + Math.max(0, ctrls.nousAfterWire));
+480|      },
+481|    });
+482|}
+483|
+484|function resize() {
+485|  const r = stage.getBoundingClientRect();
+486|  W = Math.max(1, Math.floor(r.width));
+487|  H = Math.max(1, Math.floor(r.height));
+488|  canvasLeft = r.left;
+489|  canvasTop = r.top;
+490|  canvasW = Math.max(1, window.innerWidth);
+491|  canvasH = Math.max(1, window.innerHeight);
+492|  DPR = Math.min(window.devicePixelRatio || 1, 2);
+493|  canvas.width = Math.floor(canvasW * DPR);
+494|  canvas.height = Math.floor(canvasH * DPR);
+495|  orbCanvas.width = Math.floor(canvasW * DPR);
+496|  orbCanvas.height = Math.floor(canvasH * DPR);
+497|  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+498|  orbCtx.setTransform(DPR, 0, 0, DPR, 0, 0);
+499|  ctx.font = ASCII_FONT;
+500|  orbCtx.font = ASCII_FONT;
+501|

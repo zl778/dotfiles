@@ -1,0 +1,96 @@
+1|<!doctype html>
+2|<html lang="en">
+3|<head>
+4|<meta charset="utf-8" />
+5|<title>pretext hello — text flowing around an orb</title>
+6|<style>
+7|  html,body { margin:0; padding:0; height:100%; background:#0c0d10; color:#e8e6df; overflow:hidden; }
+8|  body { font-family: "Iowan Old Style", Georgia, serif; }
+9|  canvas { display:block; width:100vw; height:100vh; }
+10|</style>
+11|</head>
+12|<body>
+13|<canvas id="c"></canvas>
+14|<script type="module">
+15|// Minimal pretext starter: long paragraph flows around a moving orb.
+16|// Uses layoutNextLineRange + variable-width streaming — the "killer app"
+17|// pattern that only pretext can do cheaply in the browser.
+18|import {
+19|  prepareWithSegments,
+20|  layoutNextLineRange,
+21|  materializeLineRange,
+22|} from "https://esm.sh/@chenglou/pretext@0.0.6";
+23|
+24|const TEXT = `Pretext measures text without touching the DOM. It returns numbers — widths, line breaks, cursors — and those numbers, arranged with a little imagination, become layouts the browser could never draw on its own. Here, a paragraph flows around a moving orb. Each line is asked for its own width, live. No reflows. No cheats. Just measurement. `.repeat(18);
+25|
+26|const FONT = '17px/1.4 "Iowan Old Style", Georgia, serif';
+27|const LINE_H = 24;
+28|
+29|const c = document.getElementById("c");
+30|const ctx = c.getContext("2d");
+31|let W, H, DPR;
+32|function resize() {
+33|  DPR = Math.min(devicePixelRatio || 1, 2);
+34|  W = innerWidth; H = innerHeight;
+35|  c.width = W*DPR; c.height = H*DPR;
+36|  c.style.width = W+"px"; c.style.height = H+"px";
+37|  ctx.setTransform(DPR,0,0,DPR,0,0);
+38|}
+39|addEventListener("resize", resize); resize();
+40|
+41|const prepared = prepareWithSegments(TEXT, FONT);
+42|
+43|// Orb follows mouse (or bobs idly)
+44|const orb = { x: innerWidth*0.45, y: innerHeight*0.5, r: 140 };
+45|addEventListener("mousemove", e => { orb.x = e.clientX; orb.y = e.clientY; });
+46|
+47|function frame(t) {
+48|  ctx.fillStyle = "#0c0d10"; ctx.fillRect(0,0,W,H);
+49|
+50|  // glowing orb
+51|  const g = ctx.createRadialGradient(orb.x, orb.y, 0, orb.x, orb.y, orb.r);
+52|  g.addColorStop(0, "rgba(255,200,120,0.35)");
+53|  g.addColorStop(0.6, "rgba(255,140,80,0.10)");
+54|  g.addColorStop(1, "rgba(0,0,0,0)");
+55|  ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+56|
+57|  // flow text as a column, routing around the orb row-by-row
+58|  const COL_X = 60, COL_W = W - 120;
+59|  let cursor = { segmentIndex: 0, graphemeIndex: 0 };
+60|  let y = 72;
+61|  ctx.fillStyle = "#e8e6df";
+62|  ctx.font = FONT;
+63|  ctx.textBaseline = "alphabetic";
+64|
+65|  while (y < H - 40) {
+66|    // does this row intersect the orb band?
+67|    const dy = y - orb.y;
+68|    const bandY = Math.abs(dy) < orb.r;
+69|    // lane = (left, width) skipping over the orb horizontally
+70|    let x = COL_X, lineMaxW = COL_W;
+71|    if (bandY) {
+72|      const half = Math.sqrt(orb.r*orb.r - dy*dy);
+73|      const orbLeft  = orb.x - half, orbRight = orb.x + half;
+74|      // choose the wider side, simple heuristic
+75|      const leftWidth  = Math.max(0, orbLeft  - COL_X);
+76|      const rightWidth = Math.max(0, COL_X + COL_W - orbRight);
+77|      if (leftWidth >= rightWidth) { x = COL_X; lineMaxW = leftWidth - 12; }
+78|      else { x = orbRight + 12; lineMaxW = rightWidth - 12; }
+79|      if (lineMaxW < 40) { y += LINE_H; continue; }
+80|    }
+81|
+82|    const range = layoutNextLineRange(prepared, cursor, lineMaxW);
+83|    if (!range) break;
+84|    const line = materializeLineRange(prepared, range);
+85|    ctx.fillText(line.text, x, y);
+86|    cursor = range.end;
+87|    y += LINE_H;
+88|  }
+89|
+90|  requestAnimationFrame(frame);
+91|}
+92|requestAnimationFrame(frame);
+93|</script>
+94|</body>
+95|</html>
+96|

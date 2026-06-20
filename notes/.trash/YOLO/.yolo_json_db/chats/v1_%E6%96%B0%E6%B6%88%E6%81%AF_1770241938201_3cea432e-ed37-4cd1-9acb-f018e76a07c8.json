@@ -1,0 +1,54 @@
+{
+  "id": "3cea432e-ed37-4cd1-9acb-f018e76a07c8",
+  "title": "新消息",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "obsidian下的copilot和yolo，哪个更好用？",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\nobsidian下的copilot和yolo，哪个更好用？\n\n"
+        }
+      ],
+      "id": "048d1d36-c7ec-48ec-a16c-795abebab91b",
+      "mentionables": [],
+      "reasoningLevel": "on"
+    }
+  ],
+  "createdAt": 1770241938201,
+  "updatedAt": 1770241938201,
+  "schemaVersion": 1,
+  "overrides": null,
+  "reasoningLevel": "on"
+}

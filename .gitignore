@@ -1,0 +1,43 @@
+# 密钥和认证 —— 绝不提交
+.env
+.env.*
+auth.json
+**/credentials.json
+*.pem
+*.key
+
+# OS 垃圾
+.DS_Store
+Thumbs.db
+
+# 缓存和临时文件
+*.log
+*.tmp
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Obsidian 大附件（按需用 git LFS）
+notes/**/*.png
+notes/**/*.jpg
+notes/**/*.jpeg
+notes/**/*.gif
+notes/**/*.bmp
+notes/**/*.svg
+notes/**/*.pdf
+notes/**/*.xlsx
+notes/**/*.docx
+notes/**/*.pptx
+notes/**/*.zip
+
+# Obsidian 缓存
+notes/.obsidian/workspace.json
+notes/.obsidian/cache/
+
+# Hermes 缓存
+hermes/sessions/
+hermes/logs/
+hermes/audio_cache/
+hermes/state.db
+

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "updatedAt": 1779748591232,
+  "scopes": {
+    "0::17px|22.1px|Hei, \"??\", \"??\", ui-sans-serif, -apple-system, \"system-ui\", system-ui, \"Segoe UI\", \"Google Sans Flex\", Roboto, \"Inter Variable\", Inter, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif|na|1.75rem|2em": {
+      "widthBucket": 0,
+      "styleSignature": "17px|22.1px|Hei, \"??\", \"??\", ui-sans-serif, -apple-system, \"system-ui\", system-ui, \"Segoe UI\", \"Google Sans Flex\", Roboto, \"Inter Variable\", Inter, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif|na|1.75rem|2em",
+      "updatedAt": 1779721924827,
+      "heights": {
+        "bottom-anchor": 1
+      }
+    },
+    "320::17px|22.1px|Hei, \"??\", \"??\", ui-sans-serif, -apple-system, \"system-ui\", system-ui, \"Segoe UI\", \"Google Sans Flex\", Roboto, \"Inter Variable\", Inter, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif|na|1.75rem|2em": {
+      "widthBucket": 320,
+      "styleSignature": "17px|22.1px|Hei, \"??\", \"??\", ui-sans-serif, -apple-system, \"system-ui\", system-ui, \"Segoe UI\", \"Google Sans Flex\", Roboto, \"Inter Variable\", Inter, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif|na|1.75rem|2em",
+      "updatedAt": 1779640511716,
+      "heights": {
+        "bottom-anchor": 10
+      }
+    },
+    "0::default": {
+      "widthBucket": 0,
+      "styleSignature": "default",
+      "updatedAt": 1779640511658,
+      "heights": {
+        "bottom-anchor": 1
+      }
+    }
+  }
+}

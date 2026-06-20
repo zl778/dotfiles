@@ -1,0 +1,9 @@
+{
+  "last_report_path": "/Users/liangzhu/.hermes/profiles/wukong/logs/curator/20260613-060032",
+  "last_run_at": "2026-06-13T06:00:32.153712+00:00",
+  "last_run_duration_seconds": 3.701848,
+  "last_run_summary": "auto: no changes; llm: AIAgent import failed: cannot import name 'model_forces_max_completion_tokens' from 'utils' (/Users/liangzhu/.hermes/hermes-agent/utils.py)",
+  "last_run_summary_shown_at": null,
+  "paused": false,
+  "run_count": 2
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 2,
+  "updatedAt": 1779640511461,
+  "scopes": {
+    "320::17px|22.1px|Hei, \"??\", \"??\", ui-sans-serif, -apple-system, \"system-ui\", system-ui, \"Segoe UI\", \"Google Sans Flex\", Roboto, \"Inter Variable\", Inter, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif|na|1.75rem|2em": {
+      "widthBucket": 320,
+      "styleSignature": "17px|22.1px|Hei, \"??\", \"??\", ui-sans-serif, -apple-system, \"system-ui\", system-ui, \"Segoe UI\", \"Google Sans Flex\", Roboto, \"Inter Variable\", Inter, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", sans-serif|na|1.75rem|2em",
+      "updatedAt": 1779639326233,
+      "heights": {
+        "bottom-anchor": 10
+      }
+    },
+    "0::na|na|na|na|na|na": {
+      "widthBucket": 0,
+      "styleSignature": "na|na|na|na|na|na",
+      "updatedAt": 1779639326195,
+      "heights": {
+        "bottom-anchor": 1
+      }
+    },
+    "0::default": {
+      "widthBucket": 0,
+      "styleSignature": "default",
+      "updatedAt": 1779639326188,
+      "heights": {
+        "bottom-anchor": 1
+      }
+    }
+  }
+}

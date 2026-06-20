@@ -1,0 +1,178 @@
+{
+  "id": "10a6bb53-69bc-48e3-b89d-0f8113d0a279",
+  "title": "新消息",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@技术标生成.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "技术标生成.md",
+                  "mentionable": {
+                    "type": "file",
+                    "file": "pages/技术标生成.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " 在讲什么",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "```pages/技术标生成.md\n#日志\n\n你是一个投标专家，参考我过去的**实施方案**的写作风格和方案架构，根据**磋商文件**各项要求和评分办法，帮我写一份技术响应文件。内容包括整体运维服务方案、应急预案和保密措施、项目节点计划表、 验收方案和合理化建议及特色服务。不要使用项目符号，字数要求15000字，可分段输出。 \nV1（对比 Kimi2.5 9700字，非充值帐号停车输出了，豆包 12800字）\n\n- 你是一个投标专家，参考我过去的**实施方案**的写作风格和方案架构，根据**磋商文件**各项要求和评分办法，帮我写一份技术响应文件。内容包括整体运维服务方案、应急预案和保密措施、项目节点计划表、 验收方案和合理化建议及特色服务。不要使用项目符号，字数要求15000字，可分段输出。\n  使用多级标题（1.， 1.1， 1.1.1）结构化内容，关键处使用**加粗**，复杂流程用表格说明。\n```\n\n\n@技术标生成.md 在讲什么\n\n"
+        }
+      ],
+      "id": "5b0422ae-4b0a-4ad1-bbff-e3caa2be846b",
+      "mentionables": [
+        {
+          "type": "file",
+          "file": "pages/技术标生成.md"
+        }
+      ],
+      "reasoningLevel": "on"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@技术标生成.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "技术标生成.md",
+                  "mentionable": {
+                    "type": "file",
+                    "file": "pages/技术标生成.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " 在讲什么",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "```pages/技术标生成.md\n#日志\n\n你是一个投标专家，参考我过去的**实施方案**的写作风格和方案架构，根据**磋商文件**各项要求和评分办法，帮我写一份技术响应文件。内容包括整体运维服务方案、应急预案和保密措施、项目节点计划表、 验收方案和合理化建议及特色服务。不要使用项目符号，字数要求15000字，可分段输出。 \nV1（对比 Kimi2.5 9700字，非充值帐号停车输出了，豆包 12800字）\n\n- 你是一个投标专家，参考我过去的**实施方案**的写作风格和方案架构，根据**磋商文件**各项要求和评分办法，帮我写一份技术响应文件。内容包括整体运维服务方案、应急预案和保密措施、项目节点计划表、 验收方案和合理化建议及特色服务。不要使用项目符号，字数要求15000字，可分段输出。\n  使用多级标题（1.， 1.1， 1.1.1）结构化内容，关键处使用**加粗**，复杂流程用表格说明。\n```\n\n\n@技术标生成.md 在讲什么\n\n"
+        }
+      ],
+      "id": "4df92e2f-dee5-45f7-b2a7-e2ba4f483524",
+      "mentionables": [
+        {
+          "type": "file",
+          "file": "pages/技术标生成.md"
+        }
+      ],
+      "reasoningLevel": "on"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "起作用了吗",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n起作用了吗\n\n"
+        }
+      ],
+      "id": "16b94cb2-d954-4d77-8306-1a084bc4b4a2",
+      "mentionables": [],
+      "reasoningLevel": "on"
+    }
+  ],
+  "createdAt": 1770242272903,
+  "updatedAt": 1770242373713,
+  "schemaVersion": 1,
+  "overrides": null,
+  "reasoningLevel": "on"
+}

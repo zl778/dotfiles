@@ -1,0 +1,3 @@
+- excel 公式  小写金额 转 大写金额 转换
+- IF(MOD(E16,1)=0,TEXT(INT(E16),"[DBNUM2]")&"元"&"整",TEXT(INT(E16),"[DBNUM2]")&"元"&TEXT(MID(E16,LEN(INT(E16))+2,1),"[DBNUM2]D角")&TEXT(MID(E16,LEN(INT(E16))+3,1),"[DBNUM2]D分"))
+- (把A2 替换成目标 单元格)

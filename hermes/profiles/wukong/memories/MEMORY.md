@@ -1,0 +1,1 @@
+User's main Obsidian vault is at ~/Documents/GitHub/Obs_vault. The Obsidian skill's vault-path resolution should check user profile and memory first before filesystem search. Also has a iCloud PKM vault at ~/Library/Mobile Documents/iCloud~md~obsidian/Documents/PKM (PARA system, iCloud sync, Obsidian Copilot AI, Templater templates).

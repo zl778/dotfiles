@@ -1,0 +1,17 @@
+{
+  "promptDelete": false,
+  "attachmentFolderPath": "assets",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "00_Inbox",
+  "userIgnoreFilters": [
+    "assets/",
+    "logseq/",
+    "logseq/bak/"
+  ],
+  "showLineNumber": true,
+  "spellcheck": false,
+  "alwaysUpdateLinks": true,
+  "trashOption": "local",
+  "vimMode": false,
+  "openBehavior": "daily"
+}

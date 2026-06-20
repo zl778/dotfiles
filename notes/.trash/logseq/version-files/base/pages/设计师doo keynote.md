@@ -1,0 +1,18 @@
+- 图片素材 #keynote #设计师doo
+  title:: 设计师doo keynote
+	- UNsplash https://unsplash.com/
+	- Pexels https://www.pexels.com/
+-
+- 视频来源 #设计师doo #keynote
+	- vimeo
+-
+- 图表参考 #设计师doo #keynote
+	- dribbble
+	- behance
+-
+- 找字体 网站 #设计师doo #keynote
+	- 字由 https://www.hellofont.cn/
+	- 求字体 https://www.qiuziti.com/
+-
+- 推荐的过渡动画
+- 渐隐渐现 对象立体翻转 光圈 划变

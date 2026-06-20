@@ -1,0 +1,135 @@
+{
+  "id": "b789aacb-258f-4876-8f8c-d763b8563131",
+  "title": "新消息",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@2025_01_11.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "2025_01_11.md",
+                  "mentionable": {
+                    "type": "current-file",
+                    "file": "journals/2025_01_11.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": " ",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": null,
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": null,
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n@2025_01_11.md \n\n"
+        }
+      ],
+      "id": "e46cf78d-a78e-4114-9edd-dbf6d96885b1",
+      "mentionables": [
+        {
+          "type": "current-file",
+          "file": "journals/2025_01_11.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    },
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 1,
+                  "format": 0,
+                  "mode": "token",
+                  "style": "",
+                  "text": "@2025_01_11.md",
+                  "type": "mention",
+                  "version": 1,
+                  "mentionName": "2025_01_11.md",
+                  "mentionable": {
+                    "type": "file",
+                    "file": "journals/2025_01_11.md"
+                  }
+                },
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "  wsl是什么",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "```journals/2025_01_11.md\n[[wsl]] 安装\nmac下安装[[homebrew]]\n\n```\n\n\n@2025_01_11.md  wsl是什么\n\n"
+        }
+      ],
+      "id": "8d811ea5-f325-459e-8e95-892c5c6ebad1",
+      "mentionables": [
+        {
+          "type": "file",
+          "file": "journals/2025_01_11.md"
+        }
+      ],
+      "reasoningLevel": "off"
+    }
+  ],
+  "createdAt": 1770694085134,
+  "updatedAt": 1770694103213,
+  "schemaVersion": 1,
+  "overrides": null,
+  "reasoningLevel": "off"
+}

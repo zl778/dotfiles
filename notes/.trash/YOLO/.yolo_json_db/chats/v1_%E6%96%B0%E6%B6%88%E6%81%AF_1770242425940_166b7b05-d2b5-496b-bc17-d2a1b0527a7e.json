@@ -1,0 +1,54 @@
+{
+  "id": "166b7b05-d2b5-496b-bc17-d2a1b0527a7e",
+  "title": "新消息",
+  "messages": [
+    {
+      "role": "user",
+      "content": {
+        "root": {
+          "children": [
+            {
+              "children": [
+                {
+                  "detail": 0,
+                  "format": 0,
+                  "mode": "normal",
+                  "style": "",
+                  "text": "你好",
+                  "type": "text",
+                  "version": 1
+                }
+              ],
+              "direction": "ltr",
+              "format": "",
+              "indent": 0,
+              "type": "paragraph",
+              "version": 1,
+              "textFormat": 0,
+              "textStyle": ""
+            }
+          ],
+          "direction": "ltr",
+          "format": "",
+          "indent": 0,
+          "type": "root",
+          "version": 1
+        }
+      },
+      "promptContent": [
+        {
+          "type": "text",
+          "text": "\n\n你好\n\n"
+        }
+      ],
+      "id": "26f5853f-04ba-4919-8067-11a571904c3e",
+      "mentionables": [],
+      "reasoningLevel": "off"
+    }
+  ],
+  "createdAt": 1770242425618,
+  "updatedAt": 1770242425940,
+  "schemaVersion": 1,
+  "overrides": null,
+  "reasoningLevel": "off"
+}
