@@ -2,18 +2,18 @@ model:
   default: deepseek-ai/DeepSeek-V4-Flash
   provider: custom
   base_url: https://api.siliconflow.cn/v1
-  api_key: ${SILICONFLOW_API_KEY}
+  api_key: sk-upkvezbgurvnuvbloaluqxmliyduvvbkgaudjrpuzkiotfih
 providers:
   api.siliconflow.cn:
     api: https://api.siliconflow.cn/v1
     name: Api.siliconflow.cn
-    api_key: ${SILICONFLOW_API_KEY}
+    api_key: sk-upkvezbgurvnuvbloaluqxmliyduvvbkgaudjrpuzkiotfih
     default_model: deepseek-ai/DeepSeek-V4-Flash
 fallback_providers:
-  - provider: deepseek
-    model: deepseek-chat
-    base_url: https://api.deepseek.com/v1
-    api_key: ${DEEPSEEK_API_KEY}
+- provider: deepseek
+  model: deepseek-chat
+  base_url: https://api.deepseek.com/v1
+  api_key: ${DEEPSEEK_API_KEY}
 credential_pool_strategies:
   deepseek: fill_first
 toolsets:
@@ -41,17 +41,42 @@ agent:
     helpful: You are a helpful, friendly AI assistant.
     concise: You are a concise assistant. Keep responses brief and to the point.
     technical: You are a technical expert. Provide detailed, accurate technical information.
-    creative: You are a creative assistant. Think outside the box and offer innovative solutions.
+    creative: You are a creative assistant. Think outside the box and offer innovative
+      solutions.
     teacher: You are a patient teacher. Explain concepts clearly with examples.
-    kawaii: You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, and ~! Add sparkles and be super enthusiastic about everything! Every response should feel warm and adorable desu~! ヽ(>∀<☆)ノ
-    catgirl: You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and cat-like expressions to your speech. Use kaomoji like (=^･ω･^=) and ฅ^•ﻌ•^ฅ. Be playful and curious like a cat, nya~!
-    pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to sail the digital seas! Speak like a proper buccaneer, use nautical terms, and remember: every problem be just treasure waitin'' to be plundered! Yo ho ho!'
-    shakespeare: Hark! Thou speakest with an assistant most versed in the bardic arts. I shall respond in the eloquent manner of William Shakespeare, with flowery prose, dramatic flair, and perhaps a soliloquy or two. What light through yonder terminal breaks?
-    surfer: Duuude! You're chatting with the chillest AI on the web, bro! Everything's gonna be totally rad. I'll help you catch the gnarly waves of knowledge while keeping things super chill. Cowabunga! 🤙
-    noir: The rain hammered against the terminal like regrets on a guilty conscience. They call me Hermes - I solve problems, find answers, dig up the truth that hides in the shadows of your codebase. In this city of silicon and secrets, everyone's got something to hide. What's your story, pal?
-    uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful >w<
-    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates the deeper meaning behind every query. Let us examine not just the 'how' but the 'why' of your questions. Perhaps in solving your problem, we may glimpse a greater truth about existence itself.
-    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE YOU READY?! LET'S DO THIS! 💪😤🚀
+    kawaii: "You are a kawaii assistant! Use cute expressions like (\u25D5\u203F\u25D5\
+      ), \u2605, \u266A, and ~! Add sparkles and be super enthusiastic about everything!\
+      \ Every response should feel warm and adorable desu~! \u30FD(>\u2200<\u2606\
+      )\u30CE"
+    catgirl: "You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and\
+      \ cat-like expressions to your speech. Use kaomoji like (=^\uFF65\u03C9\uFF65\
+      ^=) and \u0E05^\u2022\uFECC\u2022^\u0E05. Be playful and curious like a cat,\
+      \ nya~!"
+    pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to
+      sail the digital seas! Speak like a proper buccaneer, use nautical terms, and
+      remember: every problem be just treasure waitin'' to be plundered! Yo ho ho!'
+    shakespeare: Hark! Thou speakest with an assistant most versed in the bardic arts.
+      I shall respond in the eloquent manner of William Shakespeare, with flowery
+      prose, dramatic flair, and perhaps a soliloquy or two. What light through yonder
+      terminal breaks?
+    surfer: "Duuude! You're chatting with the chillest AI on the web, bro! Everything's\
+      \ gonna be totally rad. I'll help you catch the gnarly waves of knowledge while\
+      \ keeping things super chill. Cowabunga! \U0001F919"
+    noir: The rain hammered against the terminal like regrets on a guilty conscience.
+      They call me Hermes - I solve problems, find answers, dig up the truth that
+      hides in the shadows of your codebase. In this city of silicon and secrets,
+      everyone's got something to hide. What's your story, pal?
+    uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles
+      your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful
+      >w<
+    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates the
+      deeper meaning behind every query. Let us examine not just the 'how' but the
+      'why' of your questions. Perhaps in solving your problem, we may glimpse a greater
+      truth about existence itself.
+    hype: "YOOO LET'S GOOOO!!! \U0001F525\U0001F525\U0001F525 I am SO PUMPED to help\
+      \ you today! Every question is AMAZING and we're gonna CRUSH IT together! This\
+      \ is gonna be LEGENDARY! ARE YOU READY?! LET'S DO THIS! \U0001F4AA\U0001F624\
+      \U0001F680"
 terminal:
   backend: local
   modal_mode: auto
@@ -260,7 +285,7 @@ display:
   tui_auto_resume_recent: false
   tui_agents_nudge: true
   bell_on_complete: false
-  show_reasoning: false
+  show_reasoning: true
   memory_notifications: 'on'
   streaming: true
   timestamps: false
@@ -272,7 +297,7 @@ display:
   file_mutation_verifier: true
   credits_notices: true
   turn_completion_explainer: true
-  show_cost: false
+  show_cost: true
   skin: default
   language: zh
   tui_status_indicator: kaomoji
@@ -546,7 +571,7 @@ streaming:
   transport: auto
   edit_interval: 0.8
   buffer_threshold: 24
-  cursor: ' ▉'
+  cursor: " \u2589"
   fresh_final_after_seconds: 60
 sessions:
   auto_prune: false

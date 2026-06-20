@@ -136,11 +136,19 @@ mkdir -p ~/dotfiles && cd ~/dotfiles && git init
 # 3. Run sync once to populate
 bash sync.sh
 
-# 4. First commit
+# 4. BEFORE committing: redact API keys from synced config files
+#    The config.yaml at ~/.hermes/ contains real sk-... keys.
+#    Replace them with ${ENV_VAR} placeholders before git tracks them.
+#    Also create a .env.template so others know what env vars to set.
+grep -rn 'api_key:' hermes/ --include='*.yaml' | grep -v '\${' | grep -v "''"
+#   Replace each real key with e.g. ${SILICONFLOW_API_KEY}
+#   Create .env.template documenting required vars
+
+# 5. First commit
 git add -A
 git commit -m "Initial commit: dotfiles + Hermes + notes"
 
-# 5. Push to GitHub (optional but recommended)
+# 6. Push to GitHub (optional but recommended)
 gh repo create dotfiles --private --push --source=.
 # Or manually:
 git remote add origin git@github.com:<user>/dotfiles.git
@@ -188,7 +196,18 @@ cp ~/dotfiles/hermes/config.yaml ~/.hermes/
 
 ## Pitfalls
 
-- **macOS cp -R vs rm -rf** — restoring .app bundles: `cp -R` merges
+### API keys in config.yaml will be synced as-is
+
+Before the first `git add`, check:
+```bash
+grep -rn 'api_key:' hermes/ --include='*.yaml' | grep -v '\${' | grep -v "''"
+```
+Any line showing a real `sk-...` key must be replaced with an env-var
+placeholder like `${SILICONFLOW_API_KEY}`. Use the agent's `patch` tool
+to replace. Keep a `.env.template` in `hermes/` documenting which
+variables are needed.
+
+### macOS cp -R vs rm -rf** — restoring .app bundles: `cp -R` merges
   into existing directories without overwriting. Always `rm -rf` the
   target first, then `cp -R`. Verify with `md5 -q`.
 - **Obsidian iCloud path has spaces** — always double-quote the path

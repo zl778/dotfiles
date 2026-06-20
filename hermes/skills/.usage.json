@@ -285,18 +285,44 @@
     "use_count": 2,
     "view_count": 2
   },
-  "dotfiles-version-control": {
+  "dotfiles-repo-setup": {
     "archived_at": null,
-    "created_at": "2026-06-20T00:31:30.906409+00:00",
+    "created_at": "2026-06-20T00:45:41.738268+00:00",
     "created_by": "agent",
-    "last_patched_at": null,
+    "last_patched_at": "2026-06-20T00:45:51.921757+00:00",
+    "last_used_at": "2026-06-20T00:45:55.473679+00:00",
+    "last_viewed_at": "2026-06-20T00:45:55.468614+00:00",
+    "patch_count": 1,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
+  },
+  "dotfiles-setup": {
+    "archived_at": null,
+    "created_at": "2026-06-20T01:01:24.693926+00:00",
+    "created_by": "agent",
+    "last_patched_at": "2026-06-20T01:01:47.067955+00:00",
     "last_used_at": null,
     "last_viewed_at": null,
-    "patch_count": 0,
+    "patch_count": 1,
     "pinned": false,
     "state": "active",
     "use_count": 0,
     "view_count": 0
+  },
+  "dotfiles-version-control": {
+    "archived_at": null,
+    "created_at": "2026-06-20T00:31:30.906409+00:00",
+    "created_by": "agent",
+    "last_patched_at": "2026-06-20T00:36:22.236107+00:00",
+    "last_used_at": "2026-06-20T00:35:54.002138+00:00",
+    "last_viewed_at": "2026-06-20T00:35:53.996120+00:00",
+    "patch_count": 2,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
   },
   "dspy": {
     "archived_at": null,
@@ -367,14 +393,14 @@
     "archived_at": null,
     "created_at": "2026-06-04T07:01:26.410905+00:00",
     "created_by": null,
-    "last_patched_at": "2026-06-20T00:31:03.044791+00:00",
-    "last_used_at": "2026-06-20T00:30:33.033958+00:00",
-    "last_viewed_at": "2026-06-20T00:30:33.028148+00:00",
-    "patch_count": 1,
+    "last_patched_at": "2026-06-20T00:36:40.017198+00:00",
+    "last_used_at": "2026-06-20T00:45:13.415599+00:00",
+    "last_viewed_at": "2026-06-20T00:45:13.412172+00:00",
+    "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 4,
-    "view_count": 4
+    "use_count": 6,
+    "view_count": 6
   },
   "github-code-review": {
     "archived_at": null,

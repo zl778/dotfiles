@@ -136,6 +136,10 @@ Tell the user to add the public key at: **https://github.com/settings/keys**
 **Step 3: Test the connection**
 
 ```bash
+# Accept GitHub's host key first (required on first connection)
+ssh-keyscan github.com >> ~/.ssh/known_hosts 2>/dev/null
+
+# Test authentication
 ssh -T git@github.com
 # Expected: "Hi <username>! You've successfully authenticated..."
 ```
