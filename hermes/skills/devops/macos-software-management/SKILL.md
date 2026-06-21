@@ -177,6 +177,38 @@ HOMEBREW_NO_AUTO_UPDATE=1 brew install --cask <app-name>
 
 After brew install, the caveat "Open the app to finish setup" is expected. The user should launch the app once to complete first-run initialization (agreements, permissions, etc.).
 
+## Diagnosing PATH Priority Issues
+
+On macOS, Apple ships system-built versions of common CLI tools (`git`, `python3`, `vim`, `curl`, `ssh`, etc.) in `/usr/bin/`. Homebrew installs its own versions in `/opt/homebrew/bin/`. Because PATH typically lists `/usr/bin/` before `/opt/homebrew/bin/`, the Apple version wins by default.
+
+### Detect
+
+```bash
+# Check all available locations for a tool
+which -a <tool>
+
+# Check PATH order (lower number = higher priority)
+echo "$PATH" | tr ':' '\n' | nl
+```
+
+If `which -a` shows both `/usr/bin/<tool>` and `/opt/homebrew/bin/<tool>`, and `/usr/bin/` comes first:
+
+### Fix
+
+Create a symlink in `/usr/local/bin/` (which is before `/usr/bin/` in PATH):
+
+```bash
+sudo ln -s /opt/homebrew/bin/<tool> /usr/local/bin/<tool>
+which <tool>  # verify
+<tool> --version  # verify version
+```
+
+Apple's original binary remains untouched at `/usr/bin/<tool>` — only the default resolution changes.
+
+### Reference
+
+See `references/macos-path-priority.md` for full details, real session example, and list of commonly affected tools.
+
 ## References
 
 - `references/orbstack.md` — OrbStack-specific uninstall/reinstall procedures
@@ -189,3 +221,4 @@ After brew install, the caveat "Open the app to finish setup" is expected. The u
 - **Brew vs manual installs** — Apps installed via `brew install --cask` leave behind symlinks in `/opt/homebrew/bin/`. Manual installs that create symlinks in `/usr/local/bin/` are separate — removing the brew cask does NOT clean manually-placed symlinks.
 - **Hardlinks vs symlinks** — `ls -la` shows symlinks with `->`. Real files don't have `->`. Hardlinks look like regular files but share the same inode. Use `stat -f '%i'` to compare inodes.
 - **NVM context matters** — when debugging Node-based CLI tools (Codex, etc.), NVM's npm reads the wrong prefix if `nvm.sh` isn't sourced first. Always `source ~/.nvm/nvm.sh` before running npm commands.
+- **Apple system tools overshadow Homebrew installations** — `/usr/bin/` typically appears before `/opt/homebrew/bin/` in PATH, causing `which <tool>` to resolve Apple's built-in version even when Homebrew has a newer one installed. `which -a <tool>` reveals both. Fix with `sudo ln -s /opt/homebrew/bin/<tool> /usr/local/bin/<tool>` since `/usr/local/bin/` precedes `/usr/bin/`. See `references/macos-path-priority.md`.

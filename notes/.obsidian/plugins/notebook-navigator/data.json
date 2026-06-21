@@ -447,20 +447,35 @@
   "fileColors": {},
   "fileBackgroundColors": {},
   "folderIcons": {
-    "Excalidraw": "excalidraw-icon"
+    "00_Inbox": "inbox",
+    "10_Projects": "projector",
+    "20_Areas": "chart-area",
+    "30_Resources": "book",
+    "90_Archives": "archive",
+    "Journals": "notebook-pen",
+    "Template": "templater-icon"
   },
   "folderColors": {
-    "journals": "#f97316",
-    "Template": "#3b82f6",
-    "Excalidraw": "#d946ef"
+    "Template": "#0075f1",
+    "Journals": "#f18f00",
+    "00_Inbox": "#6b7280",
+    "10_Projects": "#19c537",
+    "20_Areas": "#f1c400",
+    "30_Resources": "#f13123",
+    "90_Archives": "#a34dc9"
   },
   "folderBackgroundColors": {
-    "journals": "#eadd0813"
+    "Journals": "#f4f4f4",
+    "10_Projects": "#19c53729",
+    "00_Inbox": "#d9d9d9",
+    "20_Areas": "#f1c4001a",
+    "30_Resources": "#f131231f",
+    "90_Archives": "#a34dc91d"
   },
   "folderSortOverrides": {},
   "folderTreeSortOverrides": {},
   "folderAppearances": {
-    "journals": {
+    "Journals": {
       "previewRows": 1
     }
   },
@@ -501,7 +516,7 @@
     "#404040",
     "#404040"
   ],
-  "lastShownVersion": "3.1.4",
+  "lastShownVersion": "3.2.0",
   "rootFolderOrder": [],
   "rootTagOrder": [],
   "rootPropertyOrder": [],

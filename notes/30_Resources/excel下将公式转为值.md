@@ -1,6 +1,6 @@
 #r/工具/Excel
 
-#excel宏 
+#r/工具/Excel 
 - 方法一（效果好）
 - Sub ConvertFormulasToValues()
   Dim rng As Range

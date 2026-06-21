@@ -1,6 +1,6 @@
 #a/学习/系统
 
-#学习/系统/MAC 
+#a/学习/软件 
 立刻呼出程序坞
 defaults write com.apple.dock “autohide-delay” -float “0” && killall Dock
 

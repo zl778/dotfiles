@@ -1,6 +1,6 @@
 #r/工具/Excel
 
-#excel宏 
+#r/工具/Excel 
 - 使用宏：插入模块 excel多页合并一页
   Sub MergeSheets()
       Dim ws As Worksheet

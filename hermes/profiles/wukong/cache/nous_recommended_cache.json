@@ -14,21 +14,7 @@
           "position": 0,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-06-05T00:11:19.667Z"
-        },
-        {
-          "modelName": "nvidia/nemotron-3-ultra:free",
-          "displayName": "nvidia/nemotron-3-ultra:free",
-          "source": "local",
-          "href": null,
-          "tokenPrice": "$0.00/1M",
-          "contextLength": null,
-          "inputModalities": [],
-          "outputModalities": [],
-          "position": 1,
-          "isVisionModel": false,
-          "isCompactionModel": false,
-          "updatedAt": "2026-06-05T00:11:19.667Z"
+          "updatedAt": "2026-06-19T09:50:21.126Z"
         },
         {
           "modelName": "stepfun/step-3.7-flash:free",
@@ -39,10 +25,10 @@
           "contextLength": null,
           "inputModalities": [],
           "outputModalities": [],
-          "position": 2,
+          "position": 1,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-06-05T00:11:19.667Z"
+          "updatedAt": "2026-06-19T09:50:21.126Z"
         },
         {
           "modelName": "zai/GLM-5.1:US",
@@ -53,10 +39,10 @@
           "contextLength": null,
           "inputModalities": [],
           "outputModalities": [],
-          "position": 3,
+          "position": 2,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-06-05T00:11:19.667Z"
+          "updatedAt": "2026-06-19T09:50:21.126Z"
         }
       ],
       "freeRecommendedModels": [
@@ -72,21 +58,7 @@
           "position": 0,
           "isVisionModel": true,
           "isCompactionModel": true,
-          "updatedAt": "2026-06-05T00:11:19.667Z"
-        },
-        {
-          "modelName": "nvidia/nemotron-3-ultra:free",
-          "displayName": "nvidia/nemotron-3-ultra:free",
-          "source": "local",
-          "href": null,
-          "tokenPrice": "$0.00/1M",
-          "contextLength": null,
-          "inputModalities": [],
-          "outputModalities": [],
-          "position": 1,
-          "isVisionModel": false,
-          "isCompactionModel": false,
-          "updatedAt": "2026-06-05T00:11:19.667Z"
+          "updatedAt": "2026-06-19T09:50:21.126Z"
         }
       ],
       "paidRecommendedVisionModel": null,
@@ -103,7 +75,7 @@
         "position": 0,
         "isVisionModel": true,
         "isCompactionModel": true,
-        "updatedAt": "2026-06-05T00:11:19.667Z"
+        "updatedAt": "2026-06-19T09:50:21.126Z"
       },
       "freeRecommendedCompactionModel": {
         "modelName": "stepfun/step-3.7-flash:free",
@@ -117,9 +89,9 @@
         "position": 0,
         "isVisionModel": true,
         "isCompactionModel": true,
-        "updatedAt": "2026-06-05T00:11:19.667Z"
+        "updatedAt": "2026-06-19T09:50:21.126Z"
       }
     },
-    "ts": 1781660760.618452
+    "ts": 1782055647.360395
   }
 }

@@ -485,13 +485,13 @@
     "created_at": "2026-06-03T16:14:57.351574+00:00",
     "created_by": null,
     "last_patched_at": "2026-06-04T07:05:03.100124+00:00",
-    "last_used_at": "2026-06-21T01:00:59.086367+00:00",
-    "last_viewed_at": "2026-06-21T01:00:59.081408+00:00",
+    "last_used_at": "2026-06-21T20:00:45.954488+00:00",
+    "last_viewed_at": "2026-06-21T20:00:45.951839+00:00",
     "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 41,
-    "view_count": 41
+    "use_count": 42,
+    "view_count": 42
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,
@@ -505,6 +505,19 @@
     "state": "active",
     "use_count": 2,
     "view_count": 2
+  },
+  "hermes-cron-jobs": {
+    "archived_at": null,
+    "created_at": "2026-06-21T01:15:20.536315+00:00",
+    "created_by": "agent",
+    "last_patched_at": "2026-06-21T01:16:16.901376+00:00",
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 2,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
   },
   "hermes-custom-provider": {
     "archived_at": null,
@@ -705,14 +718,14 @@
     "archived_at": null,
     "created_at": "2026-06-13T15:45:37.590195+00:00",
     "created_by": "agent",
-    "last_patched_at": "2026-06-13T15:45:49.421548+00:00",
-    "last_used_at": "2026-06-13T15:45:51.142116+00:00",
-    "last_viewed_at": "2026-06-13T15:45:51.134038+00:00",
-    "patch_count": 1,
+    "last_patched_at": "2026-06-21T15:38:25.537151+00:00",
+    "last_used_at": "2026-06-21T15:38:28.471353+00:00",
+    "last_viewed_at": "2026-06-21T15:38:28.468097+00:00",
+    "patch_count": 4,
     "pinned": false,
     "state": "active",
-    "use_count": 1,
-    "view_count": 1
+    "use_count": 3,
+    "view_count": 3
   },
   "manim-video": {
     "archived_at": null,

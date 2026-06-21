@@ -127,24 +127,6 @@
       "key": "I"
     }
   ],
-  "app:toggle-left-sidebar": [
-    {
-      "modifiers": [
-        "Mod",
-        "Shift"
-      ],
-      "key": "S"
-    }
-  ],
-  "notebook-navigator:toggle-left-sidebar": [
-    {
-      "modifiers": [
-        "Mod",
-        "Shift"
-      ],
-      "key": "A"
-    }
-  ],
   "editor:unfold-all": [
     {
       "modifiers": [],
@@ -223,6 +205,15 @@
         "Mod"
       ],
       "key": "F3"
+    }
+  ],
+  "notebook-navigator:toggle-left-sidebar": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "S"
     }
   ]
 }

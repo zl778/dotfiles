@@ -1,6 +1,6 @@
 #r/AI
 
-#AI工具
+#r/AI/模型
 网页端：
 https://chat.qwen.ai/
 
