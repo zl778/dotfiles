@@ -96,6 +96,12 @@ hdiutil detach /Volumes/<App>
 
 # Direct .app copy
 cp -R ~/Downloads/\<App\>.app /Applications/
+
+# Replacing an existing .app safely (use ditto, NOT rm -rf + cp -R)
+# macOS `cp -R` onto an existing .app MERGES rather than replaces —
+# old files that don't exist in the new version are left behind.
+# Always use `ditto` to safely overwrite the entire bundle:
+ditto "/Volumes/<App>/<App>.app" /Applications/<App>.app
 ```
 
 ## Fully Uninstalling Apps

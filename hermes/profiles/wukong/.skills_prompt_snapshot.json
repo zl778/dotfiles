@@ -26,12 +26,12 @@
       34288
     ],
     "autonomous-ai-agents/codex/SKILL.md": [
-      1779338219150372608,
-      4557
+      1780886313473055914,
+      5386
     ],
     "autonomous-ai-agents/hermes-agent/SKILL.md": [
-      1780638806572111086,
-      46692
+      1782047518088162874,
+      50621
     ],
     "autonomous-ai-agents/opencode/SKILL.md": [
       1779338219150916404,
@@ -134,8 +134,8 @@
       6270
     ],
     "email/himalaya/SKILL.md": [
-      1780067758198584093,
-      7164
+      1782047518088828459,
+      7272
     ],
     "gaming/minecraft-modpack-server/SKILL.md": [
       1779338219180691684,
@@ -150,32 +150,32 @@
       3628
     ],
     "github/github-auth/SKILL.md": [
-      1779338219181299564,
-      7546
+      1781165383369926916,
+      7596
     ],
     "github/github-code-review/SKILL.md": [
-      1779338219181540983,
-      13565
+      1781165383370374167,
+      13615
     ],
     "github/github-issues/SKILL.md": [
-      1779338219181782901,
-      9265
+      1781165383370607792,
+      9315
     ],
     "github/github-pr-workflow/SKILL.md": [
-      1779338219182088695,
-      9985
+      1781165383370880875,
+      10035
     ],
     "github/github-repo-management/SKILL.md": [
-      1779338219182578907,
-      13683
+      1781165383371119793,
+      13733
     ],
     "mcp/native-mcp/SKILL.md": [
       1779338219183738125,
       12365
     ],
     "media/gif-search/SKILL.md": [
-      1779338219183964627,
-      2704
+      1781165383371335709,
+      2720
     ],
     "media/music-and-audio/SKILL.md": [
       1780724360172121699,
@@ -186,8 +186,8 @@
       6319
     ],
     "media/youtube-content/SKILL.md": [
-      1779338219184419214,
-      3218
+      1781312628590553107,
+      3384
     ],
     "mlops/evaluation/lm-evaluation-harness/SKILL.md": [
       1779338219184974968,
@@ -230,8 +230,8 @@
       4661
     ],
     "productivity/airtable/SKILL.md": [
-      1779338219189602964,
-      11302
+      1781165383371960752,
+      11334
     ],
     "productivity/google-workspace/SKILL.md": [
       1779338219189733590,
@@ -250,8 +250,8 @@
       1414
     ],
     "productivity/notion/SKILL.md": [
-      1779338219191074725,
-      14597
+      1781165383372184710,
+      14629
     ],
     "productivity/ocr-and-documents/SKILL.md": [
       1779338219191368436,
@@ -262,8 +262,8 @@
       9298
     ],
     "productivity/teams-meeting-pipeline/SKILL.md": [
-      1779338219196658020,
-      6867
+      1781165383372466585,
+      6883
     ],
     "red-teaming/godmode/SKILL.md": [
       1780638806573388388,
@@ -278,8 +278,8 @@
       5111
     ],
     "research/llm-wiki/SKILL.md": [
-      1779338219198270783,
-      20113
+      1781165383372716294,
+      20129
     ],
     "research/polymarket/SKILL.md": [
       1779338219198393576,
@@ -306,8 +306,8 @@
       11591
     ],
     "software-development/hermes-agent-skill-authoring/SKILL.md": [
-      1780638806573913058,
-      7609
+      1782047518089157481,
+      10651
     ],
     "software-development/hermes-s6-container-supervision/SKILL.md": [
       1779680106663329940,
@@ -316,6 +316,10 @@
     "software-development/planning-and-spiking/SKILL.md": [
       1780726240827475415,
       10562
+    ],
+    "software-development/simplify-code/SKILL.md": [
+      1781881856308529473,
+      10926
     ],
     "software-development/subagent-driven-development/SKILL.md": [
       1779338219206884810,
@@ -1699,7 +1703,7 @@
       "skill_name": "hermes-agent-skill-authoring",
       "category": "software-development",
       "frontmatter_name": "hermes-agent-skill-authoring",
-      "description": "Author in-repo SKILL.md: frontmatter, validator, structure.",
+      "description": "Author in-repo SKILL.md: frontmatter, validator, structur...",
       "platforms": [
         "linux",
         "macos",
@@ -1731,6 +1735,23 @@
       "frontmatter_name": "planning-and-spiking",
       "description": "Write implementation plans, run spikes/experiments, produ...",
       "platforms": [],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": []
+      }
+    },
+    {
+      "skill_name": "simplify-code",
+      "category": "software-development",
+      "frontmatter_name": "simplify-code",
+      "description": "Parallel 3-agent cleanup of recent code changes.",
+      "platforms": [
+        "linux",
+        "macos",
+        "windows"
+      ],
       "conditions": {
         "fallback_for_toolsets": [],
         "requires_toolsets": [],

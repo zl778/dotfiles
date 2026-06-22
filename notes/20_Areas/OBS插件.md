@@ -1,6 +1,5 @@
 #a/学习/软件
-
-属于[[Obs学习]]的一部分
+[[ obsidian]]插件列表
 以下为插件列表
 	[[Add Properties]]
 	[[Clear Unused Images]]

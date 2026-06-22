@@ -14,7 +14,14 @@
       "hiddenFileNames": [],
       "hiddenFileTags": [],
       "periodicNotesFolder": "",
-      "propertyKeys": [],
+      "propertyKeys": [
+        {
+          "key": "tags",
+          "showInNavigation": true,
+          "showInList": true,
+          "showInFileMenu": true
+        }
+      ],
       "navRainbow": {
         "mode": "none",
         "balanceHueLuminance": true,

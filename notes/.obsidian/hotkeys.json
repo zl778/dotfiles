@@ -152,7 +152,14 @@
     }
   ],
   "workspace:close-window": [],
-  "workspace:close": [],
+  "workspace:close": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "W"
+    }
+  ],
   "app:open-help": [
     {
       "modifiers": [

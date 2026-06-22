@@ -92,6 +92,86 @@ Within double quotes `"…"` backslash `\` is a literal character, not an escape
 
 Obsidian links notes with `[[Note Name]]` syntax. When creating notes, use these to link related content.
 
+## Obsidian URI (jump display)
+
+For showing the user a note inside the Obsidian app (jump-to-display), use `obsidian://` URL scheme via the system `open` command. This is NOT a replacement for file-system tools — see `references/obsidian-uri.md` for syntax, per-platform commands, and the decision table of when to use URI vs file tools.
+
+## Obsidian CLI (已验证连通)
+
+Obsidian 1.12.7+ ships a CLI binary (`obsidian-cli`) that communicates with the running Obsidian app via IPC. It provides capabilities beyond raw filesystem access: searched indexes, link graphs, Sync control, properties, tasks, and `eval` for executing JavaScript inside Obsidian.
+
+### 连通性验证
+
+本用户环境已验证通过（macOS 26.5.1，Apple M5）：
+
+| 项目 | 结果 |
+|------|------|
+| CLI 版本 | Obsidian 1.12.7 |
+| 二进制路径 | `~/bin/obsidian` → `/Applications/Obsidian.app/Contents/MacOS/obsidian-cli` |
+| 可用 Vault | PKM（主库，211 文件）、work、Obs_vault |
+| PKM Vault 路径 | `~/Library/Mobile Documents/iCloud~md~obsidian/Documents/PKM/` |
+| read / search / tags / tasks | 全部正常工作 |
+
+首次使用前确保 Obsidian **正在运行**，否则 CLI 命令会尝试启动 Obsidian（较慢）。
+
+### Prerequisites & Setup
+
+- Obsidian app **must be running** for CLI commands to work
+- Enable CLI in Obsidian: **Settings → General → Command line interface** (toggle on)
+- macOS auto-creates `/usr/local/bin/obsidian` symlink (requires admin dialog), OR create manually:
+  ```bash
+  ln -sf /Applications/Obsidian.app/Contents/MacOS/obsidian-cli ~/bin/obsidian
+  ```
+- Verify: `obsidian version`
+
+### When to use CLI vs Filesystem
+
+| Task | Approach | Reasoning |
+|------|----------|-----------|
+| Read/write a note's content | Filesystem (read_file/write_file/patch) | Fast, no IPC overhead, works with Obsidian closed |
+| Search vault by keyword | Filesystem (search_files) | ripgrep is fast, no IPC overhead |
+| **Backlinks/incoming links** | **CLI**: `obsidian backlinks file=NoteName` | Filesystem can't resolve link graph without parsing all files |
+| **Tags with counts** | **CLI**: `obsidian tags counts` | Uses Obsidian's index cache, not raw YAML parsing |
+| **Properties** | **CLI**: `obsidian properties` / `obsidian property:read name=X` | Reads from Obsidian's indexed metadata |
+| **Tasks (with status filter)** | **CLI**: `obsidian tasks todo` / `obsidian tasks daily` | Indexed task view across vault |
+| **Daily notes** | **CLI**: `obsidian daily:append content="..."` | Auto-resolves daily note path, appends cleanly |
+| **Link graph queries** | **CLI**: `obsidian orphans`, `obsidian unresolved` | Filesystem would require full-vault link parsing |
+| **Execute JS in Obsidian** | **CLI**: `obsidian eval code="app.vault.getFiles().length"` | **Only CLI can do this** — accesses Obsidian API (app.vault, app.metadataCache, etc.) |
+| **Version diff (Sync/File Recovery)** | **CLI**: `obsidian diff file=Note from=2 to=1` | Accesses Obsidian's version history |
+| **Bulk operations (batch create 10+ notes)** | Filesystem | No IPC overhead per call |
+| **Plugin/Theme management** | **CLI**: `obsidian plugins`, `obsidian theme:set name=X` | CLI can toggle/install plugins |
+
+### Key CLI commands
+
+See `references/obsidian-cli-commands.md` for the full command reference. Most useful ones:
+
+```bash
+# Everyday
+obsidian daily:append content="- [ ] Buy groceries"   # Add to daily note
+obsidian search query="meeting notes"                  # Search vault
+obsidian tasks todo                                     # List incomplete tasks
+obsidian tags counts                                    # Tag cloud with counts
+obsidian backlinks file=Note                            # Show backlinks
+obsidian orphans                                        # Find orphaned notes
+
+# Developer
+obsidian eval code="app.vault.getFiles().length"        # Execute JS
+obsidian dev:console                                    # View console logs
+obsidian dev:errors                                     # View captured errors
+obsidian plugin:reload id=my-plugin                      # Reload dev plugin
+```
+
+### Pitfalls
+
+- **Obsidian must be running** — CLI connects via IPC to the desktop app. First command may launch Obsidian (slow).
+- **CLI after app update** — if you updated Obsidian via a version-skewed installer (e.g. installer 1.9.14 with CLI 1.12.7), the CLI may not register correctly. Update to latest installer DMG, then re-enable CLI in Settings.
+- **Updating Obsidian.app safely** — do NOT `rm -rf + cp -R` to replace .app bundles. macOS `cp -R` merges into existing directories, leaving old files behind. Use `ditto` instead:
+  ```bash
+  ditto "/Volumes/New Obsidian.app" /Applications/Obsidian.app
+  ```
+- **eval output** — `obsidian eval` returns raw JS return value serialized. For complex operations, print structured output from within the eval.
+- **CLI symlink location** — `/usr/local/bin/obsidian` requires sudo. Put it in `~/bin/` (already in user PATH) to avoid admin prompts.
+
 ## Tag system design
 
 See `references/para-tag-system-design.md` for the workflow on designing and migrating a PARA + Decimal tag system for an Obsidian vault.
