@@ -17,13 +17,13 @@
     "created_at": "2026-05-30T14:26:57.903772+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-06-02T07:24:37.174198+00:00",
-    "last_viewed_at": "2026-06-02T07:24:37.169429+00:00",
+    "last_used_at": "2026-06-23T07:26:29.238015+00:00",
+    "last_viewed_at": "2026-06-23T07:26:29.231340+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 6,
-    "view_count": 6
+    "use_count": 7,
+    "view_count": 7
   },
   "apple-notes": {
     "archived_at": null,
@@ -485,13 +485,13 @@
     "created_at": "2026-06-03T16:14:57.351574+00:00",
     "created_by": null,
     "last_patched_at": "2026-06-04T07:05:03.100124+00:00",
-    "last_used_at": "2026-06-22T20:07:25.701869+00:00",
-    "last_viewed_at": "2026-06-22T20:07:25.699725+00:00",
+    "last_used_at": "2026-06-23T08:12:56.878677+00:00",
+    "last_viewed_at": "2026-06-23T08:12:56.870921+00:00",
     "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 49,
-    "view_count": 49
+    "use_count": 53,
+    "view_count": 53
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,
@@ -531,6 +531,19 @@
     "state": "active",
     "use_count": 6,
     "view_count": 6
+  },
+  "hermes-gateway-telegram": {
+    "archived_at": null,
+    "created_at": "2026-06-23T06:57:52.672515+00:00",
+    "created_by": "agent",
+    "last_patched_at": "2026-06-23T07:53:44.165589+00:00",
+    "last_used_at": "2026-06-23T07:51:03.184044+00:00",
+    "last_viewed_at": "2026-06-23T07:51:03.179926+00:00",
+    "patch_count": 7,
+    "pinned": false,
+    "state": "active",
+    "use_count": 3,
+    "view_count": 3
   },
   "hermes-oauth-troubleshooting": {
     "archived_at": null,
@@ -584,6 +597,32 @@
     "use_count": 2,
     "view_count": 2
   },
+  "hugo-site-setup": {
+    "archived_at": null,
+    "created_at": "2026-06-23T08:13:48.635885+00:00",
+    "created_by": "agent",
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
+  "hugo-static-site": {
+    "archived_at": null,
+    "created_at": "2026-06-23T11:59:01.779247+00:00",
+    "created_by": "agent",
+    "last_patched_at": "2026-06-23T11:59:18.055879+00:00",
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 1,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
   "humanizer": {
     "archived_at": null,
     "created_at": "2026-06-04T07:01:26.477865+00:00",
@@ -614,14 +653,14 @@
     "archived_at": null,
     "created_at": "2026-06-02T07:25:59.074993+00:00",
     "created_by": null,
-    "last_patched_at": "2026-06-03T10:30:33.651025+00:00",
-    "last_used_at": "2026-06-11T08:06:37.301576+00:00",
-    "last_viewed_at": "2026-06-11T08:06:37.260481+00:00",
-    "patch_count": 1,
+    "last_patched_at": "2026-06-23T07:45:12.041290+00:00",
+    "last_used_at": "2026-06-23T07:42:35.601297+00:00",
+    "last_viewed_at": "2026-06-23T07:42:35.595746+00:00",
+    "patch_count": 25,
     "pinned": false,
     "state": "active",
-    "use_count": 2,
-    "view_count": 2
+    "use_count": 25,
+    "view_count": 25
   },
   "jupyter-live-kernel": {
     "archived_at": null,
@@ -745,13 +784,13 @@
     "created_at": "2026-06-13T15:45:37.590195+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-06-22T08:11:30.337077+00:00",
-    "last_used_at": "2026-06-22T08:11:06.242827+00:00",
-    "last_viewed_at": "2026-06-22T08:11:06.236084+00:00",
+    "last_used_at": "2026-06-23T04:43:54.601837+00:00",
+    "last_viewed_at": "2026-06-23T04:43:54.596254+00:00",
     "patch_count": 5,
     "pinned": false,
     "state": "active",
-    "use_count": 4,
-    "view_count": 4
+    "use_count": 5,
+    "view_count": 5
   },
   "manim-video": {
     "archived_at": null,

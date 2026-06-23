@@ -53,7 +53,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "journals/2026_06_22.md",
+                "file": "Journals/2026_06_23.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -68,7 +68,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "2026_06_22"
+              "title": "2026_06_23"
             }
           }
         ],
@@ -220,7 +220,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "obsidian-excalidraw-plugin:New drawing": false,
+      "obsidian-excalidraw-plugin:新建绘图文件": false,
       "templater-obsidian:Templater": false,
       "daily-notes:打开/创建今天的日记": false,
       "quickadd:QuickAdd": false,
