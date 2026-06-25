@@ -80,6 +80,7 @@ theme = 'PaperMod'
 **Pitfalls:**
 - `homeInfoParams` must be a TOML section (`[params.homeInfoParams]` with `Title`/`Content`), NOT `homeInfoParams = true` — that causes a template error.
 - `buildFuture = true` is needed when post dates are close to or past the current time. Without it, Hugo silently skips posts with future dates (the `hugo list all` command shows them, but they don't appear in `public/`).
+- **Goldmark strips raw HTML by default.** If a post contains `<iframe>`, `<style>`, `<video>`, or any raw HTML, add `[markup.goldmark.renderer] unsafe = true` to `hugo.toml`. Without this, the HTML is silently removed from the output — no warning unless you have `ignoreLogs` set.
 
 ## 4. Create Content
 
@@ -107,6 +108,31 @@ description: '...'
 
 Content here...
 ```
+
+### Deploying standalone HTML apps (static pages)
+
+For pure frontend apps (games, tools, visualizations) that don't need a build step:
+
+1. Copy the HTML file (or entire folder) to `static/<app-name>/index.html`
+   - Hugo copies `static/` verbatim to the site root
+   - Accessible at `https://<domain>/<app-name>/`
+2. (Optional) Create a blog post that introduces the app and embeds it:
+   ```markdown
+   ---
+   title: 'App Name'
+   date: YYYY-MM-DDTHH:MM:SS+08:00
+   tags: [tag1, tag2]
+   ---
+
+   ## Play Online
+
+   <iframe src="/<app-name>/" width="100%" height="650" style="border:none;border-radius:12px;background:#0f0f1a;"></iframe>
+   ```
+3. **IMPORTANT:** If the post contains raw HTML (iframe, `<style>`, etc.), Hugo's goldmark renderer strips it by default. Add to `hugo.toml`:
+   ```toml
+   [markup.goldmark.renderer]
+     unsafe = true
+   ```
 
 ### Migrating from Obsidian
 

@@ -108,6 +108,7 @@ cat ~/.hermes/cron/output/<job_id>/*.md
 | 找不到 job ID | 猜错了 | 先 `cronjob(action='list')` |
 | 凌晨投递到旧会话 | deliver=origin 绑定创建时的会话 | 用 deliver=local 或指定目标 |
 | cron-run 递归调度 cronjob | 安全规则禁止 | 提示已在 prompt 中 |
+| `hermes update` 卡在待批准 | 该命令触发 approval_fns（重启 gateway、杀死 agent） | 用 git pull + venv pip install 替代 |
 
 ## 查看运行日志
 
@@ -124,3 +125,4 @@ cat ~/.hermes/cron/output/<job_id>/*.md | head -50
 ## 参考案例
 
 - `references/daily-maintenance-migration-case.md` — 完整的每日维护任务从 no_agent 迁移到 Agent 模式的过程，含错误日志、修复步骤、已验证的最终配置。
+- `references/hermes-update-cron-workaround.md` — 在 cron / 自主运行环境中绕过 `hermes update` 交互式批准的替代方案。

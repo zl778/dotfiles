@@ -259,6 +259,19 @@
     "use_count": 1,
     "view_count": 1
   },
+  "computer-use": {
+    "archived_at": null,
+    "created_at": "2026-06-25T12:32:21.165528+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
   "debugging-hermes-tui-commands": {
     "archived_at": null,
     "created_at": "2026-06-09T06:44:14.308422+00:00",
@@ -290,13 +303,13 @@
     "created_at": "2026-06-20T00:45:41.738268+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-06-20T00:45:51.921757+00:00",
-    "last_used_at": "2026-06-20T00:45:55.473679+00:00",
-    "last_viewed_at": "2026-06-20T00:45:55.468614+00:00",
+    "last_used_at": "2026-06-24T20:11:36.238731+00:00",
+    "last_viewed_at": "2026-06-24T20:11:36.233039+00:00",
     "patch_count": 1,
     "pinned": false,
     "state": "active",
-    "use_count": 1,
-    "view_count": 1
+    "use_count": 2,
+    "view_count": 2
   },
   "dotfiles-setup": {
     "archived_at": null,
@@ -485,13 +498,13 @@
     "created_at": "2026-06-03T16:14:57.351574+00:00",
     "created_by": null,
     "last_patched_at": "2026-06-04T07:05:03.100124+00:00",
-    "last_used_at": "2026-06-23T08:12:56.878677+00:00",
-    "last_viewed_at": "2026-06-23T08:12:56.870921+00:00",
+    "last_used_at": "2026-06-24T20:11:36.241663+00:00",
+    "last_viewed_at": "2026-06-24T20:11:36.236163+00:00",
     "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 53,
-    "view_count": 53
+    "use_count": 54,
+    "view_count": 54
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,
@@ -510,14 +523,14 @@
     "archived_at": null,
     "created_at": "2026-06-21T01:15:20.536315+00:00",
     "created_by": "agent",
-    "last_patched_at": "2026-06-21T01:16:16.901376+00:00",
-    "last_used_at": null,
-    "last_viewed_at": null,
-    "patch_count": 2,
+    "last_patched_at": "2026-06-23T20:27:56.338623+00:00",
+    "last_used_at": "2026-06-23T20:24:57.851341+00:00",
+    "last_viewed_at": "2026-06-23T20:24:57.844716+00:00",
+    "patch_count": 6,
     "pinned": false,
     "state": "active",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 2,
+    "view_count": 2
   },
   "hermes-custom-provider": {
     "archived_at": null,
@@ -614,14 +627,14 @@
     "archived_at": null,
     "created_at": "2026-06-23T11:59:01.779247+00:00",
     "created_by": "agent",
-    "last_patched_at": "2026-06-23T11:59:18.055879+00:00",
-    "last_used_at": null,
-    "last_viewed_at": null,
-    "patch_count": 1,
+    "last_patched_at": "2026-06-25T03:51:10.590135+00:00",
+    "last_used_at": "2026-06-25T03:51:13.612195+00:00",
+    "last_viewed_at": "2026-06-25T03:51:13.607467+00:00",
+    "patch_count": 3,
     "pinned": false,
     "state": "active",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 3,
+    "view_count": 3
   },
   "humanizer": {
     "archived_at": null,
@@ -948,6 +961,19 @@
     "use_count": 1,
     "view_count": 1
   },
+  "petdex": {
+    "archived_at": null,
+    "created_at": "2026-06-25T12:32:21.169708+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
   "pixel-art": {
     "archived_at": null,
     "created_at": "2026-06-04T07:01:26.677194+00:00",
@@ -1181,6 +1207,19 @@
     "state": "active",
     "use_count": 0,
     "view_count": 0
+  },
+  "vps-server-backup": {
+    "archived_at": null,
+    "created_at": "2026-06-25T07:28:22.040594+00:00",
+    "created_by": "agent",
+    "last_patched_at": "2026-06-25T07:28:46.976848+00:00",
+    "last_used_at": "2026-06-25T07:28:50.115596+00:00",
+    "last_viewed_at": "2026-06-25T07:28:50.108544+00:00",
+    "patch_count": 2,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
   },
   "webhook-subscriptions": {
     "archived_at": null,
