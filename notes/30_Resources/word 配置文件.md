@@ -1,4 +1,4 @@
-#r/工具/Word
+#r/tools/Word
 
 - 按键盘上的Command+Shift+G组合键
   在出现的窗口中输入“~/Library/Containers/com.microsoft.Word/Data/Library/Preferences/”路径并点击进入。

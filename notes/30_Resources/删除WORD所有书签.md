@@ -1,4 +1,4 @@
-#r/工具/Word
+#r/tools/Word
 
 Sub 删除书签()
 ' 删除书签 宏

@@ -1,4 +1,4 @@
-#a/学习/系统
+#a/learning/system
 
 ## 移动光标
  - Ctrl + A：到行首（你已经在用）。StartOfLine

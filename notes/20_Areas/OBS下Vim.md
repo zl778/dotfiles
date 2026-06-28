@@ -1,4 +1,4 @@
-#a/学习/软件
+#a/learning/software
 
 
 在 Obsidian 中开启 **Vim 模式**（设置 → 编辑器 → Vim 模式）后，编辑器会模拟 Vim 的操作逻辑，但**并非完整 Vim 实现**（基于 CodeMirror 的简化版）。以下是 **2024 年最新版 Obsidian (1.7.0+)** 中 Vim 模式的**核心操作技巧**，按使用场景分类整理：

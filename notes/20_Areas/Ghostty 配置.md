@@ -1,4 +1,10 @@
-#a/学习/系统
+---
+date: 2026-06-29T00:37:00
+tags:
+  - /r/tools/ghostty
+aliases:
+  - terminal
+---
 
 下载 镜像 Ghostty.dmg 安装
 SH+CO+， settings...

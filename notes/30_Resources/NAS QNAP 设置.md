@@ -1,4 +1,4 @@
-#r/工具/NAS
+#r/tools/NAS
 
 QNAP TS-532X
 	情况：坏了一块硬盘，现在是2块500G SSD 和 2块 4T HDD

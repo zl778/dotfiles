@@ -1,4 +1,4 @@
-#a/学习/系统
+#a/learning/system
 
 ## 壹 起因：
 mac系统级快捷键 协同了word

@@ -1,4 +1,4 @@
-#r/设计
+#r/design
 
 蕉幻 AI原生PPT生成器
 项目地址：https://github.com/Anionex/banana-slides

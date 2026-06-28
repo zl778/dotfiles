@@ -1,4 +1,4 @@
-#r/工具/NAS
+#r/tools/NAS
 
 
 问题发起：威联通 QNAP NAS不能更新固件

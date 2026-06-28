@@ -1,4 +1,4 @@
-#r/AI/模型
+#r/AI/models
 
 我需要搜索关于 Kimi Moderato 会员等级和 Agent 额度的最新信息。
 根据最新搜索结果，Kimi **Moderato（基础版/中速版）** 会员的 Agent 额度如下：

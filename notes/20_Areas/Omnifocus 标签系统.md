@@ -1,4 +1,4 @@
-#a/学习
+#a/learning
 
 Schedule
 	Today

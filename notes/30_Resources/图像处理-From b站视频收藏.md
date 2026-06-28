@@ -1,4 +1,4 @@
-#r/设计/PS
+#r/design/PS
 
 ## 张小样yyds
 https://space.bilibili.com/66437536

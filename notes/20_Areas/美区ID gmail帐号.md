@@ -1,4 +1,4 @@
-#a/生活/通信
+#a/life/telecom
 
 Google帐号
 	liangchu0426@gmail.com

@@ -1,4 +1,4 @@
-#a/生活/通信
+#a/life/telecom
 
 # **域名申请**
 https://www.spaceship.com/zh/

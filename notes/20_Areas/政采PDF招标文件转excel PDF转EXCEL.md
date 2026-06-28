@@ -1,4 +1,4 @@
-#a/工作/政采
+#a/work/procurement
 
 1、ADOBE acrobat 转出到电子表格 excel
 表格右侧用    J1=A1；K1=C1；L1=F1 等方式一一引用

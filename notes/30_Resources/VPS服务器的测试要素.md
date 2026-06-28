@@ -1,7 +1,7 @@
 ---
 date: 2026-06-22
 tags:
-  - /r/工具/vps
+  - /r/tools/vps
 aliases: []
 id: 20260622170128
 ---

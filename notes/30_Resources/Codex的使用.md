@@ -1,4 +1,4 @@
-#r/AI/工具
+#r/AI/tools
 
 原视频：[连接](https://www.bilibili.com/video/BV1gc5b6KE23/?spm_id_from=333.337.search-card.all.click&vd_source=3f16ae48b4eac6e131dafdf67451b9f2)
 

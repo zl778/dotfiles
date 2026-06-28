@@ -1,4 +1,4 @@
-#a/学习/软件
+#a/learning/software
 
 **常用语法**
 

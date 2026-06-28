@@ -1,4 +1,4 @@
-#a/生活/通信
+#a/life/telecom
 
 Liangchu0426@gmail.com
 Setup2000@

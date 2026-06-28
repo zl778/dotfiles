@@ -1,4 +1,4 @@
-#r/工具/网络
+#r/tools/network
 
 ### 开通云服务器（腾讯服务器）
 lhins-azi3aadc

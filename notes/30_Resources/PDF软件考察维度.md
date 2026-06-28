@@ -1,4 +1,4 @@
-#r/工具/Mac
+#r/tools/Mac
 
 1、word 转 pdf 有标签 可以
 2、pdf 转 图片 

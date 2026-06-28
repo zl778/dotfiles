@@ -1,4 +1,4 @@
-#r/AI/模型
+#r/AI/models
 
 
 ### 什么是 Claude Code？

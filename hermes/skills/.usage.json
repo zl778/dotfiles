@@ -900,14 +900,14 @@
     "archived_at": null,
     "created_at": "2026-06-17T15:08:55.894052+00:00",
     "created_by": "agent",
-    "last_patched_at": "2026-06-17T17:02:08.765403+00:00",
-    "last_used_at": "2026-06-17T16:58:20.498798+00:00",
-    "last_viewed_at": "2026-06-17T16:58:20.497559+00:00",
-    "patch_count": 3,
+    "last_patched_at": "2026-06-28T18:13:31.560744+00:00",
+    "last_used_at": "2026-06-28T19:00:12.145246+00:00",
+    "last_viewed_at": "2026-06-28T19:00:12.144099+00:00",
+    "patch_count": 9,
     "pinned": false,
     "state": "active",
-    "use_count": 4,
-    "view_count": 4
+    "use_count": 16,
+    "view_count": 16
   },
   "ocr-and-documents": {
     "archived_at": null,
@@ -1213,13 +1213,26 @@
     "created_at": "2026-06-25T07:28:22.040594+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-06-25T07:28:46.976848+00:00",
-    "last_used_at": "2026-06-25T07:28:50.115596+00:00",
-    "last_viewed_at": "2026-06-25T07:28:50.108544+00:00",
+    "last_used_at": "2026-06-28T18:23:48.139510+00:00",
+    "last_viewed_at": "2026-06-28T18:23:48.137421+00:00",
     "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 1,
-    "view_count": 1
+    "use_count": 2,
+    "view_count": 2
+  },
+  "vps-service-deployment": {
+    "archived_at": null,
+    "created_at": "2026-06-28T18:25:31.913268+00:00",
+    "created_by": "agent",
+    "last_patched_at": "2026-06-28T19:54:19.557345+00:00",
+    "last_used_at": "2026-06-28T19:53:17.903238+00:00",
+    "last_viewed_at": "2026-06-28T19:53:17.901857+00:00",
+    "patch_count": 11,
+    "pinned": false,
+    "state": "active",
+    "use_count": 7,
+    "view_count": 7
   },
   "webhook-subscriptions": {
     "archived_at": null,

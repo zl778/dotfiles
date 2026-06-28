@@ -1,4 +1,4 @@
-#a/学习/系统
+#a/learning/system
 
 ### 常用操作
 

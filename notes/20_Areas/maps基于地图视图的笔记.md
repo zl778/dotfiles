@@ -1,4 +1,4 @@
-#a/学习/软件
+#a/learning/software
 
 ---
 date: 2025-11-23T03:25:00

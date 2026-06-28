@@ -1,4 +1,4 @@
-#r/工具/Word
+#r/tools/Word
 
 ---
 aliases:

@@ -1,4 +1,4 @@
-#r/工具/Excel
+#r/tools/Excel
 
 Sub 公式转为值()
     ActiveCell.CurrentRegion.Copy 

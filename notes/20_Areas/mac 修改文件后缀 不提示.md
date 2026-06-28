@@ -1,4 +1,4 @@
-#a/学习/系统
+#a/learning/system
 
 ```bash
 defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false" && killall Finder

@@ -1,4 +1,4 @@
-#r/工具/Mac
+#r/tools/Mac
 
 - ipad升级到14以上；
   下载安装ifont；

@@ -1,4 +1,4 @@
-#r/工具/Excel
+#r/tools/Excel
 
 - 方法1：
   =CONCATENATE(A1," ",A2)

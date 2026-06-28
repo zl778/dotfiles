@@ -1,4 +1,4 @@
-#r/工具/Word
+#r/tools/Word
 
 ---
 date: 2025-11-18T00:14:00

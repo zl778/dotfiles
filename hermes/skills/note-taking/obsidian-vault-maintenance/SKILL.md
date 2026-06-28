@@ -56,9 +56,92 @@ Categories for review:
 
 Move to trash: Obsidian's trash is `<vault>/.trash/` (by default). Use `mv` to move files there.
 
+## Batch tag operations
+
+Useful for standardizing, renaming, or translating tags across the vault.
+
+### 1. List all tags in use
+
+```bash
+# Via Obsidian CLI (requires Obsidian running)
+~/bin/obsidian tags vault=<VaultName>
+
+# Via rg (no Obsidian needed)
+# Matches inline tags (#tag/path) — captures any non-whitespace chars including Chinese
+rg -o '#[^\s#,:\[\]]+' '<vault>' --include '*.md' | sort | uniq -c | sort -rn
+
+# Matches YAML frontmatter tags (- /tag/path)
+rg -o '^  - /[^\s]+' '<vault>' --include '*.md' | sort | uniq -c | sort -rn
+```
+
+### 2. Count occurrences per tag
+
+```bash
+# Inline tag
+rg -c --fixed-strings '#tag/path' '<vault>' --include '*.md' | grep -v ':0$'
+
+# YAML frontmatter tag
+rg -c --fixed-strings '/tag/path' '<vault>' --include '*.md' | grep -v ':0$'
+```
+
+### 3. Batch replace tags
+
+**CRITICAL ORDER: replace from most-specific (deepest sub-tag) to least-specific (parent tag).**
+If you replace `#a/生活` before `#a/生活/通信`, the latter becomes `#a/life/通信` and the second pass won't match.
+
+**Pattern 1 — Inline tags** (written as `#tag/path` in note body):
+
+```bash
+find '<vault>' -name '*.md' -exec sed -i '' 's|#OLD/TAG/PATH|#NEW/TAG/PATH|g' {} +
+```
+
+**Pattern 2 — YAML frontmatter tags** (written as `- /tag/path` or `tags: [/tag/path]`):
+
+```bash
+find '<vault>' -name '*.md' -exec sed -i '' 's|/OLD/TAG/PATH|/NEW/TAG/PATH|g' {} +
+```
+
+Both patterns are independent — run both for full coverage.
+
+### 4. Verify results
+
+```bash
+# Confirm no old tags remain
+rg -c --fixed-strings '#OLD/TAG' '<vault>' --include '*.md' | grep -v ':0$'
+
+# Confirm new tags exist
+rg -c --fixed-strings '#NEW/TAG' '<vault>' --include '*.md' | awk -F: '{s+=$2} END {print s+0}'
+```
+
+### 5. Spot-check sample files
+
+```bash
+head -3 '<vault>/<path>/<file>.md'
+```
+
+### 6. Handle plan-only tags in index documents
+
+Some tags exist only in a planning/index document (e.g., `标签系统-PARA架构.md`) but have zero actual notes using them.
+
+**Check if a tag is actually used:**
+
+```bash
+# Exclude the index file itself from the count
+rg -c --fixed-strings '#the/tag' '<vault>' \
+  | grep -v '标签系统-PARA' | awk -F: '{s+=$2} END {print s+0}'
+```
+
+If count is 0, the tag exists only in the plan — no note replacement needed, just update the index file.
+
+### Reference
+
+See `references/batch-tag-rename.md` for a complete session example — covers both active tag conversion (Chinese→English, ~155 occurrences across ~90 files) and plan-only tags in index documents.
+
 ## Pitfalls
 
 - iCloud vault path contains spaces — always quote or use file tools
 - Obsidian `attachmentFolderPath` in app.json tells you where images are stored; don't delete images without checking if notes reference them
 - The `.obsidian/` directory is the config folder — never modify it outside the user's explicit direction
 - Untitled/unnamed notes may be transient drafts the user intended to fill later — present a categorized list before deleting
+- **Obsidian CLI requires the app to be running** — `~/bin/obsidian tags vault=<Name>` fails silently if Obsidian is closed. Fall back to `rg -o` for offline tag listing.
+- **Check tag usage before renaming** — Always run `rg -c --fixed-strings` first to confirm the tag actually exists in notes. Tags listed in planning documents may have zero usage.

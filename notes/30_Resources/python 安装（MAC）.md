@@ -1,4 +1,4 @@
-#r/代码/Python
+#r/code/Python
 
 [[python]]
 ### 获得python3安装路径

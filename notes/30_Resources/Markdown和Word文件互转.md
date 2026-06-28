@@ -1,4 +1,4 @@
-#r/工具/Word
+#r/tools/Word
 
 # 安装核心工具
 brew install pandoc          # 格式转换

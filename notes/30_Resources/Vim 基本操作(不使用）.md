@@ -1,4 +1,4 @@
-#r/代码/Vim
+#r/code/Vim
 
 出入
 	:wq 保存并退出

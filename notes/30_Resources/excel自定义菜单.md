@@ -1,4 +1,4 @@
-#r/工具/Excel
+#r/tools/Excel
 
 ---
 aliases:

@@ -1,4 +1,4 @@
-#r/代码/Python
+#r/code/Python
 
 [[python]]
 ### 常用vscode快捷键：

@@ -1,4 +1,4 @@
-#r/工具/Mac
+#r/tools/Mac
 
 sudo rm -rf /Library/Developer/CommandLineTools   ``
 xcode-select --install

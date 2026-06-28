@@ -1,4 +1,4 @@
-#r/工具/Mac
+#r/tools/Mac
 
 ![[Pasted image 20251231193045.png]]
 1、PING 通两方

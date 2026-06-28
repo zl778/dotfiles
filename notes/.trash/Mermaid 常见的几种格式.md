@@ -1,4 +1,4 @@
-#r/工具
+#r/tools
 
 ```mermaid
 graph LR

@@ -1,4 +1,4 @@
-#r/AI/工具
+#r/AI/tools
 
 [原视频链接](https://www.bilibili.com/video/BV1AdynBrEsy/?spm_id_from=333.1007.0.0&vd_source=3f16ae48b4eac6e131dafdf67451b9f2)07:50
 Tier 付费套餐：https://ai.google.dev/gemini-api/docs/rate-limits#tier-1

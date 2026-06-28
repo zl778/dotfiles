@@ -1,4 +1,4 @@
-#r/工具/Excel
+#r/tools/Excel
 
 - 方法一（效果好）
 - Sub ConvertFormulasToValues()

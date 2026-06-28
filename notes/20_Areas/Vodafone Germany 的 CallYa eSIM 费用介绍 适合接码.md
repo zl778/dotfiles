@@ -1,4 +1,4 @@
-#a/生活/通信
+#a/life/telecom
 
 如果你说的是你现在正在使用的 **Vodafone Germany 的 CallYa eSIM（德国沃达丰预付费卡）**，那么它最大的特点是：
 

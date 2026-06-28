@@ -1,7 +1,7 @@
 ---
 date: 2026-06-23
 tags:
-  - /r/工具/vps
+  - /r/tools/vps
 aliases: []
 id: "20260623202803"
 ---
@@ -260,15 +260,15 @@ GitHub更新
 ### **第一阶段（立刻装）**
 
 1. 3X-UI（已完成）
-2. Uptime Kuma
-3. Nginx Proxy Manager
-4. Vaultwarden
+2. Uptime Kuma（已完成）
+3. Nginx Proxy Manager 
+4. Vaultwarden（已完成）
 
 ---
 
 ### **第二阶段（内容建设）**
 
-5. Hugo
+5. Hugo （已完成）
 6. FreshRSS
 
 ---

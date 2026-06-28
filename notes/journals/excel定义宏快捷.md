@@ -1,4 +1,4 @@
-#r/工具/Excel
+#r/tools/Excel
 定义宏的快捷键
 打开excel文件
 option+F8 回车

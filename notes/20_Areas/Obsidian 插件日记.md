@@ -1,4 +1,4 @@
-#a/学习/软件
+#a/learning/software
 
 # Heading Shifter (标题层级调整器） 2026-06-01
 

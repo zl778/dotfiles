@@ -1,4 +1,4 @@
-#a/学习/软件
+#a/learning/software
 
 [[CallOut美化神器（未深化）]]
 [[OBS插件]]
