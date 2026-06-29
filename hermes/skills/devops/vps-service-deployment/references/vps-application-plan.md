@@ -1,22 +1,23 @@
 # VPS Application Deployment Plan — 10-Service Architecture (2026-06-29)
 
 VPS: `fair-cubes-1` (199.115.228.154, Debian 13, Docker 29.6)
-Domain: `61877778.xyz` (Cloudflare DNS)
+Domain: `61877778.xyz` (Cloudflare DNS, all services gray cloud)
+Reverse proxy: **Nginx Proxy Manager** (system Nginx retired)
 
 ## Phased deployment order
 
 ### Phase 1 — Infrastructure (priority)
 | # | Service | Status | URL | Port |
-|:-:|:--------|:------:|:----|:---:|
+|:-:|:--------|:------:|:----|:----:|
 | 1 | **3X-UI** | ✅ Pre-existing | — | — |
 | 2 | **Uptime Kuma** | ✅ Done | `uptime.61877778.xyz` | 3001 |
-| 3 | **Nginx Proxy Manager** | 🚧 In progress | `199.115.228.154:81` (temp) | 81/8082/4443 |
+| 3 | **Nginx Proxy Manager** | ✅ Done, system Nginx retired | `npm.61877778.xyz` | 81 (admin) / 80/443 (proxy) |
 | 4 | **Vaultwarden** | ✅ Done | `vault.61877778.xyz` | 8080 |
 
 ### Phase 2 — Content
 | # | Service | Status | URL |
 |:-:|:--------|:------:|:----|
-| 5 | **Hugo** | ✅ Done | `blog.61877778.xyz` |
+| 5 | **Hugo** | ✅ Done | `blog.61877778.xyz` (Cloudflare Pages) |
 | 6 | **FreshRSS** / Miniflux | ❌ Not yet | `rss.61877778.xyz` |
 
 ### Phase 3 — Productivity
@@ -29,44 +30,47 @@ Domain: `61877778.xyz` (Cloudflare DNS)
 | # | Service | Status | URL |
 |:-:|:--------|:------:|:----|
 | 9 | **File Browser** | ❌ Not yet | `files.61877778.xyz` |
-| 10 | **Beszel** | ❌ Not yet | `monitor.61877778.xyz` |
+| 10 | **Beszel** | ✅ Done | `beszel.61877778.xyz` |
 
 ## Current Nginx configuration
 
-All proxies run through **system Nginx** (not NPM yet):
+All proxy through **Nginx Proxy Manager** (system Nginx fully retired):
 
-| Subdomain | Upstream | SSL |
-|:----------|:---------|:---:|
-| `vault.61877778.xyz` | `127.0.0.1:8080` | acme.sh ECDSA |
-| `uptime.61877778.xyz` | `127.0.0.1:3001` | acme.sh ECDSA |
-| `blog.61877778.xyz` | Cloudflare Pages (external) | CF managed |
+| Subdomain | Docker container | Container IP | Internal port |
+|:----------|:-----------------|:-------------|:-------------:|
+| `vault.61877778.xyz` | vaultwarden | `172.17.0.2` | 80 |
+| `uptime.61877778.xyz` | uptime-kuma | `172.17.0.3` | 3001 |
+| `npm.61877778.xyz` | nginx-proxy-manager | `172.17.0.4` | 81 |
+| `beszel.61877778.xyz` | beszel | `172.17.0.5` | 8090 |
+| `blog.61877778.xyz` | — (Cloudflare Pages) | external | — |
+
+**Important: NPM uses container Docker bridge IPs (not 127.0.0.1) for forwarding.**
+Get container IP: `docker inspect <name> --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'`
 
 ## Port allocation
 
-| Port | Used by |
-|:----:|:--------|
-| 22 | SSH |
-| 80 | System Nginx (HTTP → 301) |
-| 443 | System Nginx (HTTPS) |
-| 81 | NPM admin UI (coexistence) |
-| 2053 | 3X-UI |
-| 3001 | Uptime Kuma |
-| 8080 | Vaultwarden |
-| 8082 | NPM HTTP (coexistence) |
-| 4443 | NPM HTTPS (coexistence) |
+| Port | Used by | Note |
+|:----:|:--------|:-----|
+| 22 | SSH | — |
+| 80 | NPM (HTTP redirect → HTTPS) | NPM managed |
+| 81 | NPM admin UI | NPM managed |
+| 443 | NPM (HTTPS) | NPM auto SSL |
+| 2053 | 3X-UI | — |
+| 3001 | Uptime Kuma | — |
+| 45876 | Beszel Agent | host network, no port mapping |
+| 8080 | Vaultwarden | — |
+| 8090 | Beszel Hub | — |
 
-## Migration plan (system Nginx → NPM)
+## Migration history
 
-1. Deploy NPM on alt ports (81, 8082, 4443) — done
-2. Add proxy hosts in NPM UI for all existing services
-3. Get SSL certs through NPM's built-in ACME
-4. Stop system Nginx: `systemctl stop nginx`
-5. Reconfigure NPM: change ports from 8082→80, 4443→443
-6. Update UFW if needed
-7. Remove old system Nginx site configs
+System Nginx was retired on 2026-06-29. All proxy rules moved to NPM.
+- Old system Nginx site configs: `/etc/nginx/sites-enabled/vaultwarden`, `uptime`, `npm` (removed)
+- Old SSL certs via acme.sh: vault.61877778.xyz, uptime.61877778.xyz, npm.61877778.xyz
+- New SSL certs: NPM auto-managed Let's Encrypt (grey cloud DNS required)
 
 ## Notes
 
-- `:latest` Docker tag often lags behind GitHub releases — always check Docker Hub tags
-- acme.sh auto-renewal is registered via `--install-cert --reloadcmd`
+- `:latest` Docker tag often lags behind GitHub releases — check Docker Hub tags and pin when upgrading
 - Named Docker volumes persist across container re-creation
+- All NPM-managed domains use **grey cloud** (DNS only) in Cloudflare — orange cloud breaks Let's Encrypt ACME challenges
+- Block Common Exploits should be enabled for every proxy host

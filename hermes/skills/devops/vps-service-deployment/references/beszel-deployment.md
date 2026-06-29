@@ -16,20 +16,41 @@ docker run -d --restart always -p 8090:8090 --name beszel henrygd/beszel:latest
 浏览器访问 `http://<VPS-IP>:8090`（或通过 NPM 配好域名后走 HTTPS）
 
 ### 3. 添加系统获取密钥
-在 Hub UI → Add System → 填写名称 → 生成一条含密钥的 docker run 命令
+在 Hub UI → Add System → 填写名称/IP/端口 → Hub 生成 docker-compose（含 KEY + TOKEN + HUB_URL）
 
-### 4. 在被监控机器上启动 Agent
+**两种启动 Agent 的方式：**
+
+**方式 A：docker run（通过环境变量）**
 ```bash
-docker run -d --restart always -p 45876:45876 \
+docker run -d --restart unless-stopped --name beszel-agent --network host \
   -v /var/run/docker.sock:/var/run/docker.sock:ro \
-  -v /proc:/host/proc:ro -v /sys:/host/sys:ro \
-  --name beszel-agent \
-  henrygd/beszel-agent:latest \
-  -key "<从 Hub 复制的密钥>"
+  -v /opt/beszel-agent/data:/var/lib/beszel-agent \
+  -e LISTEN=45876 \
+  -e KEY="<公钥>" \
+  -e TOKEN="<令牌>" \
+  -e HUB_URL="https://beszel.<域名>" \
+  henrygd/beszel-agent:latest
 ```
 
-### 5. 在 Hub 确认连接
-Hub UI 中应该很快显示系统在线和数据。
+**方式 B：docker-compose（从 Hub 复制）**
+```yaml
+services:
+  beszel-agent:
+    image: henrygd/beszel-agent
+    container_name: beszel-agent
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./beszel_agent_data:/var/lib/beszel-agent
+    environment:
+      LISTEN: 45876
+      KEY: '<公钥>'
+      TOKEN: '<令牌>'
+      HUB_URL: 'https://beszel.<域名>'
+```
+
+**重要：`network_mode: host` 意味着不要用 `-p` 映射端口，Agent 直接监听宿主机的 45876 端口。**
 
 ## NPM 代理配置
 - 域名：`beszel.61877778.xyz`
@@ -40,4 +61,8 @@ Hub UI 中应该很快显示系统在线和数据。
 ## 注意事项
 - **Agent 不能先启动** — 必须先通过 Hub 生成密钥，带密钥启动
 - **Agent 需要访问 Docker socket** 才能监控容器状态
-- 资源占用极低（Hub ~50MB, Agent ~10MB）
+- **Token 必须与 Hub 生成的完全一致** — Agent 日志中出现 `WebSocket connection failed err="unexpected status code: 400"` 通常是因为 TOKEN 或 KEY 不匹配，重新用正确的 Token 启动 Agent
+- **Token 错误后的修复** — 如果 Agent 用错误 Token 启动过，Hub 可能记录了错误状态。在 Hub UI 中删除该系统重新添加（获取新 Token），再重新部署 Agent
+- **docker-compose 优于长 docker run 命令** — 当 Agent 的环境变量包含特殊字符（SSH 密钥、Token）时，`docker-compose`（写入 YAML 文件再 `docker compose up -d`）比 `docker run` 传环境变量更可靠，避免 shell 转义问题
+- **资源占用极低**（Hub ~50MB, Agent ~10MB）
+- **network_mode: host** — Agent 使用 host 网络模式，会直接监听宿主机 45876 端口，不要用 `-p` 映射端口

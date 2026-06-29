@@ -126,3 +126,4 @@ ssh root@<IP> 'crontab -l | grep backup'
 ## 关联文件
 
 - **`references/security-contingency-plan.md`** — 完整的自托管服务安全预案模板，可直接套用于任何自托管服务。用 `skill_view(name="vps-server-backup", file_path="references/security-contingency-plan.md")` 加载。
+- **`references/ssh-key-backup.md`** — VPS 相关 SSH 密钥清单和备份流程。`~/.ssh/id_ed25519` 是访问 VPS 和 GitHub 的唯一凭证，必须加密备份。

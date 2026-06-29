@@ -55,11 +55,11 @@ docker run -d --restart always --name nginx-proxy-manager \\
 
 After switching, all old services go down until proxy hosts are added in NPM:
 
-| Domain | Forward to | Service |
-|:-------|:-----------|:--------|
-| `vault.61877778.xyz` | `127.0.0.1:8080` | Vaultwarden |
-| `uptime.61877778.xyz` | `127.0.0.1:3001` | Uptime Kuma |
-| `npm.61877778.xyz` | `127.0.0.1:81` | NPM itself |
+| Domain | Forward to (container IP) | Internal port | Service |
+|:-------|:--------------------------|:-------------:|:--------|
+| `vault.61877778.xyz` | `172.17.0.2` | 80 | Vaultwarden |
+| `uptime.61877778.xyz` | `172.17.0.3` | 3001 | Uptime Kuma |
+| `npm.61877778.xyz` | `172.17.0.4` | 81 | NPM itself |
 
 For each proxy host:
 1. **Details tab**: Domain, scheme `http`, forward IP `127.0.0.1`, forward port, enable **Block Common Exploits**
@@ -77,6 +77,11 @@ For each proxy host:
 3. **Docker volume persistence** — Named volumes (`npm-data`, `npm-letsencrypt`) survive container recreation. Proxy host configs and certs are preserved across upgrades.
 
 4. **Nginx orphaned PIDs** — After stopping system Nginx, `systemctl stop nginx` may leave zombie PIDs. Run `killall nginx 2>/dev/null` for cleanup before starting NPM on 80/443.
+
+5. **Docker bridge IPs vs 127.0.0.1** — Inside the NPM container, `127.0.0.1` refers to the container itself, NOT the host machine. Use `docker inspect <container> --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}'` to get the actual container IP, and forward to that IP with the **container's internal port** (not the host-mapped port).
+   - Vaultwarden runs on internal port 80 (host maps to 8080)
+   - Uptime Kuma runs on internal port 3001 (same as host)
+   - Default bridge gateway is `172.17.0.1`
 
 ## Comparison: system Nginx vs NPM
 

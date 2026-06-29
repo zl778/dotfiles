@@ -261,7 +261,7 @@ GitHub更新
 
 1. 3X-UI（已完成）
 2. Uptime Kuma（已完成）
-3. Nginx Proxy Manager 
+3. Nginx Proxy Manager  （已完成）
 4. Vaultwarden（已完成）
 
 ---
@@ -269,21 +269,21 @@ GitHub更新
 ### **第二阶段（内容建设）**
 
 5. Hugo （已完成）
-6. FreshRSS
+6. FreshRSS（暂时跳过）
 
 ---
 
 ### **第三阶段（效率提升）**
 
-7. n8n
-8. Memos
+7. n8n（暂时跳过）
+8. Memos（暂时跳过）
 
 ---
 
 ### **第四阶段（运维增强）**
 
-9. File Browser
-10. Beszel
+9. File Browser （暂时跳过）
+10. Beszel （已完成）
 
 ---
 

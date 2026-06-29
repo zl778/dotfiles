@@ -1,13 +1,8 @@
----
-date: 2026-06-25
-tags: []
-aliases: []
-id: 20260625155242
----
-# 🔐 
+# 🔐 Vaultwarden 安全预案
 
-> 生成日期：2026-06-25
+> 生成日期：2026-06-25（末次更新：2026-06-29）
 > 对应服务：vault.61877778.xyz（搬瓦工 VPS fair-cubes-1, Debian 13, Docker 29.6）
+> 所有域名现由 Nginx Proxy Manager 统一管理 SSL
 
 ---
 
@@ -17,10 +12,10 @@ id: 20260625155242
 |:----|:-----------|
 | **忘记主密码** | ❌ 无法恢复。唯一补救：导出 `.csv` 前有本地备份？ |
 | **数据库损坏** | 停止容器 → 恢复 `/backups/vw-*.tar.gz` → 重启容器 |
-| **容器被删** | `docker run -d --name vaultwarden ...`（用之前的参数重建） |
+| **容器被删** | 见下面第④条，或从 NPM 重建 Proxy Host |
 | **VPS 宕机** | 登录搬瓦工面板 → 强制重启 / 救援模式 |
 | **域名 DNS 异常** | Cloudflare 面板检查 DNS 记录 → 确保灰云（仅 DNS） |
-| **SSL 证书过期** | VPS 运行 `~/.acme.sh/acme.sh --cron` |
+| **SSL 证书过期** | ✅ NPM 自动续期。如有异常去 `https://npm.61877778.xyz` 检查 |
 | **服务器被入侵** | 立即关机 → 搬瓦工面板挂载救援 ISO → 备份数据 → 重装系统 |
 | **误 rm -rf** | 停止写入 → 用 `extundelete` 尝试恢复（概率低） |
 
@@ -82,6 +77,8 @@ id: 20260625155242
     -p 8080:80 \
     vaultwarden/server:latest
   ```
+  重建后还需到 NPM（`https://npm.61877778.xyz`）添加 Proxy Host：
+  - `vault.61877778.xyz` → `172.17.0.2:80`（勾 SSL）
 
 ---
 
@@ -89,7 +86,7 @@ id: 20260625155242
 
 ### ⑤ VPS 故障（宕机 / 磁盘损坏 / 供应商倒闭）
 
-- **检测**：每天早上的 Hermes cron 可以加 ping 检测
+- **检测**：Uptime Kuma 已自动监控 VPS Ping + 各服务 HTTP
 - **恢复方案**：
 
   **方案 A：搬瓦工面板强制重启**
@@ -99,8 +96,7 @@ id: 20260625155242
   ```
   □ Vaultwarden 数据备份（/backups/vw-*.tar.gz）↔ 下载到本地
   □ Docker 运行命令（见上面第④条）
-  □ Nginx 配置（/etc/nginx/sites-enabled/vaultwarden）
-  □ SSL 证书（/root/.acme.sh/）
+  □ NPM 配置（在 NPM 里查看 Proxy Hosts 列表并截图）
   □ UFW 规则
   ```
 - **建议**：每季度手动下载一次备份到本地 Mac
@@ -112,18 +108,23 @@ id: 20260625155242
 
 - **预防**：
   - 域名开启 **自动续费**
-  - 确保 Cloudflare 中 `vault` 记录为 **灰云（仅 DNS）**
-- **恢复**：Cloudflare 面板 → DNS → 检查记录是否正确指向 `199.115.228.154`
+  - 确保 Cloudflare 中所有记录为 **灰云（仅 DNS）**
+- **恢复**：Cloudflare 面板 → DNS → 检查记录
+
+当前 DNS 记录：
+| 类型 | 名称 | 目标 |
+|:---:|:----|:----|
+| A | `vault` | `199.115.228.154` |
+| A | `uptime` | `199.115.228.154` |
+| A | `npm` | `199.115.228.154` |
+| A | `beszel` | `199.115.228.154` |
 
 ### ⑦ SSL 证书过期
 
-- **当前保护**：acme.sh 自动续期 cron（每日 10:43）
-- **手动续期**：
-  ```bash
-  ~/.acme.sh/acme.sh --renew -d vault.61877778.xyz
-  nginx -s reload
-  ```
-- **证书信息**：`~/.acme.sh/vault.61877778.xyz_ecc/`
+- **当前状态**：✅ **已迁移到 NPM 自动管理**
+- 旧 acme.sh cron（每日 10:43）已不再需要
+- 所有 SSL 证书由 **Nginx Proxy Manager** 自动申请并自动续期
+- **检查方式**：登录 `https://npm.61877778.xyz` → Proxy Hosts → 查看 SSL 标签
 
 ---
 
@@ -142,7 +143,7 @@ id: 20260625155242
   ① 立即关机（搬瓦工面板）
   ② 搬瓦工 → 救援模式 → 挂载 ISO → 备份 /vw-data/ 和 /backups/
   ③ 重装系统
-  ④ 重新部署 Vaultwarden + 从备份恢复数据
+  ④ 重新部署 Docker 容器（见第⑫条迁移清单）
   ⑤ 在所有客户端上更换密码（仅当怀疑主密码泄露时）
   ```
 
@@ -190,14 +191,20 @@ id: 20260625155242
   # 3. 解压数据
   tar xzf /tmp/vw-*.tar.gz -C /
 
-  # 4. 启动容器
+  # 4. 启动 Vaultwarden
   docker run -d --name vaultwarden --restart unless-stopped \
     -v /vw-data/:/data/ -p 8080:80 vaultwarden/server:latest
 
-  # 5. 配置 Nginx 反代 + SSL 证书 + UFW
-  # （参照之前的配置过程）
+  # 5. 部署 NPM（统一域名+SSL 管理）
+  docker run -d --restart always --name nginx-proxy-manager \
+    -p 80:80 -p 443:443 -p 81:81 \
+    -v npm-data:/data -v npm-letsencrypt:/etc/letsencrypt \
+    jc21/nginx-proxy-manager:latest
 
-  # 6. 更新 Cloudflare DNS 指向新 IP
+  # 6. 在 NPM 中添加 Proxy Hosts（参考配置快照）
+  # 7. 部署其他容器（Uptime Kuma、Beszel 等）
+  # 8. 配置 UFW 防火墙
+  # 9. 更新 Cloudflare DNS 指向新 IP
   ```
 
 ### ⑬ VPS 供应商倒闭 / 账号被封
@@ -209,31 +216,66 @@ id: 20260625155242
 
 ## 7. 日常维护清单
 
-|     频率     | 操作                      | 备注                                               |
-| :--------: | :---------------------- | :----------------------------------------------- |
-|   **每天**   | ✅ 自动备份（3:00 cron）       | 已配置                                              |
-|   **每天**   | ✅ SSL 续期检查（10:43 cron）  | 已配置                                              |
-|   **每月**   | 下载一份备份到本地 Mac           | `scp root@...:/backups/vw-*.tar.gz ~/Downloads/` |
-|  **每季度**   | 登录 Vaultwarden Web 确认可用 | 浏览器打开 `https://vault.61877778.xyz`               |
-|  **每半年**   | VPS 系统更新                | `apt update && apt upgrade -y && reboot`         |
-| **主密码变更时** | 更新纸质记录 + Apple 钥匙串      |                                                  |
+| 频率 | 操作 | 备注 |
+|:---:|:-----|:-----|
+| **每天** | ✅ Vaultwarden 自动备份（3:00 cron） | 已配置 |
+| **每天** | ✅ Uptime Kuma 自动监控所有服务 | 异常时发 Telegram |
+| **每天** | ✅ SSL 证书由 NPM 自动续期 | 无需手动操作 |
+| **每月** | 下载一份 Vaultwarden 备份到本地 Mac | `scp root@...:/backups/vw-*.tar.gz ~/Downloads/` |
+| **每季度** | 登录所有服务确认可用 | vault / uptime / npm / beszel |
+| **每半年** | VPS 系统更新 | `apt update && apt upgrade -y && reboot` |
+| **主密码变更时** | 更新纸质记录 + Apple 钥匙串 | |
 
 ---
 
 ## 8. 配置快照（便于重建时参考）
 
+### VPS 基础信息
+
 | 配置项 | 值 |
 |:------|:---|
 | VPS IP | `199.115.228.154` |
-| 域名 | `vault.61877778.xyz`（Cloudflare 灰云）|
-| Docker 镜像 | `vaultwarden/server:latest` |
-| 本地端口映射 | `8080 → 80` |
-| 数据卷 | `/vw-data/ → /data/` |
-| Nginx 反代 | `443/80 → localhost:8080` |
-| SSL | Let's Encrypt ECDSA（acme.sh 自动续期）|
+| 供应商 | 搬瓦工（BandwagonHost） |
+| 主机名 | `fair-cubes-1` |
+| 系统 | Debian 13 |
+| Docker | 29.6 |
 | 防火墙 UFW | 开放 22, 80, 443, 2053 等 |
-| 备份路径 | `/backups/vw-YYYYMMDD.tar.gz`，保留 7 天 |
-| 备份日志 | `/var/log/vaultwarden-backup.log` |
+
+### DNS 记录（Cloudflare 灰云）
+
+| 域名 | 类型 |
+|:----|:----:|
+| `vault.61877778.xyz` → Vaultwarden |
+| `uptime.61877778.xyz` → Uptime Kuma |
+| `npm.61877778.xyz` → Nginx Proxy Manager |
+| `beszel.61877778.xyz` → Beszel Hub |
+
+### Docker 容器一览
+
+| 容器 | 镜像 | 端口映射 | Docker 网络 | 数据卷 |
+|:----|:----|:--------|:-----------|:------|
+| **vaultwarden** | `vaultwarden/server:latest` | `8080 → 80` | bridge | `vw-data → /data/` |
+| **uptime-kuma** | `louislam/uptime-kuma:2.4.0` | `3001 → 3001` | bridge | `uptime-kuma → /app/data` |
+| **nginx-proxy-manager** | `jc21/nginx-proxy-manager:latest` | `80:80, 443:443, 81:81` | bridge | `npm-data → /data`, `npm-letsencrypt → /etc/letsencrypt` |
+| **beszel** | `henrygd/beszel:latest` | `8090 → 8090` | bridge + beszel-net | `beszel-data → /beszel/data` |
+| **beszel-agent** | `henrygd/beszel-agent` | `45876 → 45876` | beszel-net | `beszel_agent_data → /var/lib/beszel-agent` |
+
+### NPM Proxy Hosts
+
+| 域名 | 转发目标 | SSL |
+|:----|:--------|:---:|
+| `vault.61877778.xyz` | `172.17.0.2:80` | ✅ Let's Encrypt |
+| `uptime.61877778.xyz` | `172.17.0.3:3001` | ✅ Let's Encrypt |
+| `npm.61877778.xyz` | `172.17.0.4:81` | ✅ Let's Encrypt |
+| `beszel.61877778.xyz` | `172.20.0.2:8090` | ✅ Let's Encrypt |
+
+### Uptime Kuma 监控项
+
+| 监控项 | 类型 | 通知 |
+|:------|:----|:----:|
+| Uptime Kuma 自身 | HTTP(s) | Telegram |
+| Vaultwarden | HTTP(s) + SSL 证书到期 | Telegram |
+| VPS fair-cubes-1 | Ping | Telegram |
 
 ---
 
