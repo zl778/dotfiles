@@ -127,12 +127,6 @@
       "key": "I"
     }
   ],
-  "editor:unfold-all": [
-    {
-      "modifiers": [],
-      "key": "F2"
-    }
-  ],
   "editor:fold-less": [
     {
       "modifiers": [
@@ -178,22 +172,6 @@
       "key": "F1"
     }
   ],
-  "editing-toolbar:change-font-color": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "F1"
-    }
-  ],
-  "editing-toolbar:change-background-color": [
-    {
-      "modifiers": [
-        "Mod"
-      ],
-      "key": "F2"
-    }
-  ],
   "editing-toolbar:toggle-format-brush": [
     {
       "modifiers": [
@@ -221,6 +199,12 @@
         "Shift"
       ],
       "key": "S"
+    }
+  ],
+  "editor:unfold-all": [
+    {
+      "modifiers": [],
+      "key": "F3"
     }
   ]
 }
