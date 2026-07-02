@@ -19,6 +19,11 @@ if [ -f ~/.gitconfig ]; then
   echo "  ✅ .gitconfig"
 fi
 
+if [ -f ~/.nanorc ]; then
+  cp ~/.nanorc "$DOTFILES/home/.nanorc"
+  echo "  ✅ .nanorc"
+fi
+
 # 2. 自定义脚本
 if [ -d ~/.local/bin ]; then
   rsync -a --delete "$HOME/.local/bin/" "$DOTFILES/bin/"

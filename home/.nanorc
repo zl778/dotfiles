@@ -1,0 +1,63 @@
+##############################################################################
+# Nano Configuration
+# For: macOS + WSL + Ubuntu VPS
+# GNU Nano 8.x / 9.x
+##############################################################################
+
+##############################
+# 界面（UI）
+##############################
+
+## 显示行号
+set linenumbers
+
+## 始终显示光标位置
+set constantshow
+
+## 右侧滚动指示器
+set indicator
+
+## 支持鼠标
+set mouse
+
+## 长行自动折行（不修改文件内容）
+set softwrap
+
+## 尽量在空格处分行
+set atblanks
+
+##############################
+# 编辑
+##############################
+
+## 自动缩进
+set autoindent
+
+## Tab 显示宽度
+set tabsize 4
+
+## Tab 自动转换为空格（YAML/Python 推荐）
+set tabstospaces
+
+## 保存搜索历史
+set historylog
+
+## 记住上次编辑位置
+set positionlog
+
+##############################
+# 安全
+##############################
+
+## 保存备份
+set backup
+
+## 建议先创建目录：
+## mkdir -p ~/.cache/nano/backups
+set backupdir "~/.cache/nano/backups"
+
+##############################
+# 语法高亮（Homebrew）
+##############################
+
+include "/opt/homebrew/share/nano/*.nanorc"
