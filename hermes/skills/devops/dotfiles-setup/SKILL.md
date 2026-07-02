@@ -156,19 +156,19 @@ cd ~/dotfiles && bash sync.sh && git add . && git commit -m "日常更新" && gi
 
 创建 `daily-maintenance.sh`（放在 `~/.hermes/scripts/` 下），合并 hermes update + sync + git push。然后用 cronjob 工具创建每天 4am 的定时任务，`no_agent=true`。
 
-## 注意事项
+## 日常维护
 
-- **同步式 vs 软链接式**：iCloud Obsidian 路径和 `~/.hermes/` 有固定位置，不适合搬迁，同步式更安全
-- **API key 脱敏**：提交前务必用 `${VAR}` 替换真实 key，否则 git 历史里永远有明文
-- **首次提交很大**（2000+ 文件正常），因为笔记和历史会话很多
-- **cron 脚本必须放 `~/.hermes/scripts/`**，cronjob 工具只接受相对路径
-- **跨 profile 写文件**：在默认 profile 下写 wukong profile 的记忆时，需要 `cross_profile=true`
+### 向已有仓库添加新文件
 
-## 验证
+需要把一个新的配置文件（如 `.nanorc`、`.vimrc`）纳入 dotfiles 管理时，三步搞定：
 
 ```bash
-cd ~/dotfiles
-git status  # 看看有没有未跟踪的 secret 文件
-git log --oneline -3
-git remote -v
-```
+# 1. 复制到仓库
+cp ~/.nanorc ~/dotfiles/home/.nanorc
+
+# 2. 更新 sync.sh，在「配置文件」区域添加一行
+# 找到 ~/.gitconfig 那一段，在后面加：
+# if [ -f ~/.nanorc ]; then
+#   cp ~/.nanorc "$DOTFILES/home/.nanorc"
+#   echo "  ✅ .nanorc"
+# fi\n\n# 3. 提交推送\ncd ~/dotfiles\ngit add home/.nanorc sync.sh\ngit commit -m \"添加 .nanorc 到 dotfiles\"\ngit push\n```\n\n### 多机同步工作流\n\n有三台以上环境时（如 macOS + WSL + VPS），正确的同步顺序是：\n\n```\n机器A: 改配置 → sync.sh → commit + push\n                                          ↓\n机器B: git pull --rebase → 部署到本机 → sync.sh → commit + push\n                                          ↓\n机器C: git pull --rebase → 部署到本机 → sync.sh → commit + push\n```\n\n部署到本机的意思是将仓库里的配置复制到实际位置：\n\n```bash\ncd ~/dotfiles && git pull --rebase\n[ -f home/.nanorc ] && cp home/.nanorc ~/.nanorc\n[ -f home/.zshrc ] && cp home/.zshrc ~/.zshrc\n# ... 其他配置文件同理\n```\n\n### 自动化维护（cron）\n\n`daily-maintenance.sh` 是可选自动化脚本，通常放 `~/.hermes/scripts/`，每天 4am 运行。\n\n**警告：修改这个脚本涉及系统级自动化操作，必须经过用户明确确认。** 先展示改动内容，等用户同意后再写入。\n\n推荐的完整流程：\n\n```bash\n#!/bin/bash\nset -e\n\nDOTFILES=\"$HOME/dotfiles\"\n\n# 0. 拉取远端变更 + 部署到本机\ncd \"$DOTFILES\"\ngit pull --rebase 2>&1 || true\n[ -f home/.nanorc ] && cp home/.nanorc ~/.nanorc\n[ -f home/.zshrc ] && cp home/.zshrc ~/.zshrc\n\n# 1. Hermes 升级\nhermes update 2>&1 || true\n\n# 2. 同步本机状态到仓库\nbash sync.sh\n\n# 3. 提交推送\ncd \"$DOTFILES\"\ngit add .\ngit diff --cached --quiet || {\n  git commit -m \"每日自动更新 $(date +%F)\"\n  git push\n}\n```\n\n## 注意事项\n\n- **同步式 vs 软链接式**：iCloud Obsidian 路径和 `~/.hermes/` 有固定位置，不适合搬迁，同步式更安全\n- **API key 脱敏**：提交前务必用 `${VAR}` 替换真实 key，否则 git 历史里永远有明文\n- **首次提交很大**（2000+ 文件正常），因为笔记和历史会话很多\n- **cron 脚本必须放 `~/.hermes/scripts/`**，cronjob 工具只接受相对路径\n- **跨 profile 写文件**：在默认 profile 下写 wukong profile 的记忆时，需要 `cross_profile=true`\n- **多机同步时先 pull 再 push**：防止冲突，永远先拉取别人的变更\n\n## 验证\n\n```bash\n# 确认无 secret 泄露\ncd ~/dotfiles\ngit diff --cached | grep -i 'api_key\\\\|token\\\\|secret' || echo \"✅ 无密钥泄露\"\n\n# 检查仓库状态\ngit status\ngit log --oneline -3\ngit remote -v\n\n# 测试同步流程\nbash sync.sh && git status\ngit diff --cached --quiet && echo \"✅ 无变更，同步正常\"\n```\n\n## 跨技能重叠说明\n\n当前 Hermes 库中有两个 dotfiles 相关 skill：\n- `dotfiles-setup`（中文）— 本文件，面向中文用户\n- `dotfiles-repo-setup`（英文）— 英文版，内容高度重叠\n\n这两个技能内容重复，后续 curator 应考虑合并或归档其中之一。"}
