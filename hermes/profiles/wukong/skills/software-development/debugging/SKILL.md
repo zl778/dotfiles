@@ -32,6 +32,7 @@ Use for ANY technical issue:
 - [Python Debugging Tools](#section-b-python-debugging-tools)
 - [Node.js Debugging Tools](#section-c-nodejs-debugging-tools)
 - [Hermes TUI Slash Command Debugging](#section-d-hermes-tui-slash-command-debugging)
+- [Hermes CLI Rendering and ANSI Color Debugging](#section-e-hermes-cli-rendering-and-ansi-color-debugging)
 
 ---
 
@@ -319,6 +320,26 @@ Type `/` and verify command appears in autocomplete with expected description.
 
 ---
 
+## Section E: Hermes CLI Rendering and ANSI Color Debugging
+
+Use this when terminal colors, Markdown rendering, Hermes chrome colors, or assistant response styling do not match what the user sees.
+
+### Fast path
+
+1. If the user provides a screenshot, inspect it before concluding whether colors rendered.
+2. Separate terminal capability from Hermes rendering: `TERM`/`COLORTERM` can support color while Hermes still strips or renders final content differently.
+3. Check the active profile config: `hermes config path`, then inspect `display:`.
+4. For assistant-authored ANSI color in final responses, set:
+   ```bash
+   hermes config set display.final_response_markdown raw
+   ```
+   Then tell the user to restart Hermes; display config changes do not reliably affect the already-running CLI session.
+5. Explain that `/skin` changes Hermes UI chrome (borders/title/status bar), not arbitrary assistant text color.
+
+See `references/hermes-cli-rendering.md` for the detailed reference and pitfalls.
+
+---
+
 ## References
 
 | File | Description |
@@ -326,6 +347,7 @@ Type `/` and verify command appears in autocomplete with expected description.
 | `references/root-cause-methodology.md` | Full expanded 4-phase methodology with examples |
 | `references/python-debugging.md` | Python debugging deep reference (debugpy DAP, asyncio, heap snapshots) |
 | `references/node-debugging.md` | Node.js debugging deep reference (CDP scripting, CPU profiles) |
+| `references/hermes-cli-rendering.md` | Hermes CLI final-response rendering, ANSI colors, skin vs content-color troubleshooting |
 
 ## Common Pitfalls
 

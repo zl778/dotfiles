@@ -220,6 +220,19 @@ variables are needed.
   "https://github.com/"` rewrites all HTTPS remotes to SSH. User may
   deny this — respect the denial and continue with manual remote setup.
 
+## Sync checklist: what to add for a new machine
+
+When setting up a new machine from this repo, don't forget directories
+that live outside the main sync.sh categories:
+
+- **Terminal/emulator config**: `~/.config/ghostty/config` (cmux/Ghostty
+  theme). Copy to `~/dotfiles/ghostty/` and add a sync line.
+- **AI tool config**: `~/.codex/config.toml` (Codex CLI settings)
+- **Editor config**: `.nanorc`, `.vimrc`, etc. — already covered under `home/`
+
+See `references/cmux-ghostty-theme-setup.md` for cmux terminal theme
+configuration and Codex CLI color troubleshooting.
+
 ## Related Skills
 
 - `github-auth` — Set up SSH keys, gh CLI, and GitHub authentication

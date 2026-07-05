@@ -5,3 +5,5 @@ Obsidian PKM vault 位于 ~/Library/Mobile Documents/iCloud~md~obsidian/Document
 工作领域：智能化弱电工程，含招投标、安防系统、政府采购。
 §
 dotfiles 统一仓库位于 ~/dotfiles/，托管于 github.com/zl778/dotfiles。
+§
+用户接受在 CLI 输出中使用 ANSI 彩色高亮来标记成功、警告、错误和重点信息。

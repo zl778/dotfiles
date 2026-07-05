@@ -7,7 +7,7 @@
           "displayName": "qwen3.7-plus",
           "source": "local",
           "href": null,
-          "tokenPrice": "in $0.40 / out $1.60 per 1M",
+          "tokenPrice": null,
           "contextLength": null,
           "inputModalities": [],
           "outputModalities": [],
@@ -92,6 +92,6 @@
         "updatedAt": "2026-06-19T09:50:21.126Z"
       }
     },
-    "ts": 1782115157.0648792
+    "ts": 1783261353.1386082
   }
 }

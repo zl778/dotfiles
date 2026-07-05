@@ -73,6 +73,24 @@ prompt: |
   运行每日维护：hermes update → dotfiles sync → git commit + push
 ```
 
+### 从安静模式切换到通知模式
+当用户问"凌晨的任务执行了吗"时，说明应该升级 delivery：
+```yaml
+# 之前
+deliver: local
+
+# 之后 — 发送到指定 Telegram 群
+deliver: telegram:-1005584761717
+```
+更新命令：`cronjob(action='update', job_id='<id>', deliver='telegram:chat_id')`
+
+关键要点：
+- 用 `telegram:chat_id` 精确指定投递目标（用 `telegram:-100xxxxxxxxx`，**不带 `origin` 前缀**）
+- 如果 job 之前是 error 状态，先 `cronjob(action='run', job_id='<id>')` 重跑验证是否修复
+- `deliver` 更新后**立即生效**，不需要重启或重新创建 job
+- 修改前务必先用 `cronjob(action='list')` 找到准确的 job_id —— **不要凭记忆拼写**
+- 修改后下次自动触发就会投递到新目标
+
 ### 看门狗脚本（静默监控）
 ```yaml
 script: ~/.hermes/scripts/disk-check.sh
