@@ -511,13 +511,13 @@
     "created_at": "2026-06-03T16:14:57.351574+00:00",
     "created_by": null,
     "last_patched_at": "2026-06-04T07:05:03.100124+00:00",
-    "last_used_at": "2026-07-05T14:33:26.098354+00:00",
-    "last_viewed_at": "2026-07-05T14:33:26.095678+00:00",
+    "last_used_at": "2026-07-06T07:03:10.864066+00:00",
+    "last_viewed_at": "2026-07-06T07:03:10.856513+00:00",
     "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 65,
-    "view_count": 65
+    "use_count": 67,
+    "view_count": 67
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,
@@ -732,26 +732,26 @@
     "created_at": "2026-06-04T07:01:26.504041+00:00",
     "created_by": null,
     "last_patched_at": "2026-06-17T01:59:50.082132+00:00",
-    "last_used_at": "2026-06-30T00:20:03.308700+00:00",
-    "last_viewed_at": "2026-06-30T00:20:03.306331+00:00",
+    "last_used_at": "2026-07-06T09:28:44.882031+00:00",
+    "last_viewed_at": "2026-07-06T09:28:44.875761+00:00",
     "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 10,
-    "view_count": 10
+    "use_count": 11,
+    "view_count": 11
   },
   "kanban-worker": {
     "archived_at": null,
     "created_at": "2026-06-04T07:01:26.511699+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-06-30T00:20:03.307518+00:00",
-    "last_viewed_at": "2026-06-30T00:20:03.304629+00:00",
+    "last_used_at": "2026-07-06T09:28:44.885106+00:00",
+    "last_viewed_at": "2026-07-06T09:28:44.879041+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 9,
-    "view_count": 9
+    "use_count": 10,
+    "view_count": 10
   },
   "linear": {
     "archived_at": null,

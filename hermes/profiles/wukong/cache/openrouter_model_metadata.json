@@ -333,9 +333,9 @@
 "max_completion_tokens":131072,
 "name":"Z.ai: GLM 5.2",
 "pricing":{
-"prompt":"0.000000574",
-"completion":"0.000001804",
-"input_cache_read":"0.0000001066"
+"prompt":"0.000000686",
+"completion":"0.000002156",
+"input_cache_read":"0.0000001274"
 }
 },
 "glm-5.2":{
@@ -343,9 +343,9 @@
 "max_completion_tokens":131072,
 "name":"Z.ai: GLM 5.2",
 "pricing":{
-"prompt":"0.000000574",
-"completion":"0.000001804",
-"input_cache_read":"0.0000001066"
+"prompt":"0.000000686",
+"completion":"0.000002156",
+"input_cache_read":"0.0000001274"
 }
 },
 "z-ai/glm-5.2-20260616":{
@@ -353,9 +353,9 @@
 "max_completion_tokens":131072,
 "name":"Z.ai: GLM 5.2",
 "pricing":{
-"prompt":"0.000000574",
-"completion":"0.000001804",
-"input_cache_read":"0.0000001066"
+"prompt":"0.000000686",
+"completion":"0.000002156",
+"input_cache_read":"0.0000001274"
 }
 },
 "glm-5.2-20260616":{
@@ -363,9 +363,9 @@
 "max_completion_tokens":131072,
 "name":"Z.ai: GLM 5.2",
 "pricing":{
-"prompt":"0.000000574",
-"completion":"0.000001804",
-"input_cache_read":"0.0000001066"
+"prompt":"0.000000686",
+"completion":"0.000002156",
+"input_cache_read":"0.0000001274"
 }
 },
 "openrouter/fusion":{
