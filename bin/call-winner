@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+REMOTE_HOST="zl@192.168.26.62"
+
+if [[ $# -lt 1 ]]; then
+  echo "Usage: call-winner <message>" >&2
+  exit 1
+fi
+
+escape_cmd_arg() {
+  local s="$1"
+  s="${s//\"/\"\"}"
+  printf '%s' "$s"
+}
+
+# Join all arguments into a single message string.
+MSG="$*"
+ESCAPED_MSG="$(escape_cmd_arg "$MSG")"
+
+ssh "$REMOTE_HOST" "winner chat -q \"$ESCAPED_MSG\""

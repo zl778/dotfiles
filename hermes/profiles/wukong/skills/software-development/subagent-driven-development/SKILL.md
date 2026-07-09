@@ -27,6 +27,12 @@ Use this skill when:
 - Quality and spec compliance are important
 - You want automated review between tasks
 
+**Choose the right multi-agent mode first:**
+- Use `delegate_task` for short-lived, in-session parallel work: research lanes, second opinions, code/spec review, or independent implementation tasks that can finish in minutes and do not need to survive a restart.
+- Use Kanban / persistent worker profiles instead when tasks are long-running, need audit trails, require human-in-the-loop blocking/unblocking, have explicit dependency graphs, or must survive crashes/restarts.
+- Use separate Hermes profiles when roles need durable isolation: different memory, credentials, toolsets, model choices, or permissions (for example a main coordinator, NAS operator, PKM librarian, and code reviewer).
+- Avoid giving every agent the whole history. Pass each subagent the smallest complete context and use files/notes/Kanban comments for durable shared state.
+
 **vs. manual execution:**
 - Fresh context per task (no confusion from accumulated state)
 - Automated review process catches issues early

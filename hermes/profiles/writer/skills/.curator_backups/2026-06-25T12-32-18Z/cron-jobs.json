@@ -1,0 +1,43 @@
+{
+  "jobs": [
+    {
+      "id": "9f46b8d0a0d3",
+      "name": "\u6bcf\u65e5\u7ef4\u62a4\uff08hermes update + dotfiles sync\uff09",
+      "prompt": "\u8fd0\u884c\u6bcf\u65e5\u7ef4\u62a4\u4efb\u52a1\uff0c\u6309\u987a\u5e8f\u6267\u884c\u4ee5\u4e0b\u6b65\u9aa4\uff1a\n\n1. **Hermes \u5347\u7ea7**\uff1a\u8fd0\u884c `hermes update`\uff0c\u8bb0\u5f55\u8f93\u51fa\n2. **Dotfiles \u540c\u6b65**\uff1a\u8fdb\u5165 ~/dotfiles\uff0c\u8fd0\u884c `bash sync.sh`\uff0c\u8bb0\u5f55\u8f93\u51fa\n3. **Git \u63d0\u4ea4 + \u63a8\u9001**\uff1a\u8fdb\u5165 ~/dotfiles\uff0c\u4f9d\u6b21\u6267\u884c `git add .`\uff0c`git diff --cached --quiet` \u5224\u65ad\u662f\u5426\u6709\u53d8\u66f4\uff0c\u6709\u5219 `git commit -m \"\u6bcf\u65e5\u81ea\u52a8\u66f4\u65b0 $(date +%F)\"` \u548c `git push`\uff0c\u8bb0\u5f55\u8f93\u51fa\n\n\u5982\u679c\u67d0\u4e00\u6b65\u5931\u8d25\uff0c\u62a5\u544a\u9519\u8bef\u4f46\u7ee7\u7eed\u4e0b\u4e00\u6b65\u3002\u6700\u540e\u6c47\u603b\u4e00\u4e2a\u7b80\u6d01\u7684\u72b6\u6001\u62a5\u544a\u3002\u7528\u4e2d\u6587\u56de\u7b54\u3002",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 4 * * *",
+        "display": "0 4 * * *"
+      },
+      "schedule_display": "0 4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 6
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-20T08:40:02.215069+08:00",
+      "next_run_at": "2026-06-26T04:00:00+08:00",
+      "last_run_at": "2026-06-25T04:38:03.995438+08:00",
+      "last_status": "error",
+      "last_error": "TimeoutError: Cron job '\u6bcf\u65e5\u7ef4\u62a4\uff08hermes update + dotfiles sync\uff09' idle for 1002s (limit 600s) \u2014 last activity: terminal command running (60s elapsed)",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "fire_claim": null
+    }
+  ],
+  "updated_at": "2026-06-25T04:38:03.996101+08:00"
+}

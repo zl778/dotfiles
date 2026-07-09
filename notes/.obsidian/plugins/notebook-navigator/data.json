@@ -144,6 +144,7 @@
   "rootLevelSpacing": 0,
   "collapseBehavior": "all",
   "smartCollapse": true,
+  "excludeVaultRootFromCollapse": false,
   "collapseOtherBranchesOnExpand": false,
   "autoSelectFirstFileOnFocusChange": false,
   "autoExpandNavItems": false,
@@ -225,6 +226,7 @@
   "fileNameIconMap": {},
   "showCategoryIcons": false,
   "fileTypeIconMap": {},
+  "fileTypeIconPreset": "none",
   "fileNameRows": 1,
   "useFolderColorForTitles": false,
   "showFilePreview": true,
@@ -332,6 +334,12 @@
         "modifiers": []
       }
     ],
+    "pane:rename": [
+      {
+        "key": "Enter",
+        "modifiers": []
+      }
+    ],
     "navigation:collapse-or-parent": [
       {
         "key": "ArrowLeft",
@@ -403,6 +411,22 @@
         "key": "ArrowDown",
         "modifiers": [
           "Shift"
+        ]
+      }
+    ],
+    "list:manual-sort-up": [
+      {
+        "key": "ArrowUp",
+        "modifiers": [
+          "Mod"
+        ]
+      }
+    ],
+    "list:manual-sort-down": [
+      {
+        "key": "ArrowDown",
+        "modifiers": [
+          "Mod"
         ]
       }
     ],
@@ -479,7 +503,9 @@
     "30_Resources": "#f131231f",
     "90_Archives": "#a34dc91d"
   },
-  "folderSortOverrides": {},
+  "folderSortOverrides": {
+    "30_Resources": "modified-asc"
+  },
   "folderTreeSortOverrides": {},
   "folderAppearances": {
     "Journals": {
@@ -523,7 +549,7 @@
     "#404040",
     "#404040"
   ],
-  "lastShownVersion": "3.2.0",
+  "lastShownVersion": "3.2.2",
   "rootFolderOrder": [],
   "rootTagOrder": [],
   "rootPropertyOrder": [],

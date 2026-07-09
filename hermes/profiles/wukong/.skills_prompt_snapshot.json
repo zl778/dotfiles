@@ -29,6 +29,10 @@
       1780886313473055914,
       5386
     ],
+    "autonomous-ai-agents/dynamic-workflow/SKILL.md": [
+      1783368471069373152,
+      13616
+    ],
     "autonomous-ai-agents/hermes-agent/SKILL.md": [
       1782971783880194103,
       51586
@@ -330,8 +334,8 @@
       10926
     ],
     "software-development/subagent-driven-development/SKILL.md": [
-      1779338219206884810,
-      10742
+      1783403660433981169,
+      11593
     ],
     "yuanbao/SKILL.md": [
       1779338219207557857,
@@ -545,6 +549,19 @@
         "macos",
         "windows"
       ],
+      "conditions": {
+        "fallback_for_toolsets": [],
+        "requires_toolsets": [],
+        "fallback_for_tools": [],
+        "requires_tools": []
+      }
+    },
+    {
+      "skill_name": "dynamic-workflow",
+      "category": "autonomous-ai-agents",
+      "frontmatter_name": "dynamic-workflow",
+      "description": "Orchestrate large fan-out work as a plan-in-code \"workflo...",
+      "platforms": [],
       "conditions": {
         "fallback_for_toolsets": [],
         "requires_toolsets": [],
