@@ -342,13 +342,13 @@
     "created_at": "2026-06-20T00:31:30.906409+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-07-05T13:57:55.819728+00:00",
-    "last_used_at": "2026-07-09T20:11:05.163977+00:00",
-    "last_viewed_at": "2026-07-09T20:11:05.159472+00:00",
+    "last_used_at": "2026-07-10T03:20:25.030948+00:00",
+    "last_viewed_at": "2026-07-10T03:20:25.024865+00:00",
     "patch_count": 4,
     "pinned": false,
     "state": "active",
-    "use_count": 5,
-    "view_count": 5
+    "use_count": 6,
+    "view_count": 6
   },
   "dspy": {
     "archived_at": null,
@@ -511,13 +511,13 @@
     "created_at": "2026-06-03T16:14:57.351574+00:00",
     "created_by": null,
     "last_patched_at": "2026-06-04T07:05:03.100124+00:00",
-    "last_used_at": "2026-07-09T20:11:05.161787+00:00",
-    "last_viewed_at": "2026-07-09T20:11:05.157090+00:00",
+    "last_used_at": "2026-07-10T03:20:25.027735+00:00",
+    "last_viewed_at": "2026-07-10T03:20:25.022132+00:00",
     "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 78,
-    "view_count": 78
+    "use_count": 82,
+    "view_count": 82
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,
@@ -537,13 +537,13 @@
     "created_at": "2026-06-21T01:15:20.536315+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-07-05T13:58:30.994076+00:00",
-    "last_used_at": "2026-07-05T13:58:12.602216+00:00",
-    "last_viewed_at": "2026-07-05T13:58:12.599476+00:00",
+    "last_used_at": "2026-07-09T23:33:57.639691+00:00",
+    "last_viewed_at": "2026-07-09T23:33:57.634597+00:00",
     "patch_count": 10,
     "pinned": false,
     "state": "active",
-    "use_count": 8,
-    "view_count": 8
+    "use_count": 9,
+    "view_count": 9
   },
   "hermes-custom-provider": {
     "archived_at": null,
@@ -583,6 +583,32 @@
     "state": "active",
     "use_count": 2,
     "view_count": 2
+  },
+  "hermes-messaging-platforms": {
+    "archived_at": null,
+    "created_at": "2026-07-09T22:40:04.122423+00:00",
+    "created_by": "agent",
+    "last_patched_at": "2026-07-09T22:40:12.289923+00:00",
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 1,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
+  "hermes-messaging-setup": {
+    "archived_at": null,
+    "created_at": "2026-07-09T22:52:10.286513+00:00",
+    "created_by": "agent",
+    "last_patched_at": "2026-07-09T23:17:26.557012+00:00",
+    "last_used_at": "2026-07-09T23:30:50.759432+00:00",
+    "last_viewed_at": "2026-07-09T23:30:50.743401+00:00",
+    "patch_count": 3,
+    "pinned": false,
+    "state": "active",
+    "use_count": 3,
+    "view_count": 3
   },
   "hermes-multi-agent-orchestration": {
     "archived_at": null,
