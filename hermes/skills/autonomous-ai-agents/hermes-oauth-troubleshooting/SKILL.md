@@ -56,6 +56,39 @@ by that client, invalidating the old token stored in Hermes.
 
 ## Fix Procedures
 
+### Fix: Profile-specific provider / endpoint mismatch
+
+A profile can report that a provider is configured while real requests still fail with HTTP 401. Before re-authenticating, inspect the profile's effective model block:
+
+```bash
+hermes -p <profile> config
+hermes profile show <profile>
+hermes -p <profile> auth list
+```
+
+Look for inconsistent combinations such as:
+
+- `provider: deepseek` paired with a third-party `base_url`
+- a stale `model.api_key` embedded in the profile while the intended credential is in `.env`
+- a model name valid for one endpoint but not the configured provider
+- a fallback provider that is also marked 401/exhausted
+
+The safe repair sequence is:
+
+1. Back up the profile config before editing:
+   ```bash
+   cp ~/.hermes/profiles/<profile>/config.yaml ~/.hermes/profiles/<profile>/config.yaml.before-auth-fix.bak
+   ```
+2. Make `model.default`, `model.provider`, `model.base_url`, and `model.api_key` describe one coherent route. Do not expose or copy secrets into chat.
+3. If the provider has a known-good OAuth credential, prefer that route rather than retaining a broken API-key endpoint as the default.
+4. Keep a fallback only if its credential is independently verified; otherwise remove or replace the broken fallback.
+5. Start a fresh one-shot request using the profile and verify a real response:
+   ```bash
+   hermes -p <profile> chat -q 'reply with a short authentication test' -Q
+   ```
+
+A passing `hermes doctor` is not sufficient by itself: it can validate connectivity or configuration while the selected profile route still returns 401. The real profile request is the acceptance test.
+
 ### Fix: Codex (openai-codex) token expired
 
 When another Codex client (VS Code, Codex CLI) refreshed the ChatGPT

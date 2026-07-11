@@ -329,26 +329,26 @@
     "created_at": "2026-06-20T01:01:24.693926+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-07-02T14:48:54.076972+00:00",
-    "last_used_at": "2026-07-10T20:00:35.818844+00:00",
-    "last_viewed_at": "2026-07-10T20:00:35.798821+00:00",
+    "last_used_at": "2026-07-11T20:00:23.637807+00:00",
+    "last_viewed_at": "2026-07-11T20:00:23.623896+00:00",
     "patch_count": 3,
     "pinned": false,
     "state": "active",
-    "use_count": 6,
-    "view_count": 6
+    "use_count": 7,
+    "view_count": 7
   },
   "dotfiles-version-control": {
     "archived_at": null,
     "created_at": "2026-06-20T00:31:30.906409+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-07-05T13:57:55.819728+00:00",
-    "last_used_at": "2026-07-10T03:20:25.030948+00:00",
-    "last_viewed_at": "2026-07-10T03:20:25.024865+00:00",
+    "last_used_at": "2026-07-11T20:00:23.628488+00:00",
+    "last_viewed_at": "2026-07-11T20:00:23.615294+00:00",
     "patch_count": 4,
     "pinned": false,
     "state": "active",
-    "use_count": 6,
-    "view_count": 6
+    "use_count": 7,
+    "view_count": 7
   },
   "dspy": {
     "archived_at": null,
@@ -511,13 +511,13 @@
     "created_at": "2026-06-03T16:14:57.351574+00:00",
     "created_by": null,
     "last_patched_at": "2026-06-04T07:05:03.100124+00:00",
-    "last_used_at": "2026-07-10T20:00:35.823716+00:00",
-    "last_viewed_at": "2026-07-10T20:00:35.806272+00:00",
+    "last_used_at": "2026-07-11T20:00:23.632853+00:00",
+    "last_viewed_at": "2026-07-11T20:00:23.619351+00:00",
     "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 83,
-    "view_count": 83
+    "use_count": 85,
+    "view_count": 85
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,
@@ -614,40 +614,40 @@
     "archived_at": null,
     "created_at": "2026-07-08T03:49:37.806651+00:00",
     "created_by": "agent",
-    "last_patched_at": "2026-07-09T07:32:52.317383+00:00",
-    "last_used_at": "2026-07-10T19:09:17.192976+00:00",
-    "last_viewed_at": "2026-07-10T19:09:17.184770+00:00",
-    "patch_count": 5,
+    "last_patched_at": "2026-07-11T05:54:10.649168+00:00",
+    "last_used_at": "2026-07-11T05:54:05.176920+00:00",
+    "last_viewed_at": "2026-07-11T05:54:05.174581+00:00",
+    "patch_count": 7,
     "pinned": false,
     "state": "active",
-    "use_count": 13,
-    "view_count": 13
+    "use_count": 18,
+    "view_count": 18
   },
   "hermes-oauth-troubleshooting": {
     "archived_at": null,
     "created_at": "2026-06-22T07:57:09.049082+00:00",
     "created_by": "agent",
-    "last_patched_at": "2026-06-22T07:57:33.794990+00:00",
-    "last_used_at": "2026-06-22T07:57:42.680748+00:00",
-    "last_viewed_at": "2026-06-22T07:57:42.675123+00:00",
-    "patch_count": 1,
+    "last_patched_at": "2026-07-11T04:42:43.319853+00:00",
+    "last_used_at": "2026-07-11T04:42:28.448307+00:00",
+    "last_viewed_at": "2026-07-11T04:42:28.444289+00:00",
+    "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 2,
-    "view_count": 2
+    "use_count": 4,
+    "view_count": 4
   },
   "hermes-profile-worker-routing": {
     "archived_at": null,
     "created_at": "2026-07-09T06:45:33.458937+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-07-09T13:45:35.481919+00:00",
-    "last_used_at": "2026-07-09T13:45:46.148124+00:00",
-    "last_viewed_at": "2026-07-09T13:45:46.145622+00:00",
+    "last_used_at": "2026-07-11T04:40:48.421937+00:00",
+    "last_viewed_at": "2026-07-11T04:40:48.414986+00:00",
     "patch_count": 5,
     "pinned": false,
     "state": "active",
-    "use_count": 4,
-    "view_count": 4
+    "use_count": 5,
+    "view_count": 5
   },
   "hermes-streaming-troubleshooting": {
     "archived_at": null,
@@ -1169,18 +1169,31 @@
     "use_count": 0,
     "view_count": 0
   },
-  "proposal-document-workflow": {
+  "productivity/proposal-document-workflow": {
     "archived_at": null,
-    "created_at": "2026-07-10T19:08:02.429671+00:00",
-    "created_by": "agent",
-    "last_patched_at": "2026-07-10T19:08:29.680770+00:00",
-    "last_used_at": "2026-07-10T19:08:22.743801+00:00",
-    "last_viewed_at": "2026-07-10T19:08:22.735489+00:00",
-    "patch_count": 2,
+    "created_at": "2026-07-11T05:53:03.791865+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": "2026-07-11T05:53:03.794218+00:00",
+    "last_viewed_at": "2026-07-11T05:53:03.791871+00:00",
+    "patch_count": 0,
     "pinned": false,
     "state": "active",
     "use_count": 1,
     "view_count": 1
+  },
+  "proposal-document-workflow": {
+    "archived_at": null,
+    "created_at": "2026-07-10T19:08:02.429671+00:00",
+    "created_by": "agent",
+    "last_patched_at": "2026-07-11T05:53:49.872275+00:00",
+    "last_used_at": "2026-07-11T05:53:15.934654+00:00",
+    "last_viewed_at": "2026-07-11T05:53:15.932427+00:00",
+    "patch_count": 6,
+    "pinned": false,
+    "state": "active",
+    "use_count": 3,
+    "view_count": 3
   },
   "research-paper-writing": {
     "archived_at": null,
@@ -1434,13 +1447,13 @@
     "created_at": "2026-07-09T14:42:10.612642+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-07-09T14:42:24.554146+00:00",
-    "last_used_at": "2026-07-10T19:06:32.230721+00:00",
-    "last_viewed_at": "2026-07-10T19:06:32.216963+00:00",
+    "last_used_at": "2026-07-11T05:53:01.450422+00:00",
+    "last_viewed_at": "2026-07-11T05:53:01.443024+00:00",
     "patch_count": 1,
     "pinned": false,
     "state": "active",
-    "use_count": 4,
-    "view_count": 4
+    "use_count": 7,
+    "view_count": 7
   },
   "writing-plans": {
     "archived_at": null,

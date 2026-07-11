@@ -130,6 +130,28 @@ In practice, many setups keep this registry in Obsidian as a synced routing laye
 - Making the coordinator do execution work instead of coordination
 - Over-optimizing for abstraction before the registry and routing rules are stable
 
+## Document-generation orchestration
+
+For multi-agent work that must produce or modify Word/PDF deliverables (especially tender documents):
+
+1. Inspect the source tender, technical specification, and existing target documents before dispatching workers.
+2. Build a compact factual brief containing project facts, quantities, deadlines, standards, unknowns, and explicit no-fabrication boundaries.
+3. Dispatch independent workers in parallel with different writing roles or styles, while keeping factual requirements identical.
+4. Stage each worker's draft in a temporary file or structured result first; do not let workers overwrite the final deliverables directly.
+5. Have the coordinator review for omissions, contradictions, unsupported claims, and alignment with the target document's own section numbering.
+6. Back up each target document before insertion, then merge the approved draft into the correct section.
+7. Re-open/extract the resulting documents and verify headings, section coverage, file readability, and formatting before reporting success.
+8. If the terminal/security layer requests approval to launch independent profiles or write files, stop and obtain that approval rather than claiming the work completed.
+
+For tender work, preserve deliberate model diversity in wording and organization, but never create factual contradictions between versions. Treat model identity, provider, and authentication state as separate fields; a worker profile can be healthy while its configured default credential is not.
+
+**Dispatch timing note**: launching workers via `hermes -p <profile> chat -q ... -Q` may trigger Hermes's own security scanner for spawning independent profiles, which blocks the command until the user approves it. Anticipate this: after dispatching parallel background workers, immediately verify each output file exists (`wc -l /tmp/worker_output.md`) rather than assuming they completed. If a file is empty or missing, the security layer blocked it — inform the user, do not retry silently.
+
+**Timeout note**: large content-generation tasks (300+ lines of structured Chinese text) can exceed the default 180s timeout. Either:
+- Increase `timeout=600` on the terminal tool, or
+- Use `background=true + notify_on_complete=true`.
+The `delegate_task` tool is less suitable here because child agents cannot read temporary files from the coordinator's workdir by default.
+
 ## Practical starting point
 
 When first adopting this architecture:
