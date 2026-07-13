@@ -29,18 +29,26 @@ Use this skill when the user gives you a Word document task: read a `.doc`/`.doc
    - legacy `.doc` → prefer text extraction/conversion first
 
 2. Read before editing
-   - Inspect headings, styles, and section structure
+   - Inspect headings, styles, section structure, tables, headers/footers, and numbering XML
    - Back up the original document before any destructive change
+   - Record both style definitions and actual paragraph/run direct formatting; do not collapse them into one claim
 
 3. Choose the right path
    - View only: extract text to plain text/Markdown
    - Drafting: write in Markdown first, then convert to `.docx`
    - Formatting: edit the existing `.docx` styles rather than rewriting every paragraph
+   - For a reusable company template, separate source observations from normalized template decisions; project-specific tender requirements always override the company standard
 
-4. Verify after changes
-   - Re-open the generated file
+4. Numbering and hierarchy
+   - Inspect both style-level numbering and paragraph-level `numPr`; a document may have a multilevel list bound to heading styles even when individual paragraphs have no direct `numPr`
+   - Also detect hand-typed prefixes such as `1.` or `1、`; remove only confirmed duplicate prefixes before applying automatic numbering
+   - Bind one Word multilevel list to `Heading 1`–`Heading 4` and keep body-item numbering separate from heading numbering
+
+5. Verify after changes
+   - Re-open the generated file with `python-docx`
+   - Confirm page setup, paragraph/run styles, heading numbering XML, table count/content, and header/footer fields
    - Confirm file size changed and headings/paragraphs still exist
-   - Spot-check the first pages and style names
+   - Prefer a real PDF/rendering spot-check when a renderer is available; if not, report that structural verification passed but visual pagination was not independently checked
 
 ## Extraction and conversion choices
 
@@ -49,17 +57,20 @@ Use this skill when the user gives you a Word document task: read a `.doc`/`.doc
 - Markdown → `.docx`: `pandoc`
 - Complex style edits on `.docx`: use `python-docx`; if precise spacing/indent is needed, edit the underlying Word XML
 
-## Formatting baseline for business正文
+## Formatting baseline for Chinese tender documents
 
-Typical body style for Chinese business documents:
+Use the project specification first. When no project-specific rule is provided and the goal is a reusable company template, use this normalized baseline:
 
-- Chinese font: 宋体
-- Default font: 宋体
-- Font size: 小四 (12pt)
-- Line spacing: 1.5
-- Paragraph spacing after: 8 磅
-- First-line indent: 2 characters
-- Show style in style gallery: enable `quick_style`
+- Chinese body font: 仿宋
+- Latin/digits: Times New Roman or a project-specified font
+- Body size: 12 pt (小四)
+- Alignment: justified
+- Line spacing: 1.5 or fixed 22 pt
+- Paragraph spacing: 0 pt before/after
+- First-line indent: 2 Chinese characters
+- Heading indentation: 0; do not simulate alignment with spaces
+- Heading numbering: one automatic multilevel list, not hand-typed prefixes
+- Tables: preserve merges/content, then normalize cell font, alignment, borders, and repeated header rows
 
 ## Pitfalls
 

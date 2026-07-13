@@ -68,7 +68,64 @@ For Chinese business-document正文, a reliable baseline is:
 - Stripping pattern: skip lines that match reasoning-prefix patterns (`Reasoning`, `Looking`, `Checking`, `Reading`, `Preparing`, `I need`, `I 'm`, `Let me`, `Thinking`) or that appear inside agent decoration borders (`┌─`, `└─`, `│`, `╭─`, `╰─`, `session_id:`). Start collecting from the first substantive line.
 - wukong (openai-codex) tends to suppress reasoning well with `-Q` alone; writer (deepseek) and writer on openai-codex fallback may need: `-Q --provider openai-codex -m gpt-5.4-mini` plus in-query instruction "只输出正文，不解释，不要任何推理过程"。
 
-## Pitfalls
+### Style extraction and template normalization
+
+When extracting a reusable format specification from an existing Chinese tender `.docx`, separate three layers instead of collapsing them into one rule:
+
+1. Page/section settings: paper size, orientation, margins, header/footer distances, sections, and page breaks.
+2. Style definitions: `Normal`, `Heading 1`–`Heading 4`, table styles, base styles, and their XML-level paragraph/font settings.
+3. Direct formatting actually used by paragraphs/runs: effective font, font size, bold, alignment, indentation, spacing, and line spacing.
+
+Report both the source observation and the proposed reusable standard. A source document may have `Normal` defaulting to Calibri while its actual Chinese runs use 宋体/仿宋; it may also have heading styles with one line-spacing definition while direct paragraphs use another. Do not label an observed mixture as a unified template rule.
+
+Before applying the extracted format to other tenders, confirm the user's normalization choice when the source is inconsistent:
+- exact visual reproduction, or
+- style-preserving normalization into a clean template.
+
+For the normalization path, explicitly choose one body font/size, one heading line-spacing rule, and a Word multilevel list bound to `Heading 1`–`Heading 4`. Keep manual numbering and space-based cover alignment out of the reusable standard unless the user explicitly wants a replica.
+
+### Verification for format extraction
+
+- Reopen the source and inspect both style XML and representative paragraph/run formatting.
+- Convert Word internal units before reporting them (e.g., EMU/twips to mm or points) and sanity-check A4 dimensions and margins.
+- Compare non-empty paragraph counts separately from all styled paragraphs; empty/special paragraphs can make counts differ.
+- Record table count, row/column dimensions, merged cells, widths, borders, cell padding, header repetition, and pagination separately; do not infer precise table geometry from the table style name alone.
+- Save the extraction as a Markdown report, then re-read the saved report and audit it for contradictions before using it as a template specification.
+
+### Tender-format variants and project overrides
+
+Maintain separate format specifications instead of collapsing every tender into one universal rule:
+
+- General company baseline (e.g. format A/B): can use automatic TOC, page numbers, unified Heading styles, and a standard body style.
+- Technical blind-bid baseline (e.g. format C): treat anonymity as a hard constraint; default to no header/footer/page numbers/TOC, no bold/color/italic/underline, and no company/person/project-identifying content.
+- Project-specific requirements always override the company baseline. Before editing a document, create a compact format override table recording the tender clause/page, the company default, and the final value.
+
+For blind bids, verify at minimum: A4/orientation/margins, fixed line spacing and zero paragraph spacing, title numbering/indentation, whether a cover or TOC is allowed, prohibited identity clues, table/figure text size, pagination, metadata, and PDF output. Do not import normal明标 conventions such as logos, named headers, page numbers, or decorative title styling into a blind-bid document.
+
+### Cross-profile worker dispatch for tender-format notes
+
+When the user asks a named Hermes worker such as `wukong` or `writer` to produce a format note:
+
+1. Invoke the named wrapper/profile, not an arbitrary `delegate_task` child.
+2. Do not rely on the caller's current shell directory; run `cd <absolute project path> && <worker> chat -q ...` and pass the source/output paths explicitly.
+3. Tell the worker to read the existing format note, create only the new output file, and report an absolute path.
+4. Verify the output independently from the coordinator by reading the file, checking its size/line count, and listing headings. A worker's self-report is not proof.
+5. If a first attempt runs in `/Users/<user>` and cannot find the source, retry with the absolute project path; do not let it write a guessed file elsewhere.
+
+### LibreOffice verification on macOS
+
+A successful `python-docx` reopen validates the package/XML but not visual pagination. After formatting a `.docx`, also try a headless PDF conversion:
+
+```bash
+/Applications/LibreOffice.app/Contents/MacOS/soffice \
+  --headless --convert-to pdf \
+  --outdir /tmp/docx-verification \
+  /absolute/path/input.docx
+```
+
+Do not assume `libreoffice` or `soffice` is on `PATH`; probe `command -v` and the known macOS application path. If conversion succeeds, record the PDF path and then inspect page count/text or render pages when those utilities are available. If the GUI app is installed but not on `PATH`, use the absolute `soffice` path rather than reporting that LibreOffice is unavailable.
+
+### Pitfalls
 
 - A Word document may visually substitute the intended Chinese font. If that happens, try the exact installed face name that Word renders correctly and verify after reopening.
 - For stubborn formatting, set paragraph/run formatting directly on the body text instead of relying only on style definitions.
