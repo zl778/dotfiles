@@ -125,10 +125,80 @@ A successful `python-docx` reopen validates the package/XML but not visual pagin
 
 Do not assume `libreoffice` or `soffice` is on `PATH`; probe `command -v` and the known macOS application path. If conversion succeeds, record the PDF path and then inspect page count/text or render pages when those utilities are available. If the GUI app is installed but not on `PATH`, use the absolute `soffice` path rather than reporting that LibreOffice is unavailable.
 
+### Source-file discovery in synced tender folders
+
+Before reading or editing a tender package, locate the source by exact filename and inspect the containing directory rather than assuming the current working directory. In OneDrive on macOS, the same synchronized tree may appear both under `~/Library/CloudStorage/OneDrive-个人/` and under `~/Library/Group Containers/.../OneDrive.noindex/OneDrive/`. Prefer the user-facing `CloudStorage` path for subsequent work, but if both copies exist, verify that the target documents match (for example with file size and `md5`) before choosing one. Record the absolute paths of the main tender document and any project-specific `规范/` directory; list the specification files before drafting.
+
+### Title-only technical-outline workflow
+
+When the deliverable is only first-level headings for a tender's technical/service section:
+
+1. Extract the detailed evaluation table and the technical/service requirements before dispatching workers. Build a coverage matrix with one row per scored factor and one row per mandatory technical requirement.
+2. Separate business and price factors explicitly. Do not assume “technical part” means only the technical-score rows: if the user excludes only business, include service-score rows when they belong in the technical-service response section.
+3. Dispatch A/B/C with the same factual brief but different numbering/format rules. Keep the coordinator responsible for the final coverage review; workers are drafts, not authorities.
+4. For short title-only tasks, use a compact prompt with explicit output constraints and a required absolute output path. Long prompts can cause a worker to spend its turn reasoning instead of producing the file.
+5. Independently verify every output file exists and read it back. Check: all scored factors covered, mandatory security/service requirements included, no business/price content, and numbering matches the requested A/B/C format.
+6. If a worker merges two scored factors into one title, split them in the reviewed version when the evaluation table scores them separately. Make high-value items explicit, such as “服务团队总人数及人员配置” when proof of social security is required.
+7. Preserve worker diversity in wording or structure, but do not preserve omissions. The coordinator may normalize the final heading list after review and should report what was corrected.
+
+The project-specific reproduction notes and the scoring-coverage checklist are in `references/title-only-technical-outline.md`.
+
+### Model-owned structural diversity for multi-version tenders
+
+When the user wants genuinely differentiated B/C/A tender versions, do not give every worker the same `一级标题` file, shared chapter skeleton, or coordinator-designed parent目录. That produces superficially different wording with identical Word navigation panes and second-level headings.
+
+Use this order:
+
+1. Freeze facts and hard constraints only: tender source, scored factors, mandatory service indicators, format rules, forbidden business content, word-count scope, and title-depth limit.
+2. Ask each worker for an independent outline first. The prompt must explicitly say not to read or reuse old B/C正文 and not to treat a shared outline as mandatory. Compare the actual level-1 and level-2 headings; reject outputs whose navigation structure is substantially identical.
+3. Review each outline for unsupported inventions before approving it. Workers may propose creative structure, but the coordinator must remove invented device models, quantities, locations, thresholds, performance figures, or unprovided scenario facts. Keep the structure, replace unsupported specifics with “以招标文件/进场核查为准”.
+4. Send each worker its own approved outline and generate bounded content chunks. Preserve each version's organizing metaphor (for example, engineering work packages vs. system/event/service chains) through assembly.
+5. Assemble each DOCX from that version's chunks without importing the other version's headings. Use the coordinator only for factual normalization, format application, word-count control, and compliance review.
+
+Useful diversity checks are structural, not lexical: compare heading trees, count repeated level-2 titles, identify the dominant organizing unit, and inspect the Word navigation pane after reopening. A version is not differentiated merely because its sentences or numbering marks changed.
+
+### Post-generation audit and version-safe repair
+
+When the user points to a specific project subdirectory or says a version was already confirmed, treat that directory/version as authoritative. Do not silently replace it with a newer coordinator-generated document. Locate the exact three files first, record their paths and modification context, and make any correction as a sibling file such as `*_审核修正版.docx`; preserve the originals.
+
+Run three independent audits when the user assigns one document per worker. A worker's empty output, helper script, diff banner, or claimed completion is not an audit report. Verify that its report contains concrete findings; if it is empty, retry with a short read-only prompt or perform the same check locally. After any worker recommends a fix, independently reopen the corrected docx and verify the fix.
+
+Do not infer Word formatting from a navigation-pane screenshot or from model prose. Inspect `python-docx` and the actual XML/package for A4 dimensions, margins, effective run fonts/sizes, line spacing, paragraph indents, heading styles/numbering, tables, headers/footers, and list numbering. Compare these values with the project format file, not with a generic company baseline. In particular, detect Letter pages (215.9×279.4 mm) masquerading as Chinese tender documents; normalize to A4 only in the repair copy.
+
+Word may cache styles, fields, and the navigation tree. After changing headings/styles/TOC, close the Word process completely and reopen the sibling repair copy before judging the displayed result. A successful `python-docx` reopen and LibreOffice conversion validates the package, but does not replace the user's fully closed-and-reopened Word visual check.
+
+### Long-form Word generation with multiple workers
+
+For a 12,000+ Chinese-character tender section, do not make one worker responsible for source reading, full drafting, `.docx` creation, and verification in a single background run. Use a staged pipeline:
+
+1. Freeze or checksum the source draft before dispatching. Synced folders and asynchronous workers can update the same document after dispatch; never assume the file read initially is still the file later merged.
+2. Give each worker bounded content goals, normally 3,000–6,000 Chinese characters per phase. Require plain Markdown/text output first, and repeat the factual brief and no-fabrication boundary in every phase.
+3. Treat a worker's final response, an empty log, or a claimed output path as unverified. Check existence and non-zero size, re-read the artifact, and count it independently.
+4. If worker-side long `python-docx` jobs are unstable, assemble the final `.docx` in the coordinator. Preserve wording/model diversity, but centralize page setup, heading styles, tables, and final validation.
+5. Count body paragraph characters separately from table-cell characters. Do not use tables or headings to reach the requested body range; record both figures in the review log.
+6. Before delivery, reopen the `.docx`, check every scoring-factor phrase, scan for forbidden business/price sections, inspect heading levels and numbering XML, detect bullet/list numbering, and perform real PDF conversion when available.
+
+If the user waives C-format anonymity but keeps the C layout, retain C's numbering/font/page structure while removing only anonymity restrictions. Validate numbering explicitly: level 1 uses `1.`; levels 2–4 use `1.1`, `1.1.1`, and `1.1.1.1` without an extra trailing period.
+
+See `references/long-form-tender-generation.md` for the staged dispatch, verification, and failure-recovery pattern. For the independent-worker, provider-consistency, provenance, explicit word-count, and B-bullet lessons from recent work, also use `references/independent-multi-model-long-form.md`.
+
+### Model provenance and provider consistency
+
+When the user asks for A/B/C drafts from named Profiles, treat model identity as a deliverable attribute that must be verified, not assumed from the launch command. Before dispatch, record each Profile's effective `provider`, `base_url`, and `model`; after dispatch, verify the worker's output artifact and inspect its session/log result. A successful-looking final document is not proof that the named worker generated it.
+
+For OpenAI-compatible endpoints, keep provider, endpoint, and credential source aligned. A native `deepseek` or `nvidia` provider pointed at a SiliconFlow URL can send the wrong API key and produce 401 errors; a `custom` SiliconFlow provider without the Profile's provider mapping/API key can produce an empty-key error. Test with a minimal request before a long generation. If SiliconFlow is unavailable, switch to a native endpoint and a model supported by that native provider, and report that the requested SiliconFlow model identity was not preserved.
+
+Synced folders and asynchronous workers can overwrite the same `.docx` after the coordinator thinks a task ended. Freeze the source draft (backup/checksum), generate worker outputs in temporary paths, and only copy an independently verified artifact into the final project path. If a worker fails or returns an empty/partial result, do not describe the final document as independently generated by that worker; state whether the coordinator assembled it from a shared base.
+
+### B-version bullet-list override
+
+If the user explicitly permits project bullets for format B, bullets may be used for short parallel items such as inspection checks, fault-response steps, or deliverable lists. Keep the main explanation in complete paragraphs and tables, keep bullets out of A/C unless separately allowed, and verify the final `.docx` for the actual bullet/list XML rather than inferring it from Markdown.
+
 ### Pitfalls
 
-- A Word document may visually substitute the intended Chinese font. If that happens, try the exact installed face name that Word renders correctly and verify after reopening.
+- A Word document may visually substitute the intended Chinese font. If that happens, try the exact installed Chinese face name that Word renders correctly and verify after reopening.
 - For stubborn formatting, set paragraph/run formatting directly on the body text instead of relying only on style definitions.
+- Old `.doc` files often need extraction/conversion before editing.
 - Old `.doc` files often need extraction/conversion before editing.
 - When one worker's default provider fails auth or is unavailable, rerun the same role with an explicit known-good `-m` / `--provider` override for that task rather than changing the whole architecture.
 - **Security approvals interrupt multi-agent dispatch.** When dispatching parallel workers via `hermes -p <profile> chat -q "... " -Q > file`, the security/approval layer may block the command if it detects "spawning profiles". Do not claim completion; stop, inform the user, and wait for approval. After approval, verify each worker's output file exists before proceeding to merge.

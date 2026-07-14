@@ -1,7 +1,9 @@
 model:
-  default: deepseek-v4-flash
-  provider: deepseek
-  base_url: https://api.deepseek.com/v1
+  default: minimaxai/minimax-m3
+  provider: nvidia
+  base_url: https://integrate.api.nvidia.com/v1
+  api_mode: chat_completions
+  api_key: sk-jwgpqxmobbkubqdoonbhdchudiyyhqagmulzjdenvgyqxycl
 providers:
   api.siliconflow.cn:
     api: https://api.siliconflow.cn/v1
