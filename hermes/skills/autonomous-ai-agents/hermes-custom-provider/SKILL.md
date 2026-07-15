@@ -187,6 +187,40 @@ hermes config set auxiliary.vision.model Qwen/Qwen3-VL-32B-Instruct
 
 ---
 
+## 从 Custom Provider 切换到 OpenAI Codex OAuth
+
+当用户说"不用 XXX（当前 custom provider），通过登录来用"时，意味着要从 API Key 认证切换到 **openai-codex** OAuth 提供商。
+
+**触发场景：** 用户要求切换模型提供商，且明确表示"不用 API key，用登录方式"。
+
+**配置步骤：**
+
+```bash
+# 1. 切换 provider 到 openai-codex
+hermes config set model.provider openai-codex
+
+# 2. 切换模型（如 gpt-5.6-luna / gpt-5.6-terra / gpt-5.6-sol）
+hermes config set model.default gpt-5.6-lua
+
+# 3. 清理旧 custom provider 的残留配置
+#    openai-codex 使用内置的 Codex OAuth 端点，不需要 base_url 和 api_key
+hermes config set model.base_url ""
+hermes config set model.api_key ""
+
+# 4. 验证认证状态
+hermes auth list
+# 应看到 openai-codex 有 OAuth 凭证（device_code 模式）
+```
+
+**验证后需 `/reset` 或新会话生效。**
+
+**重要概念：**
+
+- `openai-codex` provider 使用 ChatGPT 登录凭据，通过 Codex Responses API 访问
+- GPT-5.x 系列模型（gpt-5.6-*）在 `openai-codex` provider 下会自动切换到 `codex_responses` API 模式（`chat_completions` 配置会被覆盖）
+- openai-codex 的 OAuth 凭证通过 `hermes auth add openai-codex` 或 `hermes model` 交互配置
+- 切换后旧 custom provider 的 `base_url` 和 `api_key` 残留在 config.yaml 中不会自动清除，必须手动清空
+
 ## 陷阱与注意事项
 
 - **密钥脱敏**：向 `.env` 文件写入 API Key 时，必须使用拆段拼接法，不能直接写 `sk-xxx`
@@ -195,3 +229,5 @@ hermes config set auxiliary.vision.model Qwen/Qwen3-VL-32B-Instruct
 - **`hermes model` 交互选择器**会自动记住已配置的 provider 列表，不需要每次重新输入
 - **切换 provider 后需要 `/reset`**（在已有会话中）或重新启动新会话才能生效
 - **`providers: {}` 在 config.yaml 中**：对于简单的自定义端点，直接在 `model.*` 下设置即可，不需要定义 `providers` 映射
+- **从 custom 切换到 openai-codex 后必须清空 base_url 和 api_key**，否则 Hermes 可能坚持使用旧端点的 `chat_completions` 模式
+- **`openai-codex` 使用 `codex_responses` API 模式**（GPT-5.x 自动触发），写入 `api_mode: chat_completions` 无效

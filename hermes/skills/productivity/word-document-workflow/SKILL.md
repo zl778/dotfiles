@@ -72,6 +72,10 @@ Use the project specification first. When no project-specific rule is provided a
 - Heading numbering: one automatic multilevel list, not hand-typed prefixes
 - Tables: preserve merges/content, then normalize cell font, alignment, borders, and repeated header rows
 
+## Metadata cleaning
+
+When delivering a `.docx` to a client or submission system, strip author, company, last-modified-by, and revision metadata. See `references/clean-docx-metadata.md` for a complete script with tag reference and verification steps.
+
 ## Pitfalls
 
 - Do not assume `.doc` and `.docx` behave the same; old `.doc` often needs a conversion step.

@@ -129,6 +129,21 @@ Do not assume `libreoffice` or `soffice` is on `PATH`; probe `command -v` and th
 
 Before reading or editing a tender package, locate the source by exact filename and inspect the containing directory rather than assuming the current working directory. In OneDrive on macOS, the same synchronized tree may appear both under `~/Library/CloudStorage/OneDrive-个人/` and under `~/Library/Group Containers/.../OneDrive.noindex/OneDrive/`. Prefer the user-facing `CloudStorage` path for subsequent work, but if both copies exist, verify that the target documents match (for example with file size and `md5`) before choosing one. Record the absolute paths of the main tender document and any project-specific `规范/` directory; list the specification files before drafting.
 
+### Mixed-source tender package and technical-volume workflow
+
+When a project folder contains an invitation tender document, a legacy `.doc` technical specification, and multiple internal A/B/C format notes:
+
+1. Treat the invitation document and technical specification as the factual source of truth; treat A/B/C notes as formatting rules only. Do not let old drafts under `OLD/` override the current source package.
+2. Locate duplicate copies under synced `接收/` folders and compare them by checksum before choosing a working copy. Record the selected absolute paths and ignore stale-looking duplicates only after verifying equality.
+3. On macOS, if `textutil` reports that a legacy `.doc` is not in the correct format, inspect it with `file` and use the known LibreOffice binary `/Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to txt:Text` as the fallback. Re-read the converted text before dispatching writers.
+4. Extract and freeze a compact factual brief before dispatch: project facts, deadlines, price ceiling, scope, quantities, starred/mandatory technical clauses, evaluation weights, unknowns, and no-fabrication boundaries. Give every writer the same brief.
+5. Build technical volumes around the detailed evaluation criteria, while explicitly excluding商务卷 content when the user asks for技术部分 only. If an invitation and specification conflict (for example, price ceiling versus approximate estimate or different experience-year wording), preserve the stricter/controlling tender requirement and flag the conflict for coordinator review rather than silently choosing a value.
+6. Do not infer that a project is blind-bid merely because an internal C-format exists. Require an explicit tender/platform blind-bid clause; if the user waives C anonymity, retain C's numbering and visual format but omit only the anonymity restrictions.
+7. For three named variants, keep the facts identical but assign genuinely different organizing logics (for example, lifecycle engineering, task packages, and risk-control loops). A mere renumbering or synonym rewrite is not sufficient. Enforce the requested word-count range independently for each version.
+8. Generate DOCX only after coordinator review. Reopen each DOCX with `python-docx`, check headings, tables, page setup, effective fonts, line spacing, numbering, and excluded content, then perform a real LibreOffice PDF conversion when available.
+
+A concise project-specific extraction and conflict checklist is maintained in `references/mixed-source-technical-volume.md`.
+
 ### Title-only technical-outline workflow
 
 When the deliverable is only first-level headings for a tender's technical/service section:
@@ -156,6 +171,14 @@ Use this order:
 5. Assemble each DOCX from that version's chunks without importing the other version's headings. Use the coordinator only for factual normalization, format application, word-count control, and compliance review.
 
 Useful diversity checks are structural, not lexical: compare heading trees, count repeated level-2 titles, identify the dominant organizing unit, and inspect the Word navigation pane after reopening. A version is not differentiated merely because its sentences or numbering marks changed.
+
+### Long-form Markdown technical-volume drafting
+
+When the deliverable is a plain-Markdown technical volume rather than DOCX, treat the user's character-count unit as a hard acceptance criterion. If the user says “中文字符”, count Han characters separately from total Unicode characters and target the Han-character range itself, not only the broader total-character range. Reserve a buffer above the lower bound because Markdown punctuation, Latin model numbers, tables, and headings may otherwise make the Han count fall short.
+
+For format-A technical volumes, enforce all of the following before delivery: use the exact Chinese heading hierarchy specified by the format (`一、`, `（一）`, `1.`, `（1）`), keep heading depth at or below four levels, use no Markdown bullet-list lines in the body, and keep the structure centered on the scored technical factors while preserving the requested lifecycle logic. Tables are allowed, but do not use tables merely to inflate the count. Scan the finished file for bullet markers, heading depth, forbidden business/price sections, unsupported names or certificate numbers, and accidental content copied from unrelated tenders.
+
+Do not stop after the first count. Run a final verification after every expansion or patch and report the exact file path, total character count, and first-level heading list. If the user asks for “只返回” those fields, do not add a narrative, methodology, caveat, or status explanation.
 
 ### Post-generation audit and version-safe repair
 
@@ -193,6 +216,43 @@ Synced folders and asynchronous workers can overwrite the same `.docx` after the
 ### B-version bullet-list override
 
 If the user explicitly permits project bullets for format B, bullets may be used for short parallel items such as inspection checks, fault-response steps, or deliverable lists. Keep the main explanation in complete paragraphs and tables, keep bullets out of A/C unless separately allowed, and verify the final `.docx` for the actual bullet/list XML rather than inferring it from Markdown.
+
+### Post-generation scoring and second-pass audit
+
+When the user provides a separate review/scoring prompt after the DOCX files exist, audit the actual DOCX packages, not only the Markdown drafts. Run three independent checks:
+
+1. Scope check: distinguish technical-volume omissions from business-volume materials intentionally outside the requested deliverable. Do not mark missing营业执照、授权委托书、保证金、签章页 as technical red lines when the user explicitly requested only the technical section; report them as“商务卷/提交包另行确认”.
+2. Requirement check: compare each document against the invitation and technical specification using concrete anchors: project number, 60 calendar days, 12-month warranty, 90-day video retention, spray-pipe pressure/hold/drop/flush thresholds, complete supply scope, design-installation-commissioning-acceptance, training, safety/environment, schedule/resources/project organization, and technical deviations.
+3. Artifact check: reopen each DOCX with `python-docx`, inspect A4 dimensions/margins, heading levels, paragraph/table counts, effective styles, and core metadata (`author`, `last_modified_by`). A file can be structurally readable while retaining an identifiable last editor; clear and re-open/verify metadata on every version.
+
+Score the versions with the user's rubric (for example, response 40%, logic 30%, professionalism 30%) and record evidence-based findings with locations or section names. Preserve real structural diversity; do not select a winner merely because its wording is longer. If the review identifies a repair, create a sibling repair copy or a final merged copy, never silently overwrite the confirmed source.
+
+For a synthesis requested by the review prompt, select the strongest framework only after scoring, then merge missing high-value requirements from the other drafts. Re-run the full audit after synthesis, including duplicate heading labels, inconsistent project facts, template residue, unsupported claims, character-count range, and A/B/C-specific formatting.
+
+### Structure freedom without format drift
+
+When the user asks workers to design genuinely different B/C structures, treat content architecture and document format as separate layers:
+
+1. Let each worker independently propose its own level-1/level-2 outline. Do not force a shared chapter skeleton or reuse a common `一级标题` file as a mandatory parent tree.
+2. After choosing the independent outline, map it into the project format's numbering system. Creative structure does **not** authorize changing page size, margins, body font, line spacing, directory rules, or title-depth limits.
+3. Never assemble a final DOCX with generic defaults without checking the project spec. `python-docx` defaults can silently produce Letter paper, inconsistent direct formatting, mixed line spacing, or unbound Heading styles.
+4. Verify the actual Word navigation tree after reopening. Compare level-1 and level-2 headings, not just wording; a version is still structurally identical if its second-level tree is the same.
+5. If the user confirms a specific synced-folder version visually, treat that file as the baseline. Write repairs to a new `*_审核修正版.docx`, never overwrite the confirmed original.
+
+For the Shanghai telecom project, the observed defaults were B: A4, margins 2.6/2.2/2.5/2.5 cm, 宋体小四, 1.5-line spacing, two-character first-line indent; C: A4, margins 2.0/2.5/2.5/2.5 cm, 宋体四号, fixed 25 pt line spacing, Arabic numbering. Confirm the actual project override before applying these values.
+
+### Tender scoring versus document-quality scoring
+
+When a user supplies a meta-review prompt with a 100-point rubric, report it separately from the tender's official score:
+
+- Meta quality score: use the prompt's dimensions (for example response 40, logic 30, professionalism 30).
+- Official tender score: extract the actual evaluation table and score only the applicable technical/service factors. Business performance and price are separate.
+- Team-headcount points may depend on external evidence such as a recent social-security certificate. Score the prose response conditionally and state the evidence-dependent alternative; do not infer proof from a sentence claiming that proof exists.
+- Signature pages, guarantees, qualification files, and price forms are full-response-package checks, not automatically defects in a technical-only section. Mark them as `[CRITICAL—需核验完整响应文件]` when outside the artifact under review.
+
+### Source path and Word refresh verification
+
+Synced OneDrive project folders may be renamed or moved while old paths remain in session context. Before reviewing or editing, rediscover the exact filename and containing folder and use the user-facing `CloudStorage` copy. After changing styles, numbering, TOC fields, or page setup, close Word completely and reopen the DOCX before judging the displayed result; Word may cache the old navigation tree and formatting within the same process.
 
 ### Pitfalls
 
