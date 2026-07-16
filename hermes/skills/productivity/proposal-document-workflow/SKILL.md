@@ -254,6 +254,24 @@ When a user supplies a meta-review prompt with a 100-point rubric, report it sep
 
 Synced OneDrive project folders may be renamed or moved while old paths remain in session context. Before reviewing or editing, rediscover the exact filename and containing folder and use the user-facing `CloudStorage` copy. After changing styles, numbering, TOC fields, or page setup, close Word completely and reopen the DOCX before judging the displayed result; Word may cache the old navigation tree and formatting within the same process.
 
+### Surgical DOCX update from supplementary materials
+
+When the user provides supplementary materials (XLSX quotation sheets, product spec `.doc` files, certification PDFs) and asks you to update an existing technical-volume DOCX with concrete device models, quantities, and performance parameters:
+
+1. **Read the supplementary material first.** Use `openpyxl` for XLSX (column-merges and hidden rows are common; inspect the full table row-by-row with `iter_rows()`). Use `textutil -convert txt` on macOS for legacy `.doc` product specs — `.docx` product specs are rare but can be read directly with `python-docx`. For PDF specs, try `pymupdf` or `marker-pdf` if available. Record model names, quantities, performance numbers, and the manufacturer/brand for each item.
+
+2. **Map data to existing document paragraphs.** Read the existing DOCX paragraph-by-paragraph and table-by-table. Identify which paragraphs should be updated (e.g., "供货方案" paragraph for the main device list, "存储" paragraph for NVR/hardware specs, the technical response table for specific model numbers) and which table cells need augmentation. Do not guess at paragraph content — re-read the current text.
+
+3. **Back up before modification.** Copy the source DOCX to a timestamped backup path before editing. Never overwrite the backup later; let the user clean it up.
+
+4. **Use red font for new/updated content.** When the user explicitly asks to mark changes, set the run text color to red (`RGBColor(0xFF, 0x00, 0x00)`). Add new paragraphs immediately after the existing target paragraph (using `paragraph.insert_paragraph_after()`). For table cells, append a new red-text run to the cell's first paragraph.
+
+5. **Surgically update, don't rewrite the whole document.** Only modify the identified paragraphs/tables — do not regenerate the entire DOCX from scratch. Keep all existing content and formatting unchanged. If a supplementary source lists prices (e.g., a quotation sheet), include the model numbers and quantities but NOT the unit prices/totals in the technical volume; prices belong in the商务卷.
+
+6. **Verify after modification.** Re-read the modified DOCX with `python-docx`, inspect file size, paragraph count, the red-text runs (count paragraphs containing a red run), verify that no prices leaked into the technical volume, and confirm the backup still exists at its original path. Report: backup path, file size before/after, paragraphs modified, tables modified.
+
+7. **No-fabrication boundary.** If a supplementary source is missing a device model or quantity for a required item, mark it as `[待补充]` in red font rather than inventing a number. The user can correct from the actual procurement list.
+
 ### Pitfalls
 
 - A Word document may visually substitute the intended Chinese font. If that happens, try the exact installed Chinese face name that Word renders correctly and verify after reopening.
@@ -264,6 +282,7 @@ Synced OneDrive project folders may be renamed or moved while old paths remain i
 - **Security approvals interrupt multi-agent dispatch.** When dispatching parallel workers via `hermes -p <profile> chat -q "... " -Q > file`, the security/approval layer may block the command if it detects "spawning profiles". Do not claim completion; stop, inform the user, and wait for approval. After approval, verify each worker's output file exists before proceeding to merge.
 - **Worker output timeout on large tasks.** Generating hundreds of lines of tender body text may exceed the default `hermes chat -q` timeout (typically 180s). Set `--timeout` to at least 600s, or split the task across multiple smaller queries (e.g., sections 1–3, then 4–7). Between 300–600 lines is the boundary where timeout starts to bite.
 - **Backup incrementally.** Name backups `.bak`, `.bak2` etc. to preserve a chain of intermediate states. The coordinator should not delete the backups — let the user clean up if needed.
+- **版本优先：新建而非覆盖。** 更新已确认的 DOCX 时绝不覆盖原文件。原文件是用户确认的基线。修正结果应另存为带后缀的新文件（如 `*_v2_审核修正版.docx`）。生成更新前先将源文件复制到 `/tmp/` 做备份——OneDrive 同步可能有缓存问题，/tmp/ 备份确保可恢复。用户明确纠正过这个行为：修正永远是新版本，不是覆盖。
 
 ## Good use cases
 
