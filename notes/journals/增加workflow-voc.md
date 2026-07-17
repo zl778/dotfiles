@@ -1,3 +1,12 @@
+---
+created: 2026-06-01
+tags:
+aliases:
+  - 开发技能
+updated: 2026-07-18
+---
+日常抓取单词
+
 增加workflow: voc
 
 在alfredr的workflows里，新增 inport keyword 名为voc；

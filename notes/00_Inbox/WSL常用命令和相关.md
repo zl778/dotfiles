@@ -1,6 +1,7 @@
 ---
 date: 2026-07-03
-tags: []
+tags:
+  - /r/tools/linux
 aliases: []
 id: 20260703102249
 ---

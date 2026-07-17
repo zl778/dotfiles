@@ -1,10 +1,10 @@
 ---
+created: 2026-07-05
 tags:
-  - WSL
-  - SSH
-  - 命令行
-date: 2026-07-05
+  - r/tools/ssh
 aliases:
+  - WSL
+updated: 2026-07-18
 ---
 
 # WSL SSH 启动与连接排查命令简表

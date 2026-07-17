@@ -1,10 +1,12 @@
 ---
 date: 2026-07-02
-tags: []
-aliases: []
-id: 20260702230249
+tags:
+  - r/tools/ssh
+aliases:
+  - SSH
+id: "20260702230249"
 ---
-按照你的环境（Windows 11 Mini + WSL2 Ubuntu 26.04 + MacBook Pro），完全可以通过 SSH 登录到 WSL。这样以后就不用每次先打开 Windows Terminal，再进入 WSL 了。
+环境（Windows 11 Mini + WSL2 Ubuntu 26.04 + MacBook Pro），通过 SSH 登录到 WSL。
 
 方案有三，采用了“直接SSH到WSL”
 ## **第一步：安装 OpenSSH Server**

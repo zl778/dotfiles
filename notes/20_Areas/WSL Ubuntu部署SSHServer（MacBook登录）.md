@@ -1,7 +1,7 @@
 ---
 date: 2026-07-06T00:58:00
 tags:
-  - /r/tools/ssh
+  - r/tools/ssh
 aliases:
   - ssh
 id: "20260706155620"

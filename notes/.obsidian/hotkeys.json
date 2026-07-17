@@ -206,5 +206,14 @@
       "modifiers": [],
       "key": "F3"
     }
+  ],
+  "graph:open": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "G"
+    }
   ]
 }

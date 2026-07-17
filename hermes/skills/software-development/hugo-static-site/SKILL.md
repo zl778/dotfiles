@@ -116,15 +116,18 @@ For pure frontend apps (games, tools, visualizations) that don't need a build st
 1. Copy the HTML file (or entire folder) to `static/<app-name>/index.html`
    - Hugo copies `static/` verbatim to the site root
    - Accessible at `https://<domain>/<app-name>/`
-2. (Optional) Create a blog post that introduces the app and embeds it:
+2. **Make the app discoverable on the site.** A standalone URL is not automatically visible from the homepage. If the user wants it alongside existing homepage cards, create `content/posts/<app-name>.md` with frontmatter, a short description, and an iframe to `/<app-name>/`. If a persistent top-level entry is also wanted, add a `[[menu.main]]` item in `hugo.toml`.
    ```markdown
    ---
    title: 'App Name'
    date: YYYY-MM-DDTHH:MM:SS+08:00
-   tags: [tag1, tag2]
+   draft: false
+   tags: [tools]
+   categories: [工具]
+   description: '...'
    ---
 
-   ## Play Online
+   ## 在线使用
 
    <iframe src="/<app-name>/" width="100%" height="650" style="border:none;border-radius:12px;background:#0f0f1a;"></iframe>
    ```
@@ -133,6 +136,12 @@ For pure frontend apps (games, tools, visualizations) that don't need a build st
    [markup.goldmark.renderer]
      unsafe = true
    ```
+4. Build and verify all three layers before reporting success:
+   - local static output: `public/<app-name>/index.html` exists and is non-empty;
+   - local homepage/post output contains the app title and link;
+   - after pushing, open the production homepage and direct app URL, using a cache-busting query if the CDN still shows stale homepage content.
+
+For the user's established pattern, use both the direct `static/` app and a normal homepage-level post with an iframe; this keeps the app usable full-screen while making it visible at the same level as other tools/games.
 
 ### Migrating from Obsidian
 
@@ -157,6 +166,21 @@ find public -name '*.html' | sort  # Check output files
 ```
 
 ## 6. Deploy to Cloudflare Pages
+
+### Publishing a standalone interactive HTML app
+
+For a standalone browser app already tested outside Hugo, publish it as a static route rather than wrapping it in a blog post:
+
+```bash
+mkdir -p static/<app-slug>
+cp /absolute/path/to/app.html static/<app-slug>/index.html
+hugo --gc --minify
+```
+
+This produces `public/<app-slug>/index.html` and serves the app at `/<app-slug>/`. Keep the source app in its original project directory and copy it into Hugo so the Hugo repository owns the deployable artifact.
+
+After the build, commit and push the static route, then verify the deployed URL with an HTTP request. A just-triggered Cloudflare deployment may briefly return 404 before propagation; retry once after confirming the push succeeded, and distinguish a transient 404 from a persistent deployment/configuration failure.
+
 
 ### Via Cloudflare Dashboard
 1. Go to Cloudflare Dashboard → **Workers & Pages**

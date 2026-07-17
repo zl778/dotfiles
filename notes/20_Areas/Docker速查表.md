@@ -1,3 +1,12 @@
+---
+created: 2026-06-29
+tags:
+  - /r/tools/vps
+aliases:
+  - 搬瓦工
+updated: 2026-07-18
+---
+
 # Docker 容器速查表
 
 > 搬瓦工 VPS fair-cubes-1 · 末次更新：2026-06-29
