@@ -65,6 +65,9 @@ related_skills:
 - 全部答完显示评分面板（正确率 + 分档颜色）
 
 ### 按键匹配逻辑
+
+先定义题库的“规范答案”，再定义平台兼容别名；不要把浏览器 `event.key` 的显示字符直接当作物理按键真值。macOS Option/Shift 组合经常改变 `event.key`，应优先使用 `event.code` 判断物理键位，并在匹配层显式处理兼容别名。
+
 ```javascript
 const KEY_MAP = {
   'a': 'a', 'b': 'b', /* ...全部字母 */ '_': '_', '.': '.',
@@ -228,11 +231,14 @@ function playMiss() {
 ### 键盘检测（快捷键测验模式）
 - **过滤纯修饰键**：`e.key === 'Control'`、`e.key === 'Alt'` 等必须在前置判断中跳过，否则用户按 Ctrl 准备按 Ctrl+B 时，Ctrl 单独就会触发一次错误判定
 - **"按任意键开始"不判题**：初始状态 `state.started = false`，按任意键只设置 started=true 并切换到第一题，不调用 checkShortcut
-- **Ctrl+_ 在 Mac 无法直接触发**：Mac 键盘上 `_` 需要 Shift+-，浏览器事件为 `Ctrl+Shift+-` 而非 `Ctrl+_`。详见 `references/known-bugs.md`
-- **Alt+. 受输入法干扰**：中文输入法下 `.` 键可能输出 `≥` 或 `。`，导致匹配失败。详见 `references/known-bugs.md`
-- **避免功能重复的快捷键同时入库**：如 Ctrl+F 和 → 都做"光标右移"，不应同时作为不同题目
+- **Ctrl+_ 在 Mac 无法直接触发**：Mac 键盘上 `_` 需要 Shift+-，浏览器事件为 `Ctrl+Shift+-` 或 `Ctrl+Shift+_`。匹配 `expected.key === '_'` 时必须放宽 `shiftMatch`，并接受 `event.key` 为 `_`、`-`、`=` 的情况；不能只改 `keyMatch`，否则会被前面的 `shiftMatch` 拦截。详见 `references/known-bugs.md`
+- **Alt+. 受输入法/Option 键干扰**：中文输入法或 macOS Option 可能让 `event.key` 变成 `≥`、`>`、`。`；按 `expected.alt && expected.key === '.'` 时接受这些别名，并不要强制排除 `shiftKey`。最好同时用 `event.code === 'Period'`，但保留字符别名兼容。
+- **Alt+B / Alt+F 误判**：macOS Option 可能把字符变成特殊 Unicode；当期望为 Alt+B/F 时，用 `event.code === 'KeyB'/'KeyF'` + `altKey` 判断，不要只比较 `event.key`。
+- **“按任意键开始”不判题**：初始状态 `state.started = false`，按任意键只设置 started=true 并切换到第一题，不调用 checkShortcut
+- **避免功能重复的快捷键同时入库**：如 Ctrl+F 和 → 都做“光标右移”，通常只保留一个；若保留多个，必须在题目中明确它们是等价答案，并让匹配器按功能组处理
 - **方向键 ↑↓ 保留默认行为**：只对方向键放行 `e.preventDefault()`，防止用户无法滚动页面
 - **不要使用 Ctrl+R/S 作为全局快捷键**：它们很可能在题库中作为题目出现
+- **错误后不要自动跳题**：错误时固定显示实际按键和正确答案，显示“继续”按钮；回车只在继续按钮可见时触发 continue，避免用户误按导致重复判题
 
 ### 性能
 - 单词 DOM 元素超过 50 个时可能卡顿

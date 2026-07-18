@@ -9,10 +9,20 @@
 - 但在浏览器键盘事件中，`_`（下划线）是 Shift 修饰的键（`event.key === '_'` 且 `event.shiftKey === true`）
 - 所以 `Ctrl+_` 在浏览器中实际上是 `Ctrl+Shift+-`
 
-**可能的修复方案**：
-1. **方案A — 特殊判断**：当预期键为 `_` 时，同时接受 `Ctrl+Shift+-`（宽松匹配下划线）
-2. **方案B — 换题**：将题目改为 `Ctrl+/`（终端中 Ctrl+/ 也会发送类似信号，且 Mac 无需 Shift）
-3. **方案C — 提示说明**：在题目旁加注"Mac 下需按 Ctrl+Shift+-"
+**已验证修复**：
+```javascript
+let shiftMatch = e.shiftKey === !!expected.shift;
+if (expected.ctrl && expected.key === '_' && e.ctrlKey && e.shiftKey) {
+  shiftMatch = true;
+}
+if (expected.ctrl && expected.key === '_' && e.ctrlKey && e.shiftKey &&
+    ['_', '-', '='].includes(e.key)) {
+  keyMatch = true;
+}
+```
+关键点：必须同时放宽 `shiftMatch` 和 `keyMatch`；只增加下划线的 key 判断仍会被总匹配条件拦截。
+
+备选方案：将题目改成 `Ctrl+/`，或在题目旁标注“Mac 下需按 Ctrl+Shift+-”。
 
 ## Bug 2: Alt+. 在不同输入法下键值被替换
 
@@ -23,10 +33,10 @@
 - 特别是在中文输入法（拼音、五笔等）激活状态下按下 `.` 键
 - `event.code`（如 `Period`）始终不变，但 `event.key` 会变化
 
-**可能的修复方案**：
-1. **方案A — 用 event.code**：使用 `event.code === 'Period'` 代替 `event.key === '.'`，但要注意 `event.code` 不考虑修饰键，且不能在组合键场景中精确匹配
-2. **方案B — 模糊匹配**：Alt 键按下时，接受 `event.key` 为 `.`、`≥`、`。` 之一
-3. **方案C — 提示用户切英文输入法**：加提示"请确保输入法为英文状态"
+**已验证修复**：
+- 用 `event.code === 'Period'` 识别物理句号键；同时接受 `event.key` 为 `.`, `≥`, `>`, `。`。
+- 对 `expected.alt && expected.key === '.'` 的题目，若 `altKey` 为真且无 Ctrl，设置 `keyMatch = true`、`altMatch = true`，并不要因 `shiftKey` 为真而失败。
+- Alt+B/F 同理使用 `event.code === 'KeyB'/'KeyF'`，因为 Option 可能把 `event.key` 转成 Unicode 特殊字符。
 
 ## Bug 3: Ctrl+F 和 →（右方向键）功能重复
 

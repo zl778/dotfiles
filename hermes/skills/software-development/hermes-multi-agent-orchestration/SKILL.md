@@ -130,6 +130,10 @@ In practice, many setups keep this registry in Obsidian as a synced routing laye
 - Making the coordinator do execution work instead of coordination
 - Over-optimizing for abstraction before the registry and routing rules are stable
 
+## OfficeCLI-backed document workers
+
+When workers create or modify `.docx`, `.xlsx`, or `.pptx` through OfficeCLI, use the staged artifact contract, one-writer-per-file rule, and validate/issues/text/screenshot delivery gate in `references/officecli-document-workers.md`. Treat the coordinator's independent verification—not the worker's claimed output—as completion proof. OfficeCLI's MCP is a single generic `officecli(command)` tool, so MCP tool filtering cannot enforce verb-level or path-level isolation; use a wrapper when strict command or root restrictions are required.
+
 ## Document-generation orchestration
 
 For multi-agent work that must produce or modify Word/PDF deliverables (especially tender documents):

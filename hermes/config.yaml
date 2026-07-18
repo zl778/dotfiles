@@ -495,7 +495,7 @@ matrix:
 approvals:
   mode: manual
   timeout: 60
-  cron_mode: deny
+  cron_mode: approve
   mcp_reload_confirm: true
   destructive_slash_confirm: true
 command_allowlist: []

@@ -50,13 +50,20 @@ Use this skill when the user gives you a Word document task: read a `.doc`/`.doc
    - Confirm file size changed and headings/paragraphs still exist
    - Prefer a real PDF/rendering spot-check when a renderer is available; if not, report that structural verification passed but visual pagination was not independently checked
 
-## Extraction and conversion choices
+## OfficeCLI unified path (optional, verify before replacing established tooling)
 
-- `.docx` reading/editing: `python-docx`
-- legacy `.doc` text extraction: `wvText` is a good first try on macOS
-- Markdown → `.docx`: `pandoc`
-- Complex style edits on `.docx`: use `python-docx`; if precise spacing/indent is needed, edit the underlying Word XML
+For AI-oriented `.docx`, `.xlsx`, and `.pptx` automation, evaluate OfficeCLI as a unified CLI layer before adding another Python script. It is a single binary with DOM-like paths, structured JSON, batch operations, validation, HTML/PNG rendering, template merge, and resident mode. It can reduce glue code for Agent workflows, but it does not remove the need for Word/Excel or LibreOffice visual/compatibility review.
 
+Recommended rollout:
+
+1. Install and verify `officecli --version`.
+2. Test on copies of one real tender `.docx` and one real equipment/quotation `.xlsx`; never start with the confirmed source.
+3. Read structure with `view ... outline`, `get ... --json`, and `dump`; make narrow edits with `set`/`add`/`remove`.
+4. Flush resident edits with `save`/`close` before a non-OfficeCLI reader or delivery step.
+5. Run `validate`, then `view ... html` or `view ... screenshot`; reopen/read back key fields.
+6. Compare output against current `python-docx`/`openpyxl` and actual Word/Excel for pagination, formulas, merged cells, headers/footers, fonts, and embedded objects.
+
+For Hermes, start with direct terminal calls under a dedicated document workflow Skill/worker. Add OfficeCLI MCP only after CLI behavior and file-verification contracts are stable. See `references/officecli-evaluation.md` for the capability matrix, rollout plan, and Hermes task contract.
 ## Formatting baseline for Chinese tender documents
 
 Use the project specification first. When no project-specific rule is provided and the goal is a reusable company template, use this normalized baseline:
@@ -217,11 +224,25 @@ Heading 2: 十、设备检测报告与认证资料附录
 - Subsequent updates: `_v3_`, `_v4_`, etc.
 
 Before any modification:
-1. Copy original to `/tmp/` as a safety backup (`投标文件技术部分_A_原始备份.docx`)
-2. Write changes to the NEW versioned file (never the original)
-3. If a mistake happens (original got overwritten), restore from `/tmp/` backup immediately
+1. Rediscover the exact source path and confirm the requested version exists.
+2. Copy the source to `/tmp/` as a safety backup (`投标文件技术部分_A_v3_原始备份.docx`).
+3. Copy the source to a new sibling versioned file before editing.
+4. Write changes only to the NEW versioned file (never the original or the confirmed source).
+5. Verify the source checksum/size is unchanged after editing and verify the new package independently.
 
-This prevents OneDrive sync cache issues and preserves the audit trail of versions.
+This prevents OneDrive sync cache issues and preserves the audit trail of versions. If a mistake happens (original got overwritten), restore from the `/tmp/` backup immediately, then continue from a new versioned copy.
+
+#### Performance guarantee value table for tender technical volumes
+
+When a second-pass tender review identifies missing verifiable evidence, append a blue/red-marked `性能保证值表` as a new final section rather than scattering unsupported claims through the body. Use a six-column matrix:
+
+`序号 | 系统/设备 | 招标要求/基准 | 投标性能保证值 | 偏差/复核说明 | 证明资料位置`
+
+Include rows for quantities, principal models, key performance thresholds, storage/retention, network topology, control boxes, power redundancy, interlocks, testing/commissioning, manufacturer authorization, three-party approval, standards submission, training deliverables, schedule/warranty, and environmental boundary conditions. Keep the table evidence-oriented: each guarantee must point to the tender/spec clause, product data, test report, authorization, drawing, or commissioning record.
+
+Never silently normalize source conflicts. If the quotation/list says `8-port` while the specification requires `20-port`, or says `IP55` while the specification requires `IP56`, write the specification value as the required guarantee and explicitly mark the listed item as a deviation requiring replacement or written clarification. Do not label it “满足” until resolved. If a product model's available data does not prove a required parameter, write a conditional verification/approval requirement rather than inventing a value.
+
+For a user-requested color mark, set every newly added heading, note, table header, cell run, and closing conclusion explicitly with `Run.font.color.rgb` (for blue: `RGBColor(0x00, 0x00, 0xFF)`). Add the section at the absolute end of the document, including after an existing image appendix. Reopen the DOCX and verify: new table row/column count, all new runs have the requested color, no new table run is uncolored, original version checksum/size is unchanged, core package passes `unzip -t`, and the source backup remains available. A large image-heavy DOCX may exceed a short LibreOffice conversion timeout; report that visual PDF pagination was not verified rather than fabricating a PDF result.
 
 ## Pitfalls
 

@@ -141,7 +141,7 @@ For pure frontend apps (games, tools, visualizations) that don't need a build st
    - local homepage/post output contains the app title and link;
    - after pushing, open the production homepage and direct app URL, using a cache-busting query if the CDN still shows stale homepage content.
 
-For the user's established pattern, use both the direct `static/` app and a normal homepage-level post with an iframe; this keeps the app usable full-screen while making it visible at the same level as other tools/games.
+- If the user later says the app should be at the same level as an existing homepage tool/game, create the post card; do not rely on a right-side/top menu entry. If they then ask to remove the top menu, delete the `menu.main` block, rebuild, push, and verify the live navigation with a cache-busting URL.
 
 ### Migrating from Obsidian
 

@@ -250,6 +250,12 @@ When a user supplies a meta-review prompt with a 100-point rubric, report it sep
 - Team-headcount points may depend on external evidence such as a recent social-security certificate. Score the prose response conditionally and state the evidence-dependent alternative; do not infer proof from a sentence claiming that proof exists.
 - Signature pages, guarantees, qualification files, and price forms are full-response-package checks, not automatically defects in a technical-only section. Mark them as `[CRITICAL—需核验完整响应文件]` when outside the artifact under review.
 
+### Performance-guarantee matrix and conflict disclosure
+
+For a second-pass technical bid review, convert the review findings into a final `性能保证值表` rather than only a prose audit. Append it after all existing sections and appendices, using a stable six-column structure: `序号、系统/设备、招标要求/基准、投标性能保证值、偏差/复核说明、证明资料位置`. Cover quantities, key device thresholds, storage retention, network ports/fiber, control-box protection, redundant power, interlocks, pressure/flush tests, authorization/evidence, three-party approval, standards submission, training, warranty and schedule.
+
+Treat quotation lists and technical specifications as separate evidence layers. When they conflict (for example an 8-port listed switch versus a 20-port specification, or IP55 listed enclosure versus IP56 required), do not silently upgrade the listed item or write “满足”. State the required guarantee, identify the current item as a deviation, and require replacement or written clarification before submission. Use conditional verification language for parameters not proven by the available product data. If the user asks for change marking, set every newly added heading, note, table header, cell run and conclusion to the requested color, then independently verify the color across all new table runs.
+
 ### Source path and Word refresh verification
 
 Synced OneDrive project folders may be renamed or moved while old paths remain in session context. Before reviewing or editing, rediscover the exact filename and containing folder and use the user-facing `CloudStorage` copy. After changing styles, numbering, TOC fields, or page setup, close Word completely and reopen the DOCX before judging the displayed result; Word may cache the old navigation tree and formatting within the same process.
