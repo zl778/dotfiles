@@ -17,13 +17,13 @@
     "created_at": "2026-05-30T14:26:57.903772+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-18T14:32:26.349830+00:00",
-    "last_viewed_at": "2026-07-18T14:32:26.331664+00:00",
+    "last_used_at": "2026-07-19T13:54:51.689755+00:00",
+    "last_viewed_at": "2026-07-19T13:54:51.682877+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 10,
-    "view_count": 10
+    "use_count": 13,
+    "view_count": 13
   },
   "apple-notes": {
     "archived_at": null,
@@ -147,13 +147,13 @@
     "created_at": "2026-07-13T18:48:16.783951+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-07-13T18:48:30.739068+00:00",
-    "last_used_at": "2026-07-16T17:39:04.055722+00:00",
-    "last_viewed_at": "2026-07-16T17:39:04.051492+00:00",
+    "last_used_at": "2026-07-19T16:00:45.595121+00:00",
+    "last_viewed_at": "2026-07-19T16:00:45.579635+00:00",
     "patch_count": 1,
     "pinned": false,
     "state": "active",
-    "use_count": 7,
-    "view_count": 7
+    "use_count": 10,
+    "view_count": 10
   },
   "bilibili-video-summary": {
     "archived_at": null,
@@ -355,26 +355,26 @@
     "created_at": "2026-06-20T01:01:24.693926+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-07-02T14:48:54.076972+00:00",
-    "last_used_at": "2026-07-18T20:00:45.346352+00:00",
-    "last_viewed_at": "2026-07-18T20:00:45.333265+00:00",
+    "last_used_at": "2026-07-19T20:00:13.706132+00:00",
+    "last_viewed_at": "2026-07-19T20:00:13.692136+00:00",
     "patch_count": 3,
     "pinned": false,
     "state": "active",
-    "use_count": 11,
-    "view_count": 11
+    "use_count": 12,
+    "view_count": 12
   },
   "dotfiles-version-control": {
     "archived_at": null,
     "created_at": "2026-06-20T00:31:30.906409+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-07-05T13:57:55.819728+00:00",
-    "last_used_at": "2026-07-17T20:08:14.281643+00:00",
-    "last_viewed_at": "2026-07-17T20:08:14.265962+00:00",
+    "last_used_at": "2026-07-19T20:00:13.701286+00:00",
+    "last_viewed_at": "2026-07-19T20:00:13.687578+00:00",
     "patch_count": 4,
     "pinned": false,
     "state": "active",
-    "use_count": 9,
-    "view_count": 9
+    "use_count": 10,
+    "view_count": 10
   },
   "dspy": {
     "archived_at": null,
@@ -537,13 +537,13 @@
     "created_at": "2026-06-03T16:14:57.351574+00:00",
     "created_by": null,
     "last_patched_at": "2026-06-04T07:05:03.100124+00:00",
-    "last_used_at": "2026-07-18T20:00:45.350621+00:00",
-    "last_viewed_at": "2026-07-18T20:00:45.337640+00:00",
+    "last_used_at": "2026-07-19T20:00:13.710483+00:00",
+    "last_viewed_at": "2026-07-19T20:00:13.696778+00:00",
     "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 99,
-    "view_count": 99
+    "use_count": 100,
+    "view_count": 100
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,
@@ -1096,13 +1096,26 @@
     "created_at": "2026-06-04T07:01:26.635319+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-18T11:53:10.988099+00:00",
-    "last_viewed_at": "2026-07-18T11:53:10.979562+00:00",
+    "last_used_at": "2026-07-19T16:00:44.874009+00:00",
+    "last_viewed_at": "2026-07-19T16:00:44.861603+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 8,
-    "view_count": 8
+    "use_count": 9,
+    "view_count": 9
+  },
+  "officecli": {
+    "archived_at": null,
+    "created_at": "2026-07-19T16:00:43.357494+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": "2026-07-19T16:02:54.728229+00:00",
+    "last_viewed_at": "2026-07-19T16:02:54.713001+00:00",
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 4,
+    "view_count": 4
   },
   "opencode": {
     "archived_at": null,
@@ -1238,14 +1251,14 @@
     "archived_at": null,
     "created_at": "2026-07-10T19:08:02.429671+00:00",
     "created_by": "agent",
-    "last_patched_at": "2026-07-18T12:00:15.974271+00:00",
-    "last_used_at": "2026-07-18T14:32:26.336696+00:00",
-    "last_viewed_at": "2026-07-18T14:32:26.320698+00:00",
-    "patch_count": 30,
+    "last_patched_at": "2026-07-19T16:08:41.159553+00:00",
+    "last_used_at": "2026-07-19T16:07:54.581873+00:00",
+    "last_viewed_at": "2026-07-19T16:07:54.574432+00:00",
+    "patch_count": 39,
     "pinned": false,
     "state": "active",
-    "use_count": 37,
-    "view_count": 37
+    "use_count": 46,
+    "view_count": 46
   },
   "research-paper-writing": {
     "archived_at": null,
@@ -1511,14 +1524,14 @@
     "archived_at": null,
     "created_at": "2026-07-09T14:42:10.612642+00:00",
     "created_by": "agent",
-    "last_patched_at": "2026-07-18T14:33:03.817417+00:00",
-    "last_used_at": "2026-07-18T14:32:31.043018+00:00",
-    "last_viewed_at": "2026-07-18T14:32:31.038475+00:00",
-    "patch_count": 19,
+    "last_patched_at": "2026-07-19T16:05:44.318207+00:00",
+    "last_used_at": "2026-07-19T16:05:29.812004+00:00",
+    "last_viewed_at": "2026-07-19T16:05:29.806372+00:00",
+    "patch_count": 22,
     "pinned": false,
     "state": "active",
-    "use_count": 41,
-    "view_count": 41
+    "use_count": 48,
+    "view_count": 48
   },
   "writing-plans": {
     "archived_at": null,

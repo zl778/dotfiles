@@ -229,6 +229,35 @@ Score the versions with the user's rubric (for example, response 40%, logic 30%,
 
 For a synthesis requested by the review prompt, select the strongest framework only after scoring, then merge missing high-value requirements from the other drafts. Re-run the full audit after synthesis, including duplicate heading labels, inconsistent project facts, template residue, unsupported claims, character-count range, and A/B/C-specific formatting.
 
+### 0719-style final-package audit: score the artifact, then test eligibility
+
+When a tender package contains a dated/versioned folder such as `标书0719`, treat the actual DOCX files in that folder as authoritative for the review. Do not score an older path, an earlier Markdown draft, or a previous `二次检查和评分.md` table without reconciling it to the current artifacts. First rediscover the exact A/B/C filenames and record their paths; then reopen each DOCX with `python-docx` and inspect paragraphs, tables, metadata, and key form fields.
+
+Run two separate judgments:
+
+1. **Technical estimate** — score the requested rubric (for this project: response 40, logic 30, professionalism 30) using evidence from the actual technical volume. A long narrative does not compensate for missing or contradictory requirement rows.
+2. **Tender eligibility / preliminary review** — independently check hard risks such as price ceiling, bid validity, mandatory qualification, signatures/seals, blank bidder/price/tax fields, mandatory starred clauses, payment terms, and explicit equipment noncompliance. A document may have a technical estimate at or above 80 while still being ineligible because of a commercial or preliminary-review failure.
+
+For every version, cross-check three layers row by row:
+
+- quotation/equipment list: brand, exact model, quantity, unit, price form and remarks;
+- performance-guarantee table: claimed values, storage calculations, port counts, protection grades and evidence status;
+- technical deviation table/body: whether the response honestly says `无偏离`, `待确认`, or `存在偏差`.
+
+Flag these high-value contradictions explicitly instead of accepting a blanket `无偏离`:
+
+- an 8-port switch listed against a 20-port requirement;
+- IP55 listed against IP56 required;
+- single-mode/single-fiber transceiver or 12-core cable against a 6-core outdoor multimode link;
+- 8 × 8TB disks claimed to provide 90 days when 19 channels × 4Mbps continuous recording theoretically requires about 73.872TB before RAID/filesystem overhead;
+- a thermal/visible-light camera model entered as an independent photoelectric smoke detector;
+- a passive external siren described as independently providing APP push, video review, acknowledgement, reset, or logs;
+- a family-page or similar-model parameter presented as proof for the exact supplied model.
+
+When calculating storage, show the basis (camera count, bitrate, frame rate, continuous duration, raw capacity, RAID usable capacity, and practical overhead). Never allow a performance table to say “满足90天” unless the calculation supports it. When a version has an incomplete or over-limit price, blank VAT/bidder/date fields, or missing signatures, state the direct preliminary-review risk even if the technical prose is strong.
+
+In the final report, give each version: technical sub-scores, technical total, eligibility status, hard rejection risks, evidence-backed omissions, and a prioritized repair list. Preserve the prior score as a historical baseline only; do not silently reuse it as the current result.
+
 ### Structure freedom without format drift
 
 When the user asks workers to design genuinely different B/C structures, treat content architecture and document format as separate layers:
@@ -255,6 +284,38 @@ When a user supplies a meta-review prompt with a 100-point rubric, report it sep
 For a second-pass technical bid review, convert the review findings into a final `性能保证值表` rather than only a prose audit. Append it after all existing sections and appendices, using a stable six-column structure: `序号、系统/设备、招标要求/基准、投标性能保证值、偏差/复核说明、证明资料位置`. Cover quantities, key device thresholds, storage retention, network ports/fiber, control-box protection, redundant power, interlocks, pressure/flush tests, authorization/evidence, three-party approval, standards submission, training, warranty and schedule.
 
 Treat quotation lists and technical specifications as separate evidence layers. When they conflict (for example an 8-port listed switch versus a 20-port specification, or IP55 listed enclosure versus IP56 required), do not silently upgrade the listed item or write “满足”. State the required guarantee, identify the current item as a deviation, and require replacement or written clarification before submission. Use conditional verification language for parameters not proven by the available product data. If the user asks for change marking, set every newly added heading, note, table header, cell run and conclusion to the requested color, then independently verify the color across all new table runs.
+
+### Official product-page verification and equipment-list population
+
+When a tender names a manufacturer and requires model-level device parameters, use the manufacturer's official product page as an evidence source, but do not treat a family page, search snippet, or similar model as proof for the exact model. Search by product family and exact model, then open the official product detail page and record the URL, model, and every visible specification relevant to the tender. Build a requirement-versus-evidence matrix with these statuses: `已明确满足`, `官网未列出`, `仅同系列证明`, or `存在偏差`.
+
+For fire-safety/thermal cameras, verify separately: visible-light megapixel class, selectable 1920×1080 and 25fps, H.264 High Profile, MJPEG, multi-stream count, bitrate range, ONVIF/API, alarm input/output count and electrical contact parameters, thermal measurement accuracy/method, and the exact PoE standard. Do not convert “告警2出” into “2路NO、DC12V/20mA”, and do not convert “支持PoE” into `802.3at` without the page or a manufacturer confirmation explicitly stating it. If no exact model satisfies all requirements in public evidence, nominate the closest candidate but mark the unresolved items for a written manufacturer confirmation or model replacement.
+
+When populating an existing equipment-list `.xlsx`, inspect the workbook's actual sheet name and header row first. Back up the source and create a versioned sibling (for example `设备清单_参数要求版.xlsx`); use OfficeCLI batch cell updates for the exact `参数要求` column, enable wrapping/vertical-top alignment for long Chinese requirements, then run OfficeCLI validation and re-read the finished workbook to verify every intended row. Keep conflicts visible in the cell text—never silently upgrade an 8-port listed switch to a 20-port requirement or IP55 enclosure to IP56. For fire-camera, NVR, smoke-detector, optical-transceiver, switch, and alarm-device selection examples and exact official URLs, see `references/fire-device-selection.md` and `references/vendor-equipment-selection.md`; the OfficeCLI/evidence workflow remains in `references/official-product-evidence-and-officecli.xlsx.md`.
+
+### System-function boundary for external devices
+
+For device-selection tasks, separate functions proven by the physical device from functions supplied by the surrounding system. An external siren/stack light may provide only local sound/light output; temperature detection, video analytics, smoke input, alarm forwarding, APP/platform push, video verification, acknowledgement, reset, and log retention may belong to the camera, NVR, alarm controller, gateway, or platform. State the architecture explicitly and never claim that a passive output device independently provides platform functions. If the manufacturer's public page lists only a model name and no electrical/environmental specifications, recommend it only as a basic/near match and require a formal datasheet or confirmation letter before marking compliance.
+
+For exact-match selection, prefer a model whose port count and core parameters match the tender exactly. If a higher model exceeds the requirement, disclose the excess (for example, 16 SATA bays versus an 8-bay minimum) and explain why it is acceptable. For cross-brand systems, verify interface/protocol compatibility separately; manufacturer brand consistency is a hard constraint when the user says the whole set must use one brand.
+
+### Technical deviation-table workflow
+
+When the tender provides a fixed “投标偏离表” format, reproduce its column structure and wording before adding content. For the common format in this project, use exactly three columns: `序号、询价文件重述、偏离或供应商建议（条件）`, followed by the tender's note and signature block. Do not replace the fixed table with a richer internal matrix unless the user explicitly asks for an additional working table.
+
+Keep technical and commercial deviations separate. Technical tables belong in the technical volume; contract/payment/tax/price deviations belong in the commercial volume. If the tender says the bidder has no deviation, do not fill technical rows with a blanket “完全响应” while silently overlooking equipment-list conflicts or unverified model parameters.
+
+Build the table from the controlling technical specification, not only the equipment quotation list. For every major system or scored requirement, write the tender requirement in the middle column and the response in the right column. Use these response statuses consistently:
+- `无偏离` only when the requirement is directly accepted and the supporting model/evidence is adequate;
+- `无偏离，最终型号/参数以厂家正式规格书和甲方确认清单为准` when the design commitment is clear but model evidence is not yet complete;
+- `待厂家书面确认或更换满足型号` when a parameter such as NTC method, alarm-contact electrical values, PoE class, 4G, acoustic level, or storage capacity is not proven;
+- `存在资料不一致，按技术规格书较高要求执行` when the quotation list conflicts with the technical specification.
+
+Always surface internal conflicts instead of silently upgrading the item. Typical examples are an 8-port switch listed in the quotation versus a 20-port switch required in the specification, or IP55 in the list versus IP56 in the specification. State the controlling source, the required correction, and whether the equipment list/deepening drawings must be updated.
+
+Include system-boundary language where necessary: a local sounder does not itself provide APP push, video verification, acknowledgement, reset, or logs; those functions must be assigned to the NVR/platform/controller and tested in the linkage matrix. For storage, include the actual calculation basis (camera count, bitrate, frame rate, continuous duration, RAID/overhead assumptions) rather than asserting that a disk count is sufficient.
+
+After generating the deviation DOCX, independently verify: the table has the expected three columns and row count; the fixed note/signature block is present; unresolved items remain conditional; no commercial content leaked into the technical table; the DOCX reopens with `python-docx`; and LibreOffice converts it successfully to PDF. Preserve the original tender and existing technical volume; create a sibling output such as `标书C技术投标偏离表.docx`.
 
 ### Source path and Word refresh verification
 
