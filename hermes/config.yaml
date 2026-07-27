@@ -643,6 +643,7 @@ known_plugin_toolsets:
     - spotify
 plugins:
   enabled:
+    - herdr-agent-state
     - platforms/photon
   disabled: []
 custom_providers:
