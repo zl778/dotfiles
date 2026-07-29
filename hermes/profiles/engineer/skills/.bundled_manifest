@@ -12,7 +12,7 @@ claude-design:c1b63b7651b66fd15d096e57728ec686
 codebase-inspection:29f67c87df868dd08e76c57b86c7a5c6
 codex:a116c5f880869f663b2974c2c9a79dbd
 comfyui:a3ce050187bda71e1dbd098447c7f366
-computer-use:937face7c83e61b207bd08a5c0ffdff5
+computer-use:d32f1e2244ba0c0cd4ff335c639f2949
 design-md:91a8976ef5d37db2451721db9c2b93da
 docx:353cd277db9bf6af2c49a7ec2258512a
 dogfood:ae6e92c2cd27c3da8a0587f089d19fe3
@@ -32,6 +32,7 @@ himalaya:7ae61574914c25d57a001d1e1efe39bf
 huggingface-hub:1e5932fb1742a0424d04a29a4c4e09d0
 humanizer:b3fa12781b41b4008fba21073632e3d0
 imessage:f545da0f5cc64dd9ee1ffd2b7733a11b
+inspecting-hermes-desktop-dom:a13a3639008c47fa01e01299a3863e07
 llama-cpp:0991055ce47146735f0ed02d7658a254
 llm-wiki:a07aaa8591eac310a33aeec868fd74c6
 manim-video:2ad3d68c3eb5d2675c05138100d3e48b
