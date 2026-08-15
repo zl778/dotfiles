@@ -78,6 +78,20 @@ A project or owner name may still be ambiguous: do not silently remove it when c
 - For long documents, use Heading styles for the hierarchy and an automatic TOC only when the project permits/requires it.
 - If a rendering engine fails to display a custom Chinese numbering format, prefer visible text prefixes plus Heading styles over a visually empty or duplicate automatic list.
 
+## Content audit for supplier quotations
+
+When reviewing a supplier quotation against an inquiry letter and a bill-of-materials workbook, perform a documentary compliance audit in addition to formatting review:
+
+1. Identify the actual files by directory listing; supplier labels in the task may differ from filenames or workbook sheet labels. Record the resolved mapping (for example, company letter, brand, and source sheet).
+2. Extract paragraphs and every table from all DOCX sources, and dump the relevant workbook sheet with formulas and displayed values. Build a requirement matrix with columns: requirement, supplier response, source evidence, status, and severity.
+3. Recalculate every price subtotal and total independently. Check budget ceiling, tax/inclusion language, and whether installation, training, freight, warranty, and options are separately priced or explicitly included.
+4. Treat a response marked “满足” as unsupported unless the quotation or source material contains evidence. Distinguish: (a) contradiction with source data, (b) omitted evidence, and (c) an unverified enhancement claim. Do not silently upgrade any of these to compliance.
+5. Pay special attention to wording changes such as “扩容后最高” becoming “基础吞吐量”, optional hardware becoming configured hardware, and one-year versus three-year authorization text. Require an original manufacturer authorization/warranty document when the source text is internally inconsistent.
+6. Check mandatory submission materials separately from technical compliance. An absent original authorization/agency certificate is a procedural compliance issue even if the product and price appear correct.
+7. Report confirmed no-problem items explicitly: arithmetic, budget, company/brand/model consistency, option configuration, validity period, and service commitments. State when conclusions are documentary only and do not authenticate the physical product.
+
+For this audit pattern, use a concise table with severity, location, specific discrepancy, and audit judgment, followed by price checks,重点事项, and no-problem items. Do not modify supplier files.
+
 ## Pitfalls
 
 - `Normal` style defaults can disagree with actual run-level fonts. Always report both the style definition and actual display-oriented formatting.

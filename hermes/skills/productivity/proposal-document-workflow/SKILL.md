@@ -217,6 +217,17 @@ Synced folders and asynchronous workers can overwrite the same `.docx` after the
 
 If the user explicitly permits project bullets for format B, bullets may be used for short parallel items such as inspection checks, fault-response steps, or deliverable lists. Keep the main explanation in complete paragraphs and tables, keep bullets out of A/C unless separately allowed, and verify the final `.docx` for the actual bullet/list XML rather than inferring it from Markdown.
 
+### Pre-submission quote audit and cross-version integrity check
+
+When reviewing multiple supplier quotation DOCX files against one inquiry and one equipment list, run two separate audits before delivery:
+
+1. **Within-file compliance audit:** map every inquiry requirement to the actual quotation table and technical response. Recalculate each line-item subtotal, tax, and final total independently; compare the corrected total with the budget ceiling. Check whether installation, training, freight, warranty, and support are included or silently omitted. Verify mandatory attachments such as business license, manufacturer authorization, and after-sales commitment. Treat supplier code-to-real-company mapping as a required fact, not an assumption.
+2. **Cross-file integrity audit:** extract company names, brands, exact models, quantities, prices, dates, metadata, and substantive paragraphs from all versions. Flag cross-contamination or long identical passages, but do not label the result “串标” from similarity alone; report concrete evidence and uncertainty. Different structures and wording are not proof of independence either.
+
+For technical responses, never accept a blanket `满足`/`无偏离` when the source list only proves a related or conditional capability. Common traps include: “扩容后最高” rewritten as base throughput; an optional redundant power module rewritten as factory dual power; IPv4/IPv6 dual stack, 1:N virtualization, transparent mode, threat intelligence, or ACG inferred from generic firewall functions; and a family-page parameter used as proof for the exact model. Use `待厂家书面确认`, `部分满足/待确认`, or `存在偏差` and identify the evidence gap.
+
+For pricing, show the arithmetic basis explicitly. If a source spreadsheet formula omits a listed line item, preserve the source value as a disclosed reference but calculate the complete total independently and mark the budget/validity risk. Never silently repair a quote into compliance. Reopen the current renamed files rather than assuming earlier generated filenames still exist; synced folders may rename or replace artifacts after worker generation. Run `python-docx` extraction plus OfficeCLI `validate` after any repair, closing resident OfficeCLI documents first to avoid stale-cache results.
+
 ### Post-generation scoring and second-pass audit
 
 When the user provides a separate review/scoring prompt after the DOCX files exist, audit the actual DOCX packages, not only the Markdown drafts. Run three independent checks:
@@ -321,6 +332,20 @@ After generating the deviation DOCX, independently verify: the table has the exp
 
 Synced OneDrive project folders may be renamed or moved while old paths remain in session context. Before reviewing or editing, rediscover the exact filename and containing folder and use the user-facing `CloudStorage` copy. After changing styles, numbering, TOC fields, or page setup, close Word completely and reopen the DOCX before judging the displayed result; Word may cache the old navigation tree and formatting within the same process.
 
+### Recovery when a Word file appears to disappear after saving
+
+When a user says a Word file was edited and saved but cannot be found, do not conclude that it was lost after checking only the expected filename. Use this recovery order:
+
+1. Search the exact project tree recursively for same-title variants, hidden/temporary names, and extension changes (`.docx`, `.doc`, `~$*`, `~WRF*`, `~WRS*`). Sort by modification time and size.
+2. Inspect every plausible variant with `python-docx`: paragraph count, table count, headings, and distinctive added text. A modified copy often has more paragraphs/tables than the original even when the filename only says `副本` or `副本2`.
+3. Compare candidates with MD5 only after content inspection. Identical MD5 between `副本` and `副本2` means they are duplicate saved copies, not proof that no edited version exists; compare both against the original.
+4. Check Word's macOS `AutoRecovery`, `Data/tmp`, `Application Support/Microsoft/Temp`, and OfficeFileCache. Treat a non-empty `~WRF*` file as a candidate, but validate its actual format before claiming recoverability; Word temporary files may be compound/partial files that neither `textutil` nor LibreOffice can open.
+5. Read Word's MRU file at `~/Library/Containers/com.microsoft.Word/Data/Library/Application Support/Microsoft/Office/16.0/aggmru/*/w-mru4-zh-CN-sr.json`. Extract matching titles, OneDrive URLs, breadcrumbs, timestamps, and modification metadata. This can reveal that the file was saved under a OneDrive cloud path or a renamed copy.
+6. Check both user-facing `~/Library/CloudStorage/OneDrive-个人/` and any other indexed OneDrive tree, plus `.Trash`; do not modify or delete recovery candidates during discovery.
+7. If a verified modified copy exists, create a sibling named clearly, for example `原文件名_已编辑恢复版.docx`, and verify the copied file's MD5 and `python-docx` readability. Preserve the original and all candidates.
+
+The acceptance evidence is: exact absolute path, modified-vs-original structural comparison, checksum of the recovery copy, and an explicit statement if Word/OneDrive temporary candidates were not parseable. Do not report a file as unrecoverable until these checks are complete. The re-runnable search notes and MRU parsing recipe are in `references/word-save-recovery.md`.
+
 ### Surgical DOCX update from supplementary materials
 
 When the user provides supplementary materials (XLSX quotation sheets, product spec `.doc` files, certification PDFs) and asks you to update an existing technical-volume DOCX with concrete device models, quantities, and performance parameters:
@@ -338,6 +363,19 @@ When the user provides supplementary materials (XLSX quotation sheets, product s
 6. **Verify after modification.** Re-read the modified DOCX with `python-docx`, inspect file size, paragraph count, the red-text runs (count paragraphs containing a red run), verify that no prices leaked into the technical volume, and confirm the backup still exists at its original path. Report: backup path, file size before/after, paragraphs modified, tables modified.
 
 7. **No-fabrication boundary.** If a supplementary source is missing a device model or quantity for a required item, mark it as `[待补充]` in red font rather than inventing a number. The user can correct from the actual procurement list.
+
+### Procurement quotation package: source arithmetic and artifact gates
+
+When producing multiple vendor quotation DOCX files from an invitation plus an XLSX equipment list:
+
+1. Freeze a factual brief before dispatch. Extract the invitation's controlling budget, delivery, validity, service, and every technical row; extract each vendor sheet's exact model, quantity, unit price, formula, and remarks. Keep the invitation as the controlling requirement and the spreadsheet as the pricing source, but do not silently trust spreadsheet formulas.
+2. Recalculate every vendor total independently from line items. Compare the source formula result with the line-item sum, tax basis, and budget cap. If a formula omits a line (for example, a jump-wire row), disclose both the source result and the corrected full-list result; never hide an over-budget result by copying the erroneous cached formula.
+3. Dispatch named profiles with distinct output paths and keep the coordinator responsible for the third version. If a named profile's default provider returns an authentication error, retry the same profile with a known-good explicit provider/model and disclose that provider fallback; do not claim the original model identity was preserved.
+4. Stage and verify outputs independently. A worker's final message or generated diff is not completion proof. Reopen each DOCX with `python-docx`, check project number, vendor/brand/model, all prices, service promises, technical response rows, pending-confirmation labels, tables, and metadata. Clean worker-tool metadata such as `python-docx` before delivery.
+5. Run `officecli validate` on every final DOCX. Close the OfficeCLI resident for each file before validation or before reading it with another library; otherwise validation may inspect a stale in-memory copy. If strict schema validation reports `w:shd` table-cell shading errors from a python-docx-produced file, remove the nonessential shading elements (or regenerate with schema-valid shading) and revalidate. Preserve a `/tmp/` backup before XML repair.
+6. For technical evidence, use `满足` only when the supplied vendor row explicitly proves the invitation requirement. Use `待厂家书面确认` for missing IPv4/IPv6, virtualization semantics, transparent mode, threat-intelligence scope, capacity, or similar evidence. Keep optionals (such as a redundant power module) and source-description contradictions visible in a deviation/risk table.
+
+See `references/quotation-package-verification.md` for the reusable extraction, arithmetic, provider-fallback, resident-cache, and validation checklist.
 
 ### Pitfalls
 
