@@ -1,0 +1,43 @@
+{
+  "jobs": [
+    {
+      "id": "9f46b8d0a0d3",
+      "name": "每日维护（hermes update + dotfiles sync）",
+      "prompt": "运行每日维护任务，按顺序执行以下步骤：\n\n1. **Hermes 升级**：运行 `hermes update`，记录输出\n2. **Dotfiles 同步**：进入 ~/dotfiles，运行 `bash sync.sh`，记录输出\n3. **Git 提交 + 推送**：进入 ~/dotfiles，依次执行 `git add .`，`git diff --cached --quiet` 判断是否有变更，有则 `git commit -m \"每日自动更新 $(date +%F)\"` 和 `git push`，记录输出\n\n如果某一步失败，报告错误但继续下一步。最后汇总一个简洁的状态报告。用中文回答。",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "no_agent": false,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 4 * * *",
+        "display": "0 4 * * *"
+      },
+      "schedule_display": "0 4 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 64
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-06-20T08:40:02.215069+08:00",
+      "next_run_at": "2026-08-22T04:00:00+08:00",
+      "last_run_at": "2026-08-21T04:51:31.887064+08:00",
+      "last_status": "error",
+      "last_error": "TimeoutError: Cron job '每日维护（hermes update + dotfiles sync）' idle for 896s (limit 600s) — last activity: execute_code running (40s elapsed)",
+      "last_delivery_error": null,
+      "deliver": "telegram:-5584761717",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "fire_claim": null
+    }
+  ],
+  "updated_at": "2026-08-21T04:51:31.889107+08:00"
+}
