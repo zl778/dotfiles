@@ -420,14 +420,14 @@
     "created_by": "agent",
     "last_patched_at": "2026-06-20T00:45:51.921757+00:00",
     "last_reused_patch_generation": 0,
-    "last_used_at": "2026-08-28T20:14:07.633044+00:00",
-    "last_viewed_at": "2026-08-28T20:14:07.624253+00:00",
+    "last_used_at": "2026-08-29T20:13:27.530713+00:00",
+    "last_viewed_at": "2026-08-29T20:13:27.521867+00:00",
     "patch_count": 1,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 41,
-    "view_count": 41
+    "use_count": 42,
+    "view_count": 42
   },
   "dotfiles-setup": {
     "archived_at": null,
@@ -435,14 +435,14 @@
     "created_by": "agent",
     "last_patched_at": "2026-07-02T14:48:54.076972+00:00",
     "last_reused_patch_generation": 0,
-    "last_used_at": "2026-08-28T20:14:07.627097+00:00",
-    "last_viewed_at": "2026-08-28T20:14:07.618125+00:00",
+    "last_used_at": "2026-08-29T20:13:27.536653+00:00",
+    "last_viewed_at": "2026-08-29T20:13:27.527873+00:00",
     "patch_count": 3,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 35,
-    "view_count": 35
+    "use_count": 36,
+    "view_count": 36
   },
   "dotfiles-version-control": {
     "archived_at": null,
@@ -679,14 +679,14 @@
     "created_by": null,
     "last_patched_at": "2026-06-04T07:05:03.100124+00:00",
     "last_reused_patch_generation": 0,
-    "last_used_at": "2026-08-28T20:14:07.630059+00:00",
-    "last_viewed_at": "2026-08-28T20:14:07.621217+00:00",
+    "last_used_at": "2026-08-29T20:13:27.533735+00:00",
+    "last_viewed_at": "2026-08-29T20:13:27.524948+00:00",
     "patch_count": 2,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 147,
-    "view_count": 147
+    "use_count": 148,
+    "view_count": 148
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,
