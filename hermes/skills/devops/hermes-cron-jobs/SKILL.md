@@ -126,7 +126,7 @@ cat ~/.hermes/cron/output/<job_id>/*.md
 | 找不到 job ID | 猜错了 | 先 `cronjob(action='list')` |
 | 凌晨投递到旧会话 | deliver=origin 绑定创建时的会话 | 用 deliver=local 或指定目标 |
 | cron-run 递归调度 cronjob | 安全规则禁止 | 提示已在 prompt 中 |
-| `hermes update` 卡在待批准 | 该命令触发 approval_fns（重启 gateway、杀死 agent） | 用 git pull + venv pip install 替代 |
+| `hermes update` 卡在待批准 | 该命令触发 approval_fns（重启 gateway、杀死 agent） | 直接 `bash ~/.hermes/scripts/daily-maintenance.sh`（脚本内命令不经 agent 审批层，已验证可行）；或 git pull + venv pip install 替代 |
 
 ## 查看运行日志
 

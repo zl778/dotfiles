@@ -3,8 +3,8 @@
     "data": {
       "paidRecommendedModels": [
         {
-          "modelName": "z-ai/glm-5.2:US",
-          "displayName": "z-ai/glm-5.2:US",
+          "modelName": "z-ai/glm-5.3:US",
+          "displayName": "z-ai/glm-5.3:US",
           "source": "local",
           "href": null,
           "tokenPrice": null,
@@ -14,54 +14,42 @@
           "position": 0,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
-          "modelName": "openai/gpt-5.6-sol",
-          "displayName": "OpenAI: GPT-5.6 Sol",
-          "source": "openrouter",
-          "href": "https://openrouter.ai/openai/gpt-5.6-sol-20260709",
-          "tokenPrice": "in $1.60 / out $8.00 per 1M",
-          "contextLength": 1050000,
-          "inputModalities": [
-            "file",
-            "image",
-            "text"
-          ],
-          "outputModalities": [
-            "text"
-          ],
+          "modelName": "z-ai/glm-5.3-flash:US",
+          "displayName": "z-ai/glm-5.3-flash:US",
+          "source": "local",
+          "href": null,
+          "tokenPrice": null,
+          "contextLength": null,
+          "inputModalities": [],
+          "outputModalities": [],
           "position": 1,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
-          "modelName": "openai/gpt-5.6-terra",
-          "displayName": "OpenAI: GPT-5.6 Terra",
-          "source": "openrouter",
-          "href": "https://openrouter.ai/openai/gpt-5.6-terra-20260709",
-          "tokenPrice": "in $1.60 / out $9.60 per 1M",
-          "contextLength": 1050000,
-          "inputModalities": [
-            "file",
-            "image",
-            "text"
-          ],
-          "outputModalities": [
-            "text"
-          ],
+          "modelName": "z-ai/glm-5.2:US",
+          "displayName": "z-ai/glm-5.2:US",
+          "source": "local",
+          "href": null,
+          "tokenPrice": null,
+          "contextLength": null,
+          "inputModalities": [],
+          "outputModalities": [],
           "position": 2,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
-          "modelName": "openai/gpt-5.6-luna",
-          "displayName": "OpenAI: GPT-5.6 Luna",
+          "modelName": "openai/gpt-6-astra",
+          "displayName": "OpenAI: GPT-6 Astra",
           "source": "openrouter",
-          "href": "https://openrouter.ai/openai/gpt-5.6-luna-20260709",
-          "tokenPrice": "in $0.16 / out $0.96 per 1M",
+          "href": "https://openrouter.ai/openai/gpt-6-astra-20260903",
+          "tokenPrice": "in $10.00 / out $50.00 per 1M",
           "contextLength": 1050000,
           "inputModalities": [
             "file",
@@ -74,7 +62,107 @@
           "position": 3,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
+        },
+        {
+          "modelName": "openai/gpt-6-astra-fast",
+          "displayName": "OpenAI: GPT-6 Astra Fast",
+          "source": "openrouter",
+          "href": "https://openrouter.ai/openai/gpt-6-astra-20260903",
+          "tokenPrice": "in $20.00 / out $100.00 per 1M",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ],
+          "outputModalities": [
+            "text"
+          ],
+          "position": 4,
+          "isVisionModel": false,
+          "isCompactionModel": false,
+          "updatedAt": "2026-09-08T16:50:50.729Z"
+        },
+        {
+          "modelName": "openai/gpt-6-astra-flex",
+          "displayName": "OpenAI: GPT-6 Astra Flex",
+          "source": "openrouter",
+          "href": "https://openrouter.ai/openai/gpt-6-astra-20260903",
+          "tokenPrice": "in $5.00 / out $25.00 per 1M",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ],
+          "outputModalities": [
+            "text"
+          ],
+          "position": 5,
+          "isVisionModel": false,
+          "isCompactionModel": false,
+          "updatedAt": "2026-09-08T16:50:50.729Z"
+        },
+        {
+          "modelName": "openai/gpt-6-astra-pro",
+          "displayName": "OpenAI: GPT-6 Astra Pro",
+          "source": "openrouter",
+          "href": "https://openrouter.ai/openai/gpt-6-astra-pro-20260903",
+          "tokenPrice": "in $10.00 / out $50.00 per 1M",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ],
+          "outputModalities": [
+            "text"
+          ],
+          "position": 6,
+          "isVisionModel": false,
+          "isCompactionModel": false,
+          "updatedAt": "2026-09-08T16:50:50.729Z"
+        },
+        {
+          "modelName": "openai/gpt-6-astra-pro-fast",
+          "displayName": "OpenAI: GPT-6 Astra Pro Fast",
+          "source": "openrouter",
+          "href": "https://openrouter.ai/openai/gpt-6-astra-pro-20260903",
+          "tokenPrice": "in $20.00 / out $100.00 per 1M",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ],
+          "outputModalities": [
+            "text"
+          ],
+          "position": 7,
+          "isVisionModel": false,
+          "isCompactionModel": false,
+          "updatedAt": "2026-09-08T16:50:50.729Z"
+        },
+        {
+          "modelName": "openai/gpt-6-astra-pro-flex",
+          "displayName": "OpenAI: GPT-6 Astra Pro Flex",
+          "source": "openrouter",
+          "href": "https://openrouter.ai/openai/gpt-6-astra-pro-20260903",
+          "tokenPrice": "in $5.00 / out $25.00 per 1M",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ],
+          "outputModalities": [
+            "text"
+          ],
+          "position": 8,
+          "isVisionModel": false,
+          "isCompactionModel": false,
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
           "modelName": "upstage/solar-pro4:free",
@@ -85,10 +173,10 @@
           "contextLength": null,
           "inputModalities": [],
           "outputModalities": [],
-          "position": 4,
+          "position": 9,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
           "modelName": "meituan/longcat-2.0:free",
@@ -99,14 +187,32 @@
           "contextLength": null,
           "inputModalities": [],
           "outputModalities": [],
-          "position": 5,
+          "position": 10,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
+        },
+        {
+          "modelName": "inclusionai/ling-3.0-flash-sante:free",
+          "displayName": "inclusionAI: Ling 3.0 Flash Sante (free)",
+          "source": "openrouter",
+          "href": "https://openrouter.ai/inclusionai/ling-3.0-flash-sante-20260904",
+          "tokenPrice": "$0.00/1M",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text"
+          ],
+          "outputModalities": [
+            "text"
+          ],
+          "position": 11,
+          "isVisionModel": false,
+          "isCompactionModel": false,
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
           "modelName": "inclusionai/ling-3.0-flash-fin:free",
-          "displayName": "Ling 3.0 Flash Fin (free)",
+          "displayName": "inclusionAI: Ling 3.0 Flash Fin (free)",
           "source": "openrouter",
           "href": "https://openrouter.ai/inclusionai/ling-3.0-flash-fin-20260827",
           "tokenPrice": "$0.00/1M",
@@ -117,10 +223,10 @@
           "outputModalities": [
             "text"
           ],
-          "position": 6,
+          "position": 12,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
           "modelName": "poolside/laguna-s-2.1:free",
@@ -135,10 +241,10 @@
           "outputModalities": [
             "text"
           ],
-          "position": 7,
+          "position": 13,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
           "modelName": "stepfun/step-3.7-flash:free",
@@ -149,10 +255,10 @@
           "contextLength": null,
           "inputModalities": [],
           "outputModalities": [],
-          "position": 8,
+          "position": 14,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
           "modelName": "poolside/laguna-xs-2.1:free",
@@ -167,10 +273,10 @@
           "outputModalities": [
             "text"
           ],
-          "position": 9,
+          "position": 15,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         }
       ],
       "freeRecommendedModels": [
@@ -186,7 +292,7 @@
           "position": 0,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
           "modelName": "meituan/longcat-2.0:free",
@@ -200,13 +306,13 @@
           "position": 1,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
-          "modelName": "inclusionai/ling-3.0-flash-fin:free",
-          "displayName": "Ling 3.0 Flash Fin (free)",
+          "modelName": "inclusionai/ling-3.0-flash-sante:free",
+          "displayName": "inclusionAI: Ling 3.0 Flash Sante (free)",
           "source": "openrouter",
-          "href": "https://openrouter.ai/inclusionai/ling-3.0-flash-fin-20260827",
+          "href": "https://openrouter.ai/inclusionai/ling-3.0-flash-sante-20260904",
           "tokenPrice": "$0.00/1M",
           "contextLength": 262144,
           "inputModalities": [
@@ -218,7 +324,25 @@
           "position": 2,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
+        },
+        {
+          "modelName": "inclusionai/ling-3.0-flash-fin:free",
+          "displayName": "inclusionAI: Ling 3.0 Flash Fin (free)",
+          "source": "openrouter",
+          "href": "https://openrouter.ai/inclusionai/ling-3.0-flash-fin-20260827",
+          "tokenPrice": "$0.00/1M",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text"
+          ],
+          "outputModalities": [
+            "text"
+          ],
+          "position": 3,
+          "isVisionModel": false,
+          "isCompactionModel": false,
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
           "modelName": "poolside/laguna-s-2.1:free",
@@ -233,10 +357,10 @@
           "outputModalities": [
             "text"
           ],
-          "position": 3,
+          "position": 4,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
           "modelName": "stepfun/step-3.7-flash:free",
@@ -247,10 +371,10 @@
           "contextLength": null,
           "inputModalities": [],
           "outputModalities": [],
-          "position": 4,
+          "position": 5,
           "isVisionModel": true,
           "isCompactionModel": true,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         },
         {
           "modelName": "poolside/laguna-xs-2.1:free",
@@ -265,10 +389,10 @@
           "outputModalities": [
             "text"
           ],
-          "position": 5,
+          "position": 6,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-08-31T12:56:37.166Z"
+          "updatedAt": "2026-09-08T16:50:50.729Z"
         }
       ],
       "paidRecommendedVisionModel": null,
@@ -282,10 +406,10 @@
         "contextLength": null,
         "inputModalities": [],
         "outputModalities": [],
-        "position": 4,
+        "position": 5,
         "isVisionModel": true,
         "isCompactionModel": true,
-        "updatedAt": "2026-08-31T12:56:37.166Z"
+        "updatedAt": "2026-09-08T16:50:50.729Z"
       },
       "freeRecommendedCompactionModel": {
         "modelName": "stepfun/step-3.7-flash:free",
@@ -296,12 +420,12 @@
         "contextLength": null,
         "inputModalities": [],
         "outputModalities": [],
-        "position": 4,
+        "position": 5,
         "isVisionModel": true,
         "isCompactionModel": true,
-        "updatedAt": "2026-08-31T12:56:37.166Z"
+        "updatedAt": "2026-09-08T16:50:50.729Z"
       }
     },
-    "ts": 1788410609.468353
+    "ts": 1789414540.329942
   }
 }
