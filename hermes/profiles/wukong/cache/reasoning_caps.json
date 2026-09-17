@@ -1,6 +1,6 @@
 {
 "https://openrouter.ai/api/v1/models":{
-"ts":1789588510.09652,
+"ts":1789669628.755836,
 "caps":{
 "stealth/union-alpha":{
 "supports_reasoning":false
@@ -391,6 +391,15 @@
 "mandatory":true
 },
 "qwen/qwen3.8-27b":{
+"supports_reasoning":true,
+"supported_efforts":[
+"xhigh",
+"medium",
+"low"
+],
+"mandatory":false
+},
+"qwen/qwen3.8-27b:free":{
 "supports_reasoning":true,
 "supported_efforts":[
 "xhigh",
