@@ -1,9 +1,9 @@
 {
-  "last_report_path": "/Users/liangzhu/.hermes/logs/curator/20260912-061731",
-  "last_run_at": "2026-09-12T06:17:31.412216+00:00",
-  "last_run_duration_seconds": 7.434684,
-  "last_run_summary": "auto: 19 archived; llm: skipped (consolidation off)",
-  "last_run_summary_shown_at": "2026-08-28T17:13:18.803140+00:00",
+  "last_report_path": "/Users/liangzhu/.hermes/logs/curator/20260919-063813",
+  "last_run_at": "2026-09-19T06:38:13.484572+00:00",
+  "last_run_duration_seconds": 1.490889,
+  "last_run_summary": "auto: 6 marked stale, 1 archived; llm: skipped (consolidation off)",
+  "last_run_summary_shown_at": "2026-09-19T06:38:13.484572+00:00",
   "paused": false,
-  "run_count": 16
+  "run_count": 17
 }
