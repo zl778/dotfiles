@@ -3,6 +3,26 @@
     "data": {
       "paidRecommendedModels": [
         {
+          "modelName": "x-ai/grok-4.7",
+          "displayName": "SpaceXAI: Grok 4.7",
+          "source": "openrouter",
+          "href": "https://openrouter.ai/x-ai/grok-4.7-20260916",
+          "tokenPrice": "in $1.60 / out $4.80 per 1M",
+          "contextLength": 500000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ],
+          "outputModalities": [
+            "text"
+          ],
+          "position": 0,
+          "isVisionModel": false,
+          "isCompactionModel": false,
+          "updatedAt": "2026-09-21T17:06:33.075Z"
+        },
+        {
           "modelName": "z-ai/glm-5.3:US",
           "displayName": "z-ai/glm-5.3:US",
           "source": "local",
@@ -11,10 +31,10 @@
           "contextLength": null,
           "inputModalities": [],
           "outputModalities": [],
-          "position": 0,
+          "position": 1,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "z-ai/glm-5.3-flash:US",
@@ -25,24 +45,10 @@
           "contextLength": null,
           "inputModalities": [],
           "outputModalities": [],
-          "position": 1,
-          "isVisionModel": false,
-          "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
-        },
-        {
-          "modelName": "z-ai/glm-5.2:US",
-          "displayName": "z-ai/glm-5.2:US",
-          "source": "local",
-          "href": null,
-          "tokenPrice": null,
-          "contextLength": null,
-          "inputModalities": [],
-          "outputModalities": [],
           "position": 2,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "openai/gpt-6-astra",
@@ -62,7 +68,7 @@
           "position": 3,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "openai/gpt-6-astra-fast",
@@ -82,7 +88,7 @@
           "position": 4,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "openai/gpt-6-astra-flex",
@@ -102,7 +108,7 @@
           "position": 5,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "openai/gpt-6-astra-pro",
@@ -122,7 +128,7 @@
           "position": 6,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "openai/gpt-6-astra-pro-fast",
@@ -142,7 +148,7 @@
           "position": 7,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "openai/gpt-6-astra-pro-flex",
@@ -162,7 +168,7 @@
           "position": 8,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "upstage/solar-pro4:free",
@@ -176,7 +182,7 @@
           "position": 9,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "meituan/longcat-2.0:free",
@@ -190,7 +196,7 @@
           "position": 10,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "inclusionai/ling-3.0-flash-sante:free",
@@ -208,7 +214,7 @@
           "position": 11,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "inclusionai/ling-3.0-flash-fin:free",
@@ -226,7 +232,7 @@
           "position": 12,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "poolside/laguna-s-2.1:free",
@@ -244,7 +250,7 @@
           "position": 13,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "stepfun/step-3.7-flash:free",
@@ -258,7 +264,7 @@
           "position": 14,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "poolside/laguna-xs-2.1:free",
@@ -276,7 +282,7 @@
           "position": 15,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         }
       ],
       "freeRecommendedModels": [
@@ -292,7 +298,7 @@
           "position": 0,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "meituan/longcat-2.0:free",
@@ -306,7 +312,7 @@
           "position": 1,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "inclusionai/ling-3.0-flash-sante:free",
@@ -324,7 +330,7 @@
           "position": 2,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "inclusionai/ling-3.0-flash-fin:free",
@@ -342,7 +348,7 @@
           "position": 3,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "poolside/laguna-s-2.1:free",
@@ -360,7 +366,7 @@
           "position": 4,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "stepfun/step-3.7-flash:free",
@@ -374,7 +380,7 @@
           "position": 5,
           "isVisionModel": true,
           "isCompactionModel": true,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         },
         {
           "modelName": "poolside/laguna-xs-2.1:free",
@@ -392,7 +398,7 @@
           "position": 6,
           "isVisionModel": false,
           "isCompactionModel": false,
-          "updatedAt": "2026-09-08T16:50:50.729Z"
+          "updatedAt": "2026-09-21T17:06:33.075Z"
         }
       ],
       "paidRecommendedVisionModel": null,
@@ -409,7 +415,7 @@
         "position": 5,
         "isVisionModel": true,
         "isCompactionModel": true,
-        "updatedAt": "2026-09-08T16:50:50.729Z"
+        "updatedAt": "2026-09-21T17:06:33.075Z"
       },
       "freeRecommendedCompactionModel": {
         "modelName": "stepfun/step-3.7-flash:free",
@@ -423,9 +429,9 @@
         "position": 5,
         "isVisionModel": true,
         "isCompactionModel": true,
-        "updatedAt": "2026-09-08T16:50:50.729Z"
+        "updatedAt": "2026-09-21T17:06:33.075Z"
       }
     },
-    "ts": 1789933867.404118
+    "ts": 1790102604.7707992
   }
 }
