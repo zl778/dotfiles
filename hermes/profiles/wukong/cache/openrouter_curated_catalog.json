@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1790538577.372479,
+  "fetched_at": 1791056172.878047,
   "curated": [
     [
       "anthropic/claude-fable-5.1",
@@ -22,6 +22,10 @@
       ""
     ],
     [
+      "anthropic/claude-sonnet-5.5",
+      ""
+    ],
+    [
       "anthropic/claude-sonnet-5",
       ""
     ],
@@ -35,6 +39,14 @@
     ],
     [
       "openai/gpt-6-astra-pro",
+      ""
+    ],
+    [
+      "openai/gpt-6.1-sol",
+      ""
+    ],
+    [
+      "openai/gpt-6.1-sol-pro",
       ""
     ],
     [
@@ -186,6 +198,14 @@
       ""
     ],
     [
+      "upstage/solar-pro4",
+      ""
+    ],
+    [
+      "upstage/solar-mini4",
+      ""
+    ],
+    [
       "thinkingmachines/inkling:free",
       "free"
     ],
@@ -211,6 +231,10 @@
     ],
     [
       "nvidia/nemotron-3.5-lightning:free",
+      "free"
+    ],
+    [
+      "stealth/space-bunny-alpha",
       "free"
     ]
   ]

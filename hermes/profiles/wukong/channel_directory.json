@@ -1,13 +1,4 @@
 {
-  "updated_at": "2026-09-28T03:54:37.261952",
-  "platforms": {
-    "weixin": [
-      {
-        "id": "o9cq806YCLY_CHfufcpaVwosjBZQ@im.wechat",
-        "name": "o9cq806YCLY_CHfufcpaVwosjBZQ@im.wechat",
-        "type": "dm",
-        "thread_id": null
-      }
-    ]
-  }
+  "updated_at": "2026-10-04T04:02:09.973493",
+  "platforms": {}
 }
