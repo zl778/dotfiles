@@ -612,9 +612,16 @@ platform_toolsets:
     - hermes-google_chat
 known_plugin_toolsets:
   cli:
+    - homeassistant
     - spotify
+  acp:
+    - homeassistant
+  webhook:
+    - homeassistant
 plugins:
   enabled: []
+_left_core_scoped:
+  - homeassistant
 
 # ── Fallback Model ────────────────────────────────────────────────────
 # Automatic provider failover when primary is unavailable.
