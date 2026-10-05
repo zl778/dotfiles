@@ -2,7 +2,7 @@
   "identity": {
     "root": "/Users/liangzhu/.hermes/hermes-agent",
     "home": "/Users/liangzhu/.hermes/profiles/wukong",
-    "head": "343500b3547e12530457c2fda60ec687e25118b4",
+    "head": "79af3f6cea8067284a7ea5725078578b3f790adb",
     "origin": "https://github.com/NousResearch/hermes-agent.git",
     "branch": "main",
     "channel": "main",
@@ -10,18 +10,18 @@
     "branchOverride": false,
     "channelProtocol": 1
   },
-  "ts": 1791057729.843206,
+  "ts": 1791230546.6026912,
   "status": {
     "supported": true,
     "hermesRoot": "/Users/liangzhu/.hermes/hermes-agent",
     "behind": 0,
     "commits": [],
-    "currentSha": "343500b3547e12530457c2fda60ec687e25118b4",
+    "currentSha": "79af3f6cea8067284a7ea5725078578b3f790adb",
     "currentBranch": "main",
     "dirty": false,
     "branch": "main",
-    "fetchedAt": 1791057729843,
-    "targetSha": "343500b3547e12530457c2fda60ec687e25118b4",
+    "fetchedAt": 1791230546602,
+    "targetSha": "79af3f6cea8067284a7ea5725078578b3f790adb",
     "updateAvailable": false
   }
 }

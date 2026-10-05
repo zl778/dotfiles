@@ -1,0 +1,24 @@
+{
+  "exit_code": 1,
+  "feature_list": [
+    "telegram"
+  ],
+  "finished_at": "2026-10-05T20:02:11.103057+00:00",
+  "kind": "sync",
+  "outcome": "failed",
+  "platform": null,
+  "refusal": null,
+  "schema": 1,
+  "started_at": "2026-10-05T20:02:05.415346+00:00",
+  "steps": [
+    {
+      "at": "2026-10-05T20:02:11.103019+00:00",
+      "detail": "ResolutionConflict: venv: uv lock exited 1: 6_64.whl is missing an upload date, but user provided: 2026-09-21T20:02:09.704082Z\n  \u00d7 No solution found when resolving dependencies for split (markers:\n  \u2502 python_full_version == '3.14.*' and sys_platform != 'android'):\n  \u2570\u2500\u25b6 Because resvg-py{python_full_version >= '3.14'}==0.4.0 has no publish\n      time and hermes-agent depends on resvg-py{python_full_version >=\n      '3.14'}==0.4.0, we can conclude that hermes-agent's requirements are\n      unsatisfiable.\n      And because your workspace requires hermes-agent[acp], we can conclude\n      that your workspace's requirements are unsatisfiable. \u2014 retry, or run `hermes pm doctor`",
+      "name": "dependency-sync",
+      "ok": false
+    }
+  ],
+  "update_id": "79b90162b9ac4e4ea8fc3410619f0995",
+  "venv_rebuild": null,
+  "warnings": []
+}

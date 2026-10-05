@@ -1,1 +1,1 @@
-{"pid": 2370, "kind": "hermes-gateway", "argv": ["/Users/liangzhu/.hermes/hermes-agent/hermes_cli/main.py", "gateway", "run", "--replace"], "start_time": 179114420230, "hermes_home": "/Users/liangzhu/.hermes/profiles/wukong"}
+{"pid": 73047, "kind": "hermes-gateway", "argv": ["/Users/liangzhu/.hermes/hermes-agent/hermes_cli/main.py", "gateway", "run", "--replace"], "start_time": 179123053952, "hermes_home": "/Users/liangzhu/.hermes/profiles/wukong"}
