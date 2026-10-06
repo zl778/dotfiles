@@ -1,0 +1,18 @@
+{
+  "exit_code": 0,
+  "feature_list": null,
+  "finished_at": "2026-10-06T20:08:19.393796+00:00",
+  "kind": "sync",
+  "outcome": "ok",
+  "platform": null,
+  "refusal": null,
+  "schema": 1,
+  "started_at": "2026-10-06T20:08:18.849854+00:00",
+  "steps": [],
+  "update_id": "914cb063a5f348c1b2395704f09b870d",
+  "venv_rebuild": {
+    "ok": false,
+    "reason": "inactive plugin"
+  },
+  "warnings": []
+}
