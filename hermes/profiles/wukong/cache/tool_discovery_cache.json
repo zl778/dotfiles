@@ -140,8 +140,13 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/browser_supervisor.py": [
-1790626066045963030,
-27549,
+1791317157800037137,
+28393,
+false
+],
+"/Users/liangzhu/.hermes/hermes-agent/tools/browser_supervisor_capture.py": [
+1791317157800129138,
+5678,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/browser_supervisor_dialogs.py": [
@@ -180,8 +185,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/browser_tool_lifecycle.py": [
-1790971258492496690,
-33470,
+1791317157800328308,
+34881,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/browser_tool_lightpanda_fallback.py": [
@@ -295,8 +300,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/computer_use/tool.py": [
-1790971258493667207,
-63558,
+1791317157801084735,
+63078,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/computer_use_tool.py": [
@@ -305,8 +310,8 @@ false
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/connectors/tool.py": [
-1790281618367854599,
-7907,
+1791317157802385753,
+7791,
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/credential_files.py": [
@@ -325,8 +330,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/cronjob_tools.py": [
-1791144087329418220,
-62385,
+1791317157802592672,
+62784,
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/daemon_pool.py": [
@@ -340,13 +345,13 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/delegate_tool.py": [
-1791057640611143227,
-45016,
+1791317157802791175,
+45322,
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/delegate_tool_child_run.py": [
-1790540316720409285,
-61259,
+1791317157803016762,
+62984,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/delegate_tool_config.py": [
@@ -410,8 +415,8 @@ true
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/env_passthrough.py": [
-1790798698258643297,
-8689,
+1791317157803303849,
+9589,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/env_probe.py": [
@@ -440,13 +445,13 @@ true
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/file_operations.py": [
-1790971258494668430,
-92326,
+1791317157803764772,
+92496,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/file_operations_common.py": [
-1790501255433780174,
-11739,
+1791317157804076068,
+12242,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/file_operations_lint.py": [
@@ -465,8 +470,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/file_tools.py": [
-1790626066061385164,
-72592,
+1791317157804289571,
+73136,
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/file_tools_paths.py": [
@@ -475,13 +480,13 @@ true
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/file_tools_read_tracking.py": [
-1790107286355540209,
-16324,
+1791317157804453240,
+19446,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/file_tools_write_guards.py": [
-1791230465998356967,
-32624,
+1791317157804635534,
+32976,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/focus_pane_tool.py": [
@@ -605,8 +610,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/mcp_tool_agent.py": [
-1790281618369582477,
-17364,
+1791317157804817120,
+17430,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/mcp_tool_common.py": [
@@ -660,13 +665,13 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/mcp_tool_registration.py": [
-1790501255438265897,
-33729,
+1791317157805005997,
+33986,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/mcp_tool_sampling.py": [
-1790501255438833061,
-18554,
+1791317157805178708,
+19024,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/mcp_tool_schema.py": [
@@ -690,13 +695,13 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/memory_tool.py": [
-1791057640614398930,
-24206,
+1791317157805351794,
+24915,
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/memory_tool_store.py": [
-1790281618370917524,
-31340,
+1791317157805535421,
+35750,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/microsoft_graph_auth.py": [
@@ -730,8 +735,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/patch_parser.py": [
-1790501255440276219,
-22305,
+1791317157805693215,
+22860,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/path_security.py": [
@@ -755,13 +760,18 @@ false
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/process_registry.py": [
-1791230465998840216,
-151427,
+1791317157805980303,
+150456,
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/process_registry_checkpoint.py": [
 1790501255441061089,
 6527,
+false
+],
+"/Users/liangzhu/.hermes/hermes-agent/tools/process_registry_env_log.py": [
+1791317157806064554,
+2094,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/process_registry_notifications.py": [
@@ -795,8 +805,8 @@ false
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/read_extract.py": [
-1790626066069784196,
-28645,
+1791317157806262390,
+28671,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/read_preview_tool.py": [
@@ -820,13 +830,13 @@ true
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/self_repo_guard.py": [
-1790281618371899933,
-26196,
+1791317157806442392,
+26222,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/send_message_senders.py": [
-1790501255443228285,
-36986,
+1791317157806736771,
+46470,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/send_message_targets.py": [
@@ -835,8 +845,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/send_message_tool.py": [
-1791144087331080303,
-42056,
+1791317157806964525,
+43013,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/session_search_tool.py": [
@@ -870,8 +880,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/skill_manager_tool.py": [
-1791144087331622220,
-44584,
+1791317157807170611,
+46988,
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/skill_provenance.py": [
@@ -910,8 +920,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/skills_hub_github.py": [
-1790501255447053387,
-29800,
+1791317157807370864,
+32238,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/skills_hub_install.py": [
@@ -925,8 +935,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/skills_hub_official.py": [
-1790501255447628175,
-19219,
+1791317157807564616,
+20098,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/skills_hub_search.py": [
@@ -935,8 +945,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/skills_hub_skillssh.py": [
-1789934429614111952,
-18594,
+1791317157807748577,
+18773,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/skills_hub_sources.py": [
@@ -950,8 +960,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/skills_sync_bundled_ops.py": [
-1788898436132337511,
-10119,
+1791317157807917871,
+13039,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/skills_sync_optional.py": [
@@ -1075,13 +1085,13 @@ true
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/todo_tool.py": [
-1790798698261732908,
-14875,
+1791317157808069040,
+15371,
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/tool_backend_helpers.py": [
-1791057640615889387,
-13559,
+1791317157808247876,
+14188,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/tool_labels.py": [
@@ -1105,8 +1115,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/tool_search.py": [
-1790971258498389692,
-30691,
+1791317157808447837,
+30612,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/tool_search_catalog.py": [
@@ -1119,9 +1129,14 @@ false
 11808,
 false
 ],
+"/Users/liangzhu/.hermes/hermes-agent/tools/tour_presets.py": [
+1791317157808517296,
+448,
+false
+],
 "/Users/liangzhu/.hermes/hermes-agent/tools/tour_tool.py": [
-1789505017978892512,
-6589,
+1791317157808691340,
+7841,
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/transcription_audio.py": [
@@ -1129,29 +1144,39 @@ true
 14562,
 false
 ],
+"/Users/liangzhu/.hermes/hermes-agent/tools/transcription_chunking.py": [
+1791317157808896676,
+8387,
+false
+],
 "/Users/liangzhu/.hermes/hermes-agent/tools/transcription_cloud.py": [
-1790501255453004476,
-26008,
+1791317157809096012,
+26694,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/transcription_command.py": [
-1790501255453325183,
-14310,
+1791317157809303515,
+15938,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/transcription_common.py": [
-1790501255453510057,
-4650,
+1791317157809465309,
+6296,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/transcription_local.py": [
-1791230465999650630,
-16325,
+1791317157809636603,
+17688,
+false
+],
+"/Users/liangzhu/.hermes/hermes-agent/tools/transcription_streaming.py": [
+1791317157809739646,
+23284,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/transcription_tools.py": [
-1790971258498711863,
-30179,
+1791317157809977191,
+32062,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/transcription_whisper_cpp.py": [
@@ -1165,8 +1190,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/tts_streaming.py": [
-1790501255454451259,
-24018,
+1791317157810216319,
+25508,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/tts_text_normalize.py": [
@@ -1175,8 +1200,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/tts_tool.py": [
-1790626066078548647,
-34107,
+1791317157810431323,
+34918,
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/tts_tool_delivery.py": [
@@ -1200,8 +1225,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/tts_tool_plugins.py": [
-1788898436139837319,
-4576,
+1791317157810600200,
+6728,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/tts_tool_providers.py": [
@@ -1240,8 +1265,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/voice_client_config.py": [
-1790798698261935913,
-12138,
+1791317157810747368,
+12665,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/voice_live.py": [
@@ -1250,8 +1275,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/voice_mode.py": [
-1791057640616326511,
-72013,
+1791317157810952830,
+71580,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/voice_mode_transcript.py": [
@@ -1275,8 +1300,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/web_tools.py": [
-1790971258500097508,
-29751,
+1791317157811136082,
+30137,
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/web_tools_extract.py": [

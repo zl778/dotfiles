@@ -1,1 +1,1 @@
-{"phase": "running", "pid": 73047, "start_time": 1791230545.940427, "started_at": "2026-10-05T20:02:25.940427+00:00", "create_time": 1791230539.519227}
+{"phase": "exited", "pid": 87156, "exit_code": 75, "exit_reason": "graceful_shutdown", "exited_at": "2026-10-07T20:20:51.408963+00:00", "start_time": 1791317580.218872, "create_time": 1791317510.200062}
