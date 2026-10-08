@@ -640,3 +640,5 @@ _left_core_scoped:
 # fallback_model:
 #   provider: openrouter
 #   model: anthropic/claude-sonnet-4
+_left_core_installed:
+  - homeassistant

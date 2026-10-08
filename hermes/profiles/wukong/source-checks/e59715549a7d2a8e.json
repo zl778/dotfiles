@@ -2,7 +2,7 @@
   "identity": {
     "root": "/Users/liangzhu/.hermes/hermes-agent",
     "home": "/Users/liangzhu/.hermes/profiles/wukong",
-    "head": "79af3f6cea8067284a7ea5725078578b3f790adb",
+    "head": "865ba906c1a8d93de65839ee7af487204d42e873",
     "origin": "https://github.com/NousResearch/hermes-agent.git",
     "branch": "main",
     "channel": "main",
@@ -10,18 +10,109 @@
     "branchOverride": false,
     "channelProtocol": 1
   },
-  "ts": 1791230546.6026912,
+  "ts": 1791404461.749453,
   "status": {
     "supported": true,
     "hermesRoot": "/Users/liangzhu/.hermes/hermes-agent",
-    "behind": 0,
-    "commits": [],
-    "currentSha": "79af3f6cea8067284a7ea5725078578b3f790adb",
+    "behind": 15,
+    "commits": [
+      {
+        "sha": "354724fb085162678964c116ceb4c40fc57c717c",
+        "summary": "style(desktop): sort the projects-sibling imports per perfectionist",
+        "author": "Austin Pickett",
+        "at": 1791403736000
+      },
+      {
+        "sha": "bf8cf34c505d67f8af91770e14f5c5102c855b55",
+        "summary": "refactor(desktop): move sidebar projects copy into per-locale siblings for #73091",
+        "author": "Austin Pickett",
+        "at": 1791403736000
+      },
+      {
+        "sha": "ec60e9a6d8bfef89bdf6691ef8035aad12fd8293",
+        "summary": "test(desktop): store-level dismiss/restore round-trip for auto projects",
+        "author": "Austin Pickett",
+        "at": 1791403736000
+      },
+      {
+        "sha": "734c35bbc72538cfe37543bc2bd1e936989ff044",
+        "summary": "fix(desktop): translate the undo-hide toast strings (de/es/fr/ru) for #73091",
+        "author": "Austin Pickett",
+        "at": 1791403736000
+      },
+      {
+        "sha": "d7cf4d8dc7ffe6425eb91da407d9d4829350d287",
+        "summary": "chore(desktop): regenerate locales/_keys.desktop.json for undo-hide keys",
+        "author": "Brooklyn Nicholson",
+        "at": 1791403736000
+      },
+      {
+        "sha": "3b2a6b6e1aedeb638ddb46563d547b06dc872f09",
+        "summary": "fix(desktop): make auto-project Hide from sidebar reversible via an Undo toast (#73091)",
+        "author": "PRATHAMESH75",
+        "at": 1791403736000
+      },
+      {
+        "sha": "daa9593a03adf0040f49444126b313fcf985c459",
+        "summary": "test(state): drop the unpinned rollback claim from the corruption-class test",
+        "author": "kshitijk4poor",
+        "at": 1791403284000
+      },
+      {
+        "sha": "324850626a81d88a341e3213336b7c1e864451f9",
+        "summary": "fix(state): name the user-facing repair commands in the FTS corruption error",
+        "author": "kshitijk4poor",
+        "at": 1791403284000
+      },
+      {
+        "sha": "995da31b27a073af9658a4f25b848ea48d3258c7",
+        "summary": "fix(state): only a malformed-image error gets the FTS offline-repair hint",
+        "author": "kshitijk4poor",
+        "at": 1791403284000
+      },
+      {
+        "sha": "8e0c55de714586820013488fa49b23024c4d9b84",
+        "summary": "test(state): assert the exact surviving-index count",
+        "author": "kshitijk4poor",
+        "at": 1791403284000
+      },
+      {
+        "sha": "583e995a91b6f7d441277828174fa9b7fcbe6ce5",
+        "summary": "refactor(state): one WHY line on the rebuild_fts corruption arm",
+        "author": "kshitijk4poor",
+        "at": 1791403284000
+      },
+      {
+        "sha": "86e4a57f302b7e0ae7cc7f8b25b8b003e8ffeddc",
+        "summary": "test(state): drop the toothless in_transaction assert",
+        "author": "kshitijk4poor",
+        "at": 1791403284000
+      },
+      {
+        "sha": "609181fd6ed36f8b46d20a8d624d62faba37ebb0",
+        "summary": "test(state): plain close() in the FTS corruption fixture teardown",
+        "author": "kshitijk4poor",
+        "at": 1791403284000
+      },
+      {
+        "sha": "a0b14df1bc3be8078cffbcc5bf62ad3d3e013dea",
+        "summary": "fix(state): catch corruption-class DatabaseError in optimize_fts() too",
+        "author": "kshitijk4poor",
+        "at": 1791403284000
+      },
+      {
+        "sha": "e9a981bb6c4e4317803979ca875f924c7e9ae0bc",
+        "summary": "fix(state): catch the corruption-class DatabaseError inside rebuild_fts()",
+        "author": "liuhao1024",
+        "at": 1791403284000
+      }
+    ],
+    "currentSha": "865ba906c1a8d93de65839ee7af487204d42e873",
     "currentBranch": "main",
     "dirty": false,
     "branch": "main",
-    "fetchedAt": 1791230546602,
-    "targetSha": "79af3f6cea8067284a7ea5725078578b3f790adb",
-    "updateAvailable": false
+    "fetchedAt": 1791404461749,
+    "targetSha": "354724fb085162678964c116ceb4c40fc57c717c",
+    "updateAvailable": true
   }
 }
