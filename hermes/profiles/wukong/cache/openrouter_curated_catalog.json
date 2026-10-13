@@ -1,5 +1,5 @@
 {
-  "fetched_at": 1791835370.590683,
+  "fetched_at": 1791921123.896647,
   "curated": [
     [
       "anthropic/claude-fable-5.1",
@@ -79,6 +79,10 @@
     ],
     [
       "openai/gpt-5.4-mini",
+      ""
+    ],
+    [
+      "google/gemini-4-argon",
       ""
     ],
     [
