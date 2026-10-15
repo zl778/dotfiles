@@ -45,8 +45,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/approval_smart.py": [
-1790021878718644394,
-7988,
+1792094516386010594,
+8785,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/approval_yolo.py": [
@@ -465,8 +465,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/file_operations_search.py": [
-1791576071706840120,
-59605,
+1792094516386918388,
+60382,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/file_state.py": [
@@ -630,8 +630,8 @@ false
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/mcp_tool_config.py": [
-1791576071709893977,
-27771,
+1792094516387384098,
+32450,
 false
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/mcp_tool_content.py": [
@@ -770,8 +770,8 @@ false
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/process_registry.py": [
-1791835288404302220,
-150610,
+1792094516387908016,
+150640,
 true
 ],
 "/Users/liangzhu/.hermes/hermes-agent/tools/process_registry_checkpoint.py": [
