@@ -2,7 +2,7 @@
   "identity": {
     "root": "/Users/liangzhu/.hermes/hermes-agent",
     "home": "/Users/liangzhu/.hermes/profiles/wukong",
-    "head": "71d34bad1045610252eda02ee79549436896e784",
+    "head": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
     "origin": "https://github.com/NousResearch/hermes-agent.git",
     "branch": "main",
     "channel": "stable",
@@ -11,21 +11,22 @@
     "channelProtocol": 1,
     "forwardOnly": true
   },
-  "ts": 1791921780.000353,
+  "ts": 1792182211.352845,
   "status": {
     "supported": true,
     "hermesRoot": "/Users/liangzhu/.hermes/hermes-agent",
     "behind": 0,
     "commits": [],
-    "currentSha": "71d34bad1045610252eda02ee79549436896e784",
+    "currentSha": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
     "currentBranch": "HEAD",
     "dirty": false,
     "channel": "stable",
-    "fetchedAt": 1791921780000,
-    "targetSha": "71d34bad1045610252eda02ee79549436896e784",
+    "fetchedAt": 1792182211352,
+    "targetSha": "d923a5eb487a17c0a68801bba9ef0f56c81040a8",
     "updateAvailable": false,
-    "sourceVersion": "0.21.7",
+    "sourceVersion": "0.22.2",
     "buildId": null,
-    "aheadOfRelease": false
+    "aheadOfRelease": false,
+    "rollback": false
   }
 }
