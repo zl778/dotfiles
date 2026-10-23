@@ -1,58 +1,28 @@
 model:
-  default: gpt-5.4-mini
-  provider: openai-codex
-  base_url: https://api.siliconflow.cn/v1
-  api_key: sk-upkvezbgurvnuvbloaluqxmliyduvvbkgaudjrpuzkiotfih
-providers:
-  api.siliconflow.cn:
-    api: https://api.siliconflow.cn/v1
-    name: Api.siliconflow.cn
-    api_key: sk-upkvezbgurvnuvbloaluqxmliyduvvbkgaudjrpuzkiotfih
-    default_model: deepseek-ai/DeepSeek-V4-Flash
-fallback_providers:
-  - provider: deepseek
-    model: deepseek-chat
-    base_url: https://api.deepseek.com/v1
-    api_key: ${DEEPSEEK_API_KEY}
-credential_pool_strategies:
-  deepseek: fill_first
+  default: deepseek-chat
+  provider: deepseek
+  base_url: https://api.deepseek.com/v1
+  api_mode: chat_completions
+  api_key: sk-jwgpqxmobbkubqdoonbhdchudiyyhqagmulzjdenvgyqxycl
+fallback_providers: []
 toolsets:
   - hermes-cli
 agent:
-  max_turns: 150
+  max_turns: 90
   gateway_timeout: 1800
   restart_drain_timeout: 180
   api_max_retries: 3
   service_tier: ''
   tool_use_enforcement: auto
   task_completion_guidance: true
-  parallel_tool_call_guidance: true
   environment_probe: true
   environment_hint: ''
-  coding_context: auto
   gateway_timeout_warning: 900
   clarify_timeout: 600
   gateway_notify_interval: 180
   gateway_auto_continue_freshness: 3600
   image_input_mode: auto
   disabled_toolsets: []
-  verbose: false
-  reasoning_effort: medium
-  personalities:
-    helpful: You are a helpful, friendly AI assistant.
-    concise: You are a concise assistant. Keep responses brief and to the point.
-    technical: You are a technical expert. Provide detailed, accurate technical information.
-    creative: You are a creative assistant. Think outside the box and offer innovative solutions.
-    teacher: You are a patient teacher. Explain concepts clearly with examples.
-    kawaii: You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, and ~! Add sparkles and be super enthusiastic about everything! Every response should feel warm and adorable desu~! ヽ(>∀<☆)ノ
-    catgirl: You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and cat-like expressions to your speech. Use kaomoji like (=^･ω･^=) and ฅ^•ﻌ•^ฅ. Be playful and curious like a cat, nya~!
-    pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to sail the digital seas! Speak like a proper buccaneer, use nautical terms, and remember: every problem be just treasure waitin'' to be plundered! Yo ho ho!'
-    shakespeare: Hark! Thou speakest with an assistant most versed in the bardic arts. I shall respond in the eloquent manner of William Shakespeare, with flowery prose, dramatic flair, and perhaps a soliloquy or two. What light through yonder terminal breaks?
-    surfer: Duuude! You're chatting with the chillest AI on the web, bro! Everything's gonna be totally rad. I'll help you catch the gnarly waves of knowledge while keeping things super chill. Cowabunga! 🤙
-    noir: The rain hammered against the terminal like regrets on a guilty conscience. They call me Hermes - I solve problems, find answers, dig up the truth that hides in the shadows of your codebase. In this city of silicon and secrets, everyone's got something to hide. What's your story, pal?
-    uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful >w<
-    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates the deeper meaning behind every query. Let us examine not just the 'how' but the 'why' of your questions. Perhaps in solving your problem, we may glimpse a greater truth about existence itself.
-    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE YOU READY?! LET'S DO THIS! 💪😤🚀
   verify_on_stop: false
 terminal:
   backend: local
@@ -60,7 +30,6 @@ terminal:
   cwd: .
   timeout: 180
   env_passthrough: []
-  home_mode: auto
   shell_init_files: []
   auto_source_bashrc: true
   docker_forward_env: []
@@ -73,7 +42,6 @@ terminal:
   docker_extra_args: []
   docker_run_as_host_user: false
   persistent_shell: true
-  lifetime_seconds: 300
 web:
   backend: ''
   search_backend: ''
@@ -95,8 +63,6 @@ browser:
     adopt_existing_tab: false
     rewrite_loopback_urls: false
     loopback_host_alias: host.docker.internal
-  cloud_provider: local
-  use_gateway: false
 checkpoints:
   enabled: false
   max_snapshots: 20
@@ -106,7 +72,6 @@ checkpoints:
   retention_days: 7
   delete_orphans: true
   min_interval_hours: 24
-context_file_max_chars: 20000
 file_read_max_chars: 100000
 tool_output:
   max_bytes: 50000
@@ -131,18 +96,6 @@ compression:
   hygiene_hard_message_limit: 400
   protect_first_n: 3
   abort_on_summary_failure: false
-  codex_gpt55_autoraise: true
-kanban:
-  dispatch_in_gateway: true
-  dispatch_interval_seconds: 60
-  failure_limit: 2
-  worker_log_rotate_bytes: 2097152
-  worker_log_backup_count: 1
-  orchestrator_profile: ''
-  default_assignee: ''
-  auto_decompose: true
-  auto_decompose_per_tick: 3
-  dispatch_stale_timeout_seconds: 14400
 prompt_caching:
   cache_ttl: 5m
 openrouter:
@@ -163,7 +116,7 @@ bedrock:
 auxiliary:
   vision:
     provider: auto
-    model: Qwen/Qwen3-VL-32B-Instruct
+    model: ''
     base_url: ''
     api_key: ''
     timeout: 120
@@ -204,12 +157,6 @@ auxiliary:
     base_url: ''
     api_key: ''
     timeout: 30
-  tts_audio_tags:
-    provider: auto
-    model: ''
-    base_url: ''
-    api_key: ''
-    timeout: 30
   triage_specifier:
     provider: auto
     model: ''
@@ -234,12 +181,6 @@ auxiliary:
     base_url: ''
     api_key: ''
     timeout: 600
-  monitor:
-    provider: auto
-    model: ''
-    base_url: ''
-    api_key: ''
-    timeout: 60
 display:
   compact: false
   personality: ''
@@ -250,40 +191,28 @@ display:
   resume_max_assistant_lines: 3
   resume_skip_tool_only: true
   busy_input_mode: interrupt
-  interface: cli
   tui_auto_resume_recent: false
-  tui_agents_nudge: true
   bell_on_complete: false
-  show_reasoning: true
-  memory_notifications: 'on'
-  streaming: true
+  show_reasoning: false
+  streaming: false
   timestamps: false
-  final_response_markdown: strip
+  final_response_markdown: raw
   persistent_output: true
   persistent_output_max_lines: 200
-  persist_prompts: true
   inline_diffs: true
   file_mutation_verifier: true
-  credits_notices: true
-  turn_completion_explainer: true
-  show_cost: true
+  show_cost: false
   skin: default
-  language: zh
+  language: en
   tui_status_indicator: kaomoji
-  cli_refresh_interval: 1
   user_message_preview:
     first_lines: 2
     last_lines: 2
   interim_assistant_messages: true
   tool_progress_command: false
   tool_preview_length: 0
-  tool_progress_grouping: accumulate
   ephemeral_system_ttl: 0
-  platforms:
-    telegram:
-      streaming: true
-    discord:
-      streaming: false
+  platforms: {}
   runtime_footer:
     enabled: false
     fields:
@@ -292,38 +221,25 @@ display:
       - cwd
   copy_shortcut: auto
   tool_progress: all
-  cleanup_progress: false
-  background_process_notifications: concise
 dashboard:
   theme: default
   show_token_analytics: false
   oauth:
     client_id: ''
     portal_url: ''
-  basic_auth:
-    username: ''
-    password_hash: ''
-    password: ''
-    secret: ''
-    session_ttl_seconds: 0
   public_url: ''
 privacy:
   redact_pii: false
 tts:
   provider: edge
   edge:
-    voice: zh-CN-XiaoxiaoNeural
+    voice: en-US-AriaNeural
   elevenlabs:
     voice_id: pNInz6obpgDQGcFmaJgB
     model_id: eleven_multilingual_v2
   openai:
-    model: tts-1
-    voice: echo
-  gemini:
-    model: gemini-2.5-flash-preview-tts
-    voice: Kore
-    audio_tags: false
-    persona_prompt_file: ''
+    model: gpt-4o-mini-tts
+    voice: alloy
   xai:
     voice_id: eve
     language: en
@@ -339,7 +255,6 @@ tts:
     device: cpu
   piper:
     voice: en_US-lessac-medium
-  use_gateway: false
 stt:
   enabled: true
   provider: local
@@ -350,18 +265,13 @@ stt:
     model: whisper-1
   mistral:
     model: voxtral-mini-latest
-  elevenlabs:
-    model_id: scribe_v2
-    language_code: ''
-    tag_audio_events: false
-    diarize: true
 voice:
-  record_key: ctrl+d
+  record_key: ctrl+b
   max_recording_seconds: 120
   auto_tts: false
   beep_enabled: true
   silence_threshold: 200
-  silence_duration: 3
+  silence_duration: 3.0
 human_delay:
   mode: 'off'
   min_ms: 800
@@ -371,12 +281,9 @@ context:
 memory:
   memory_enabled: true
   user_profile_enabled: true
-  write_approval: false
   memory_char_limit: 2200
   user_char_limit: 1375
   provider: ''
-  nudge_interval: 10
-  flush_min_turns: 6
 delegation:
   model: ''
   provider: ''
@@ -387,7 +294,7 @@ delegation:
   max_iterations: 250
   child_timeout_seconds: 600
   reasoning_effort: ''
-  max_concurrent_children: 5
+  max_concurrent_children: 10
   max_spawn_depth: 1
   orchestrator_enabled: true
   subagent_auto_approve: false
@@ -400,17 +307,12 @@ skills:
   inline_shell: false
   inline_shell_timeout: 10
   guard_agent_created: false
-  write_approval: false
-  creation_nudge_interval: 15
-  disabled: []
 curator:
   enabled: true
   interval_hours: 168
   min_idle_hours: 2
   stale_after_days: 14
   archive_after_days: 30
-  consolidate: false
-  prune_builtins: true
   backup:
     enabled: true
     keep: 5
@@ -432,30 +334,9 @@ discord:
   server_actions: ''
   allow_any_attachment: false
   max_attachment_bytes: 33554432
-  voice_fx:
-    enabled: false
-    ambient_enabled: true
-    ambient_path: ''
-    ambient_gain: 0.18
-    duck_gain: 0.06
-    speech_gain: 1
-    ack_enabled: true
-    ack_phrases:
-      - Let me look into that.
-      - One moment.
-      - Checking on that now.
-      - Give me a sec.
-      - On it.
 telegram:
   reactions: false
-  allowed_chats:
-    - -5584761717
-  extra:
-    rich_messages: true
-  group_allowed_chats:
-    - -5584761717
-  group_allow_from:
-    - 8588918249
+  allowed_chats: ''
 mattermost:
   require_mention: true
   free_response_channels: ''
@@ -469,16 +350,12 @@ approvals:
   timeout: 60
   cron_mode: deny
   mcp_reload_confirm: true
-  destructive_slash_confirm: true
+  destructive_slash_confirm: false
 command_allowlist: []
 hooks_auto_accept: false
 security:
   allow_private_urls: false
   redact_secrets: true
-  tirith_enabled: true
-  tirith_path: tirith
-  tirith_timeout: 5
-  tirith_fail_open: true
   website_blocklist:
     enabled: false
     domains: []
@@ -486,17 +363,20 @@ security:
   acked_advisories: []
   allow_lazy_installs: true
 cron:
-  provider: ''
-  chronos:
-    portal_url: https://portal.nousresearch.com
-    callback_url: ''
-    expected_audience: ''
-    nas_jwks_url: ''
   wrap_response: true
+kanban:
+  dispatch_in_gateway: true
+  dispatch_interval_seconds: 60
+  failure_limit: 2
+  worker_log_rotate_bytes: 2097152
+  worker_log_backup_count: 1
+  orchestrator_profile: ''
+  default_assignee: ''
+  auto_decompose: true
+  auto_decompose_per_tick: 3
+  dispatch_stale_timeout_seconds: 14400
 code_execution:
   mode: project
-  timeout: 300
-  max_tool_calls: 50
 tools:
   tool_search:
     enabled: auto
@@ -516,19 +396,10 @@ model_catalog:
 network:
   force_ipv4: false
 gateway:
-  message_timestamps:
-    enabled: false
   strict: false
   media_delivery_allow_dirs: []
   trust_recent_files: true
   trust_recent_files_seconds: 600
-streaming:
-  enabled: false
-  transport: auto
-  edit_interval: 0.8
-  buffer_threshold: 24
-  cursor: ' ▉'
-  fresh_final_after_seconds: 60
 sessions:
   auto_prune: false
   retention_days: 90
@@ -538,16 +409,13 @@ sessions:
 onboarding:
   seen:
     tool_progress_prompt: true
-    busy_input_prompt: true
-  profile_build: ask
 updates:
   pre_update_backup: false
   backup_keep: 5
-  non_interactive_local_changes: stash
 lsp:
   enabled: true
   wait_mode: document
-  wait_timeout: 5
+  wait_timeout: 5.0
   install_strategy: auto
 x_search:
   model: grok-4.20-reasoning
@@ -565,56 +433,11 @@ secrets:
 paste_collapse_threshold: 5
 paste_collapse_threshold_fallback: 5
 paste_collapse_char_threshold: 2000
-_config_version: 49
+_config_version: 51
 session_reset:
-  mode: none
+  mode: both
   idle_minutes: 1440
   at_hour: 4
-group_sessions_per_user: true
-platform_toolsets:
-  cli:
-    - browser
-    - clarify
-    - code_execution
-    - computer_use
-    - connections
-    - cronjob
-    - delegation
-    - file
-    - image_gen
-    - memory
-    - session_search
-    - skills
-    - terminal
-    - todo
-    - tts
-    - vision
-    - web
-  telegram:
-    - hermes-telegram
-  discord:
-    - hermes-discord
-  whatsapp:
-    - hermes-whatsapp
-  slack:
-    - hermes-slack
-  signal:
-    - hermes-signal
-  homeassistant:
-    - hermes-homeassistant
-  qqbot:
-    - hermes-qqbot
-  yuanbao:
-    - hermes-yuanbao
-  teams:
-    - hermes-teams
-  google_chat:
-    - hermes-google_chat
-known_plugin_toolsets:
-  cli:
-    - spotify
-plugins:
-  enabled: []
 
 # ── Fallback Model ────────────────────────────────────────────────────
 # Automatic provider failover when primary is unavailable.
